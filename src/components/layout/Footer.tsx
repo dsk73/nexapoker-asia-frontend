@@ -8,7 +8,7 @@ const navigationLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Activities", href: "/activities" },
-  { label: "Teaching Center", href: "/teaching-center" },
+  // { label: "Teaching Center", href: "/teaching-center" },
   { label: "Poker Exchange", href: "/poker-exchange" },
   { label: "Community", href: "/community" },
 ];
