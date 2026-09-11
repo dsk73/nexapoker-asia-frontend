@@ -39,7 +39,7 @@ export default function Footer() {
 
         {/* Pink glow */}
 
-        <div className="absolute bottom-[-25%] left-[-8%] h-120 w-120 rounded-full bg-[#ff1764]/6 blur-[140px]" />
+        <div className="absolute bottom-[-25%] left-[-8%]h-120 w-120 rounded-full bg-[#ff1764]/6 blur-[140px]" />
       </div>
 
       {/* =====================================================
@@ -54,6 +54,7 @@ export default function Footer() {
 
           <div className="max-w-sm">
             {/* Logo / Brand */}
+
             <Link
               href="/"
               className="inline-flex items-center"
@@ -72,8 +73,7 @@ export default function Footer() {
 
             <p className="mt-6 text-sm leading-6 text-white/55 sm:text-base">
               Your next poker journey starts here. Discover exciting games,
-              improve your strategy and connect with poker players across South
-              Asia.
+              improve your strategy and connect with poker players worldwide.
             </p>
 
             {/* CTA */}
@@ -166,7 +166,7 @@ export default function Footer() {
             {/* Copyright */}
 
             <p className="text-white/40">
-              © {new Date().getFullYear()} NexaPoker. All rights reserved.
+              Â© {new Date().getFullYear()} NexaPoker. All rights reserved.
             </p>
 
             {/* Brand statement */}

@@ -1,10 +1,4 @@
-import {
-  Apple,
-  Download,
-  Smartphone,
-  Monitor,
-  TabletSmartphone,
-} from "lucide-react";
+import { Apple, Smartphone, Monitor, TabletSmartphone } from "lucide-react";
 
 import type { DownloadPage } from "@/types/pages";
 
@@ -44,12 +38,6 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
       description: "Download the NexaPoker iOS app",
       url: page.IOSURL,
       icon: TabletSmartphone,
-    },
-    {
-      label: "Android APK",
-      description: "Download the Android APK directly",
-      url: page.APKURL,
-      icon: Download,
     },
   ].filter((platform) => Boolean(platform.url));
 

@@ -74,7 +74,7 @@ export default function AboutFeatures({ page }: AboutFeaturesProps) {
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
             Discover what makes NexaPoker a growing destination for poker
-            players and communities across South Asia.
+            players and communities worldwide.
           </p>
         </motion.div>
 

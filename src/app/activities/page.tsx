@@ -34,7 +34,7 @@ export default async function ActivitiesPage() {
 
               <p className="mt-5 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
                 Discover poker activities, tournaments, events and experiences
-                available for players across South Asia.
+                available for players worldwide.
               </p>
             </div>
           </div>
@@ -62,8 +62,8 @@ export default async function ActivitiesPage() {
                 </h2>
 
                 <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-white/50">
-                  There are currently no poker activities available. Please
-                  check back again soon.
+                  There are currently no poker activitiesavailable. Please check
+                  back again soon.
                 </p>
               </div>
             )}

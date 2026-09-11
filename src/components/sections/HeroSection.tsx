@@ -139,13 +139,6 @@ export default function HeroSection({
                   ================================================= */}
 
               <div className="relative z-20 max-w-2xl lg:-translate-x-8 xl:-translate-x-12">
-                {/* Badge */}
-
-                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#ff1764]/30 bg-[#ff1764]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#ff5b91]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#ff1764]" />
-                  South Asia Poker
-                </div>
-
                 {/* Title */}
 
                 <h1 className="max-w-2xl text-4xl font-black leading-[1.03] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">

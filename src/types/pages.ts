@@ -172,3 +172,44 @@ export interface HomepageSettings {
   updatedAt?: string;
   publishedAt?: string;
 }
+
+/* =========================================================
+   POKER EXCHANGE FEATURE
+========================================================= */
+
+export interface PokerExchangeFeature {
+  id?: number;
+  Title: string;
+  Description: string;
+}
+
+/* =========================================================
+   POKER EXCHANGE PAGE
+========================================================= */
+
+export interface PokerExchangePage {
+  id?: number;
+  documentId?: string;
+
+  HeroTitle: string;
+  HeroSubtitle: string;
+  HeroImage?: StrapiMedia | null;
+
+  IntroTitle: string;
+  IntroDescription: string;
+
+  Features: PokerExchangeFeature[];
+
+  CTAButton?: {
+    id?: number;
+    Label: string;
+    URL: string;
+    OpenInNewTab: boolean;
+  } | null;
+
+  SEO?: SEO | null;
+
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
+}

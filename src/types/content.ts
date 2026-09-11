@@ -1,7 +1,9 @@
 import type { StrapiImage } from "./strapi";
 
 /* =========================================================
+
    SEO
+
 ========================================================= */
 
 export interface SEO {
@@ -15,7 +17,9 @@ export interface SEO {
 }
 
 /* =========================================================
+
    ABOUT FEATURE
+
 ========================================================= */
 
 export interface AboutFeature {
@@ -28,36 +32,34 @@ export interface AboutFeature {
 }
 
 /* =========================================================
+
    ABOUT PAGE
+
 ========================================================= */
 
 export interface AboutPage {
   id: number;
   documentId?: string;
-
   HeroTitle: string;
   HeroSubtitle: string;
   HeroBannerImage?: StrapiImage | null;
-
   AboutTitle: string;
   AboutLogo?: StrapiImage | null;
   AboutContent: string;
-
   SectionTitle: string;
   SectionContent: string;
   SectionImage?: StrapiImage | null;
-
   Features: AboutFeature[];
-
   SEO?: SEO | null;
-
   createdAt?: string;
   updatedAt?: string;
   publishedAt?: string;
 }
 
 /* =========================================================
+
    HERO SLIDES
+
 ========================================================= */
 
 export interface HeroSlide {
@@ -78,7 +80,9 @@ export interface HeroSlide {
 }
 
 /* =========================================================
+
    HERO PROMOTION CARD
+
 ========================================================= */
 
 export interface HeroPromotionBenefit {
@@ -103,7 +107,9 @@ export interface HeroPromotionCard {
 }
 
 /* =========================================================
+
    CATEGORY
+
 ========================================================= */
 
 export interface Category {
@@ -119,7 +125,9 @@ export interface Category {
 }
 
 /* =========================================================
+
    AMBASSADOR
+
 ========================================================= */
 
 export interface BrandAmbassador {
@@ -137,7 +145,9 @@ export interface BrandAmbassador {
 }
 
 /* =========================================================
+
    FAQ
+
 ========================================================= */
 
 export type FAQCategory = string;
@@ -156,7 +166,9 @@ export interface FAQ {
 }
 
 /* =========================================================
+
    PAYMENT METHOD
+
 ========================================================= */
 
 export interface PaymentMethod {
@@ -177,7 +189,9 @@ export interface PaymentMethod {
 }
 
 /* =========================================================
+
    ARTICLE / ACTIVITY SHARED FIELDS
+
 ========================================================= */
 
 export interface ArticleBase {
@@ -203,16 +217,9 @@ export interface ArticleBase {
 }
 
 /* =========================================================
-   POKER EXCHANGE ARTICLE
-========================================================= */
 
-export interface PokerExchangeArticle extends ArticleBase {
-  Featured?: boolean;
-  ReadingTime?: number;
-}
-
-/* =========================================================
    ACTIVITY
+
 ========================================================= */
 
 export interface Activity extends ArticleBase {
@@ -221,7 +228,9 @@ export interface Activity extends ArticleBase {
 }
 
 /* =========================================================
+
    TEACHING GUIDE STEP
+
 ========================================================= */
 
 export interface TeachingGuideStep {
@@ -233,7 +242,9 @@ export interface TeachingGuideStep {
 }
 
 /* =========================================================
+
    TEACHING GUIDE SECTION
+
 ========================================================= */
 
 export interface TeachingGuideSection {
@@ -245,7 +256,9 @@ export interface TeachingGuideSection {
 }
 
 /* =========================================================
+
    CTA BUTTON
+
 ========================================================= */
 
 export interface CTAButton {
@@ -256,7 +269,9 @@ export interface CTAButton {
 }
 
 /* =========================================================
+
    TEACHING GUIDE MEDIA
+
 ========================================================= */
 
 export interface TeachingGuideMedia {
@@ -266,7 +281,9 @@ export interface TeachingGuideMedia {
 }
 
 /* =========================================================
+
    TEACHING GUIDE
+
 ========================================================= */
 
 export interface TeachingGuide {

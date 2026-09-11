@@ -10,7 +10,6 @@ import type {
   HeroPromotionCard,
   HeroSlide,
   PaymentMethod,
-  PokerExchangeArticle,
   TeachingGuide,
 } from "@/types/content";
 
@@ -20,6 +19,7 @@ import type {
   FAQPage,
   HomepageSettings,
   RegisterPage,
+  PokerExchangePage,
 } from "@/types/pages";
 
 import type { StrapiCollectionResponse, StrapiResponse } from "@/types/strapi";
@@ -206,30 +206,21 @@ export async function getFAQPage(): Promise<FAQPage> {
    POKER EXCHANGE
 ========================================================= */
 
-export async function getPokerExchangeArticles(): Promise<
-  PokerExchangeArticle[]
-> {
-  const response = await api.get<
-    StrapiCollectionResponse<PokerExchangeArticle>
-  >("/poker-exchange-articles?populate=*");
-
-  return response.data.data
-    .filter((article) => article.Active !== false)
-    .sort((a, b) => (a.DisplayOrder ?? 0) - (b.DisplayOrder ?? 0));
-}
-
-export async function getPokerExchangeArticleBySlug(
-  slug: string,
-): Promise<PokerExchangeArticle | null> {
-  const response = await api.get<
-    StrapiCollectionResponse<PokerExchangeArticle>
-  >(
-    `/poker-exchange-articles?filters[Slug][$eq]=${encodeURIComponent(
-      slug,
-    )}&populate=*`,
+/**
+ * Get the Poker Exchange landing page.
+ *
+ * Populates:
+ * - HeroImage
+ * - Features
+ * - CTAButton
+ * - SEO
+ */
+export async function getPokerExchangePage(): Promise<PokerExchangePage> {
+  const response = await api.get<StrapiResponse<PokerExchangePage>>(
+    "/poker-exchange-page?populate=*",
   );
 
-  return response.data.data[0] ?? null;
+  return response.data.data;
 }
 
 /* =========================================================
@@ -311,10 +302,10 @@ export async function getTeachingGuides(): Promise<TeachingGuide[]> {
   const [baseResponse, deepResponse] = await Promise.all([
     /*
      * Root-level data:
-     * Thumbnail
-     * CTA
-     * Sections
-     * MediaSection
+     * - Thumbnail
+     * - CTA
+     * - Sections
+     * - MediaSection
      */
     api.get<StrapiCollectionResponse<TeachingGuide>>(
       "/teaching-guides?populate=*",
@@ -322,8 +313,8 @@ export async function getTeachingGuides(): Promise<TeachingGuide[]> {
 
     /*
      * Deep nested data:
-     * Sections -> Steps -> Image
-     * MediaSection -> Media
+     * - Sections -> Steps -> Image
+     * - MediaSection -> Media
      */
     api.get<StrapiCollectionResponse<TeachingGuide>>(
       TEACHING_GUIDES_DEEP_POPULATE,
@@ -347,10 +338,10 @@ export async function getTeachingGuideBySlug(
   const [baseResponse, deepResponse] = await Promise.all([
     /*
      * Root-level data:
-     * Thumbnail
-     * CTA
-     * Sections
-     * MediaSection
+     * - Thumbnail
+     * - CTA
+     * - Sections
+     * - MediaSection
      */
     api.get<StrapiCollectionResponse<TeachingGuide>>(
       `/teaching-guides?filters[Slug][$eq]=${encodedSlug}&populate=*`,
@@ -358,8 +349,8 @@ export async function getTeachingGuideBySlug(
 
     /*
      * Deep nested data:
-     * Sections -> Steps -> Image
-     * MediaSection -> Media
+     * - Sections -> Steps -> Image
+     * - MediaSection -> Media
      */
     api.get<StrapiCollectionResponse<TeachingGuide>>(
       `/teaching-guides?filters[Slug][$eq]=${encodedSlug}&populate[Sections][populate][Steps][populate]=*&populate[MediaSection][populate]=*`,
