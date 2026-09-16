@@ -3,14 +3,14 @@ import { Send } from "lucide-react";
 const socialLinks = [
   {
     platform: "Instagram",
-    label: "@Nexa Poker",
-    url: "https://www.instagram.com/Nexa Poker/",
+    label: "nexapoker",
+    url: "https://www.instagram.com/NexaPoker/",
     type: "instagram",
   },
   {
     platform: "Telegram",
-    label: "Nexa PokerCommunity",
-    url: "https://t.me/Nexa PokerCommunity",
+    label: "Nexa Poker",
+    url: "https://t.me/nexapoker",
     type: "telegram",
   },
 ];
@@ -29,7 +29,7 @@ export default function CommunitySocialLinks() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
-            Join Our Community
+            Join Our Channel
           </h2>
 
           <p className="mt-4 text-base leading-7 text-white/60 sm:text-lg sm:leading-8">

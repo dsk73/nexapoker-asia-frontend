@@ -63,7 +63,7 @@ export default function Footer() {
               aria-label="Nexa Poker Home"
             >
               <Image
-                src="/images/Nexa Poker-logo.png"
+                src="/images/nexapoker-logo.png"
                 alt="Nexa Poker"
                 width={150}
                 height={50}
