@@ -58,11 +58,11 @@ export default function Footer() {
             <Link
               href="/"
               className="inline-flex items-center"
-              aria-label="NexaPoker Home"
+              aria-label="Nexa Poker Home"
             >
               <Image
-                src="/images/nexapoker-logo.png"
-                alt="NexaPoker"
+                src="/images/Nexa Poker-logo.png"
+                alt="Nexa Poker"
                 width={150}
                 height={50}
                 className="h-auto w-36 object-contain"
@@ -82,7 +82,7 @@ export default function Footer() {
               href="/register"
               className="nexa-button-primary mt-7 inline-flex"
             >
-              Join NexaPoker
+              Join Nexa Poker
               <ChevronRight size={17} />
             </Link>
           </div>
@@ -166,7 +166,7 @@ export default function Footer() {
             {/* Copyright */}
 
             <p className="text-white/40">
-              © {new Date().getFullYear()} NexaPoker. All rights reserved.
+              Â© {new Date().getFullYear()} Nexa Poker. All rights reserved.
             </p>
 
             {/* Brand statement */}

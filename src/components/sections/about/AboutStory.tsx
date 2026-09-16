@@ -58,7 +58,7 @@ export default function AboutStory({ page }: AboutStoryProps) {
                 <div className="relative aspect-4/3 w-full">
                   <Image
                     src={imageUrl}
-                    alt={page.SectionTitle || "NexaPoker"}
+                    alt={page.SectionTitle || "Nexa Poker"}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover object-center transition-transform duration-700 hover:scale-[1.03]"
@@ -86,7 +86,7 @@ export default function AboutStory({ page }: AboutStoryProps) {
             className="max-w-2xl"
           >
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
-              About NexaPoker
+              About Nexa Poker
             </p>
 
             {page.SectionTitle && (

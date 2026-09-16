@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "NexaPoker Terms & Conditions | Online Poker Platform",
+  title: "Nexa Poker Terms & Conditions | Online Poker Platform",
   description:
-    "Read the NexaPoker Terms & Conditions covering account registration, platform usage, responsible play, payments, promotions, intellectual property and website access.",
+    "Read the Nexa Poker Terms & Conditions covering account registration, platform usage, responsible play, payments, promotions, intellectual property and website access.",
   keywords: [
-    "NexaPoker terms and conditions",
-    "NexaPoker terms",
+    "Nexa Poker terms and conditions",
+    "Nexa Poker terms",
     "online poker terms",
     "poker platform terms",
-    "NexaPoker rules",
-    "NexaPoker account",
+    "Nexa Poker rules",
+    "Nexa Poker account",
     "online poker platform",
   ],
   alternates: {
@@ -21,17 +21,17 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "NexaPoker Terms & Conditions | Online Poker Platform",
+    title: "Nexa Poker Terms & Conditions | Online Poker Platform",
     description:
-      "Read the NexaPoker Terms & Conditions covering account registration, platform usage, responsible play, payments, promotions and website access.",
+      "Read the Nexa Poker Terms & Conditions covering account registration, platform usage, responsible play, payments, promotions and website access.",
     url: "/legal/terms-and-conditions",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexaPoker Terms & Conditions | Online Poker Platform",
+    title: "Nexa Poker Terms & Conditions | Online Poker Platform",
     description:
-      "Read the NexaPoker Terms & Conditions covering account registration, platform usage, responsible play, payments, promotions and website access.",
+      "Read the Nexa Poker Terms & Conditions covering account registration, platform usage, responsible play, payments, promotions and website access.",
   },
 };
 
@@ -55,7 +55,7 @@ export default function TermsAndConditionsPage() {
 
             <p className="mt-5 max-w-3xl text-base leading-7 text-white/60 sm:text-lg">
               These Terms & Conditions explain the rules and conditions that
-              apply when you access or use NexaPoker and its related services.
+              apply when you access or use Nexa Poker and its related services.
             </p>
 
             <p className="mt-4 text-sm text-white/40">
@@ -82,14 +82,14 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                By accessing or using NexaPoker, you acknowledge that you have
+                By accessing or using Nexa Poker, you acknowledge that you have
                 read, understood and agree to be bound by these Terms &
                 Conditions. If you do not agree with these terms, you should not
-                access or use the NexaPoker platform or related services.
+                access or use the Nexa Poker platform or related services.
               </p>
 
               <p className="mt-4">
-                These Terms & Conditions apply to your use of the NexaPoker
+                These Terms & Conditions apply to your use of the Nexa Poker
                 website, applications, software, content, features and related
                 services, where applicable.
               </p>
@@ -112,7 +112,7 @@ export default function TermsAndConditionsPage() {
 
               <p className="mt-4">
                 You must provide accurate information during registration and
-                maintain the accuracy of your account information. NexaPoker may
+                maintain the accuracy of your account information. Nexa Poker may
                 require additional information or verification where necessary.
               </p>
 
@@ -132,7 +132,7 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                Certain NexaPoker services may require you to create an account.
+                Certain Nexa Poker services may require you to create an account.
                 You are responsible for providing complete and accurate
                 registration information.
               </p>
@@ -144,7 +144,7 @@ export default function TermsAndConditionsPage() {
               </p>
 
               <p className="mt-4">
-                You should contact the appropriate NexaPoker support channel if
+                You should contact the appropriate Nexa Poker support channel if
                 you believe that your account credentials have been compromised
                 or that unauthorized activity has occurred.
               </p>
@@ -160,7 +160,7 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                NexaPoker should be used only for lawful purposes and in
+                Nexa Poker should be used only for lawful purposes and in
                 accordance with these Terms & Conditions.
               </p>
 
@@ -174,7 +174,7 @@ export default function TermsAndConditionsPage() {
               <p className="mt-4">
                 You must not use the platform to distribute malicious software,
                 fraudulent content or material that could damage or interfere
-                with the operation of NexaPoker or other users&apos; access to
+                with the operation of Nexa Poker or other users&apos; access to
                 the service.
               </p>
             </section>
@@ -189,7 +189,7 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                NexaPoker provides access to online poker-related experiences,
+                Nexa Poker provides access to online poker-related experiences,
                 games and activities where available.
               </p>
 
@@ -243,7 +243,7 @@ export default function TermsAndConditionsPage() {
               <p>
                 Where payment or account balance features are available, users
                 must follow the applicable instructions and requirements
-                provided by NexaPoker.
+                provided by Nexa Poker.
               </p>
 
               <p className="mt-4">
@@ -269,7 +269,7 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                NexaPoker may offer promotional campaigns, bonuses or other
+                Nexa Poker may offer promotional campaigns, bonuses or other
                 promotional benefits from time to time.
               </p>
 
@@ -280,7 +280,7 @@ export default function TermsAndConditionsPage() {
               </p>
 
               <p className="mt-4">
-                NexaPoker reserves the right to modify, suspend or discontinue a
+                Nexa Poker reserves the right to modify, suspend or discontinue a
                 promotion where permitted by applicable requirements.
               </p>
             </section>
@@ -295,14 +295,14 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                NexaPoker and its associated content, branding, logos, designs,
+                Nexa Poker and its associated content, branding, logos, designs,
                 text, graphics, software and other materials may be protected by
                 intellectual property rights.
               </p>
 
               <p className="mt-4">
                 You may not reproduce, modify, distribute, publicly display or
-                otherwise use NexaPoker content without appropriate
+                otherwise use Nexa Poker content without appropriate
                 authorization, except where permitted by applicable law.
               </p>
             </section>
@@ -317,13 +317,13 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                NexaPoker may provide links to or integrate with third-party
+                Nexa Poker may provide links to or integrate with third-party
                 websites, platforms, applications or services.
               </p>
 
               <p className="mt-4">
                 Third-party services may operate under their own terms,
-                conditions and privacy policies. NexaPoker is not responsible
+                conditions and privacy policies. Nexa Poker is not responsible
                 for the content, availability or policies of third-party
                 services that are outside its control.
               </p>
@@ -339,7 +339,7 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                NexaPoker aims to provide a reliable online poker experience,
+                Nexa Poker aims to provide a reliable online poker experience,
                 but continuous availability cannot be guaranteed.
               </p>
 
@@ -360,7 +360,7 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                NexaPoker may restrict, suspend or terminate access to an
+                Nexa Poker may restrict, suspend or terminate access to an
                 account or service where there is a reasonable basis to believe
                 that these Terms & Conditions have been violated or that the
                 platform is being used unlawfully or improperly.
@@ -382,7 +382,7 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                You are responsible for your use of the NexaPoker platform and
+                You are responsible for your use of the Nexa Poker platform and
                 for complying with applicable laws and regulations.
               </p>
 
@@ -402,7 +402,7 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                NexaPoker provides its website, software and related services on
+                Nexa Poker provides its website, software and related services on
                 an as-available basis. While reasonable efforts may be made to
                 maintain the platform, no guarantee is made that the service
                 will always be uninterrupted, error-free or available in every
@@ -426,7 +426,7 @@ export default function TermsAndConditionsPage() {
               </h2>
 
               <p>
-                NexaPoker may update these Terms & Conditions from time to time.
+                Nexa Poker may update these Terms & Conditions from time to time.
                 Updated terms will be published on this page with a revised
                 update date where appropriate.
               </p>
@@ -448,7 +448,7 @@ export default function TermsAndConditionsPage() {
 
               <p>
                 If you have questions about these Terms & Conditions or your use
-                of NexaPoker, please contact NexaPoker through the official
+                of Nexa Poker, please contact Nexa Poker through the official
                 support or community channels provided on the website.
               </p>
             </section>
@@ -461,7 +461,7 @@ export default function TermsAndConditionsPage() {
               <p className="text-sm leading-6 text-white/40">
                 This page provides general website terms and is intended as an
                 initial website version. It should be reviewed and approved by
-                the appropriate NexaPoker legal or compliance representative
+                the appropriate Nexa Poker legal or compliance representative
                 before being treated as the platform&apos;s final legal terms.
               </p>
             </section>

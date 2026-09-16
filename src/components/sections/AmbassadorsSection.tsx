@@ -170,7 +170,7 @@ export default function AmbassadorsSection({
           {/* Eyebrow */}
 
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
-            NexaPoker
+            Nexa Poker
           </p>
 
           {/* Heading */}
@@ -182,8 +182,8 @@ export default function AmbassadorsSection({
           {/* Description */}
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
-            Meet the players and community members helping grow the NexaPoker
-            experience across South Asia.
+            Meet the players and community members helping grow the Nexa Poker
+            experience across world.
           </p>
         </motion.div>
 

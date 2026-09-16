@@ -26,7 +26,7 @@ export async function generateMetadata({
 
   if (!activity) {
     return {
-      title: "Activity Not Found",
+      title: "Activity Not Found | Nexa Poker",
       robots: {
         index: false,
         follow: false,
@@ -34,11 +34,11 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${activity.Title} | NexaPoker`;
+  const title = `${activity.Title} | Nexa Poker`;
 
   const description =
     activity.Summary ||
-    `Explore ${activity.Title} on NexaPoker for poker insights, strategy, tournaments and useful poker content.`;
+    `Explore ${activity.Title} on Nexa Poker for poker insights, strategy, tournaments and useful online poker content.`;
 
   const canonicalUrl = `/activities/${activity.Slug}`;
 
@@ -51,6 +51,11 @@ export async function generateMetadata({
     keywords: [
       "Nexa Poker",
       "NexaPoker",
+      "online poker",
+      "poker activities",
+      "poker strategy",
+      "poker tournaments",
+      "poker tips",
       ...(Array.isArray(activity.Tags)
         ? activity.Tags.filter((tag): tag is string => typeof tag === "string")
         : []),
@@ -65,7 +70,7 @@ export async function generateMetadata({
       title,
       description,
       url: canonicalUrl,
-      siteName: "NexaPoker",
+      siteName: "Nexa Poker",
       publishedTime: activity.PublishDate,
       images: ogImage
         ? [

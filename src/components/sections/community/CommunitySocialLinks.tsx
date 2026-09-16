@@ -3,14 +3,14 @@ import { Send } from "lucide-react";
 const socialLinks = [
   {
     platform: "Instagram",
-    label: "@nexapoker",
-    url: "https://www.instagram.com/nexapoker/",
+    label: "@Nexa Poker",
+    url: "https://www.instagram.com/Nexa Poker/",
     type: "instagram",
   },
   {
     platform: "Telegram",
-    label: "NEXAPokerCommunity",
-    url: "https://t.me/NEXAPokerCommunity",
+    label: "Nexa PokerCommunity",
+    url: "https://t.me/Nexa PokerCommunity",
     type: "telegram",
   },
 ];
@@ -33,7 +33,7 @@ export default function CommunitySocialLinks() {
           </h2>
 
           <p className="mt-4 text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
-            Follow NexaPoker and stay connected with the latest poker news,
+            Follow Nexa Poker and stay connected with the latest poker news,
             updates and community activities.
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function CommunitySocialLinks() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Follow NexaPoker on ${link.platform}`}
+              aria-label={`Follow Nexa Poker on ${link.platform}`}
               className="group flex items-center gap-5 rounded-3xl border border-white/10 bg-[#0a0d14] px-5 py-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#1877ff]/35 hover:bg-[#0d111a] hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] sm:px-6 sm:py-6"
             >
               {/* =================================================

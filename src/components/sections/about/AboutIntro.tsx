@@ -57,7 +57,7 @@ export default function AboutIntro({ page }: AboutIntroProps) {
               <div className="relative flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[#11151f] shadow-[0_15px_40px_rgba(0,0,0,0.3)] sm:h-28 sm:w-28">
                 <Image
                   src={logoUrl}
-                  alt={page.AboutTitle || "NexaPoker"}
+                  alt={page.AboutTitle || "Nexa Poker"}
                   fill
                   sizes="112px"
                   className="object-contain p-4"
@@ -70,7 +70,7 @@ export default function AboutIntro({ page }: AboutIntroProps) {
             {page.AboutTitle && (
               <div className="min-w-0 flex-1 text-center sm:text-left">
                 <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
-                  NexaPoker
+                  Nexa Poker
                 </p>
 
                 <h2 className="text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">

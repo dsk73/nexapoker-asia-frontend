@@ -61,7 +61,7 @@ export default function ActivitiesSection({
             {/* Eyebrow */}
 
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
-              NexaPoker
+              Nexa Poker
             </p>
 
             {/* Heading */}
@@ -74,7 +74,7 @@ export default function ActivitiesSection({
 
             <p className="mt-5 max-w-xl text-base leading-7 text-white/55 sm:text-lg">
               Stay updated with the latest poker activities, events, insights
-              and community highlights from NexaPoker.
+              and community highlights from Nexa Poker.
             </p>
           </div>
 

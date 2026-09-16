@@ -37,7 +37,7 @@ export default function OtherTeachingGuides({
 
           <p className="mt-4 max-w-xl text-sm leading-7 text-white/55 sm:text-base">
             Continue learning with more poker guides, strategies and practical
-            resources from NexaPoker.
+            resources from Nexa Poker.
           </p>
         </div>
 

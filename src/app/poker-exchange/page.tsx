@@ -6,15 +6,17 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "NexaPoker Poker Exchange | Online Poker Platform",
+  title: "Nexa Poker Poker Exchange | Online Poker Platform",
+
   description:
-    "Explore NexaPoker Poker Exchange and discover an online poker platform with multiple poker games, competitive poker action, convenient account access and a connected poker community.",
+    "Explore Nexa Poker Poker Exchange and discover an online poker platform with poker games, competitive poker action, convenient account access and a connected poker community.",
 
   keywords: [
     "Nexa Poker",
     "NexaPoker",
     "Nexa Poker Poker Exchange",
     "NexaPoker Poker Exchange",
+    "Poker Exchange",
     "online poker platform",
     "online poker games",
     "play poker online",
@@ -28,18 +30,28 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "NexaPoker Poker Exchange | Online Poker Platform",
+    title: "Nexa Poker Poker Exchange | Online Poker Platform",
     description:
-      "Explore NexaPoker Poker Exchange and discover an online poker platform with multiple poker games, competitive poker action, convenient account access and a connected poker community.",
+      "Explore Nexa Poker Poker Exchange and discover an online poker platform with poker games, competitive poker action, convenient account access and a connected poker community.",
     url: "/poker-exchange",
+    siteName: "Nexa Poker",
     type: "website",
+    images: [
+      {
+        url: "/images/nexapoker-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Nexa Poker Poker Exchange | Online Poker Platform",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "NexaPoker Poker Exchange | Online Poker Platform",
+    title: "Nexa Poker Poker Exchange | Online Poker Platform",
     description:
-      "Explore NexaPoker Poker Exchange and discover an online poker platform with multiple poker games, competitive poker action, convenient account access and a connected poker community.",
+      "Explore Nexa Poker Poker Exchange and discover an online poker platform with poker games, competitive poker action, convenient account access and a connected poker community.",
+    images: ["/images/nexapoker-logo.png"],
   },
 };
 
@@ -131,8 +143,8 @@ export default async function PokerExchangePage() {
                 </h2>
 
                 <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-white/60 sm:text-base sm:leading-7">
-                  Join NexaPoker and discover an engaging poker experience built
-                  for players worldwide.
+                  Join Nexa Poker and discover an engaging poker experience
+                  built for players worldwide.
                 </p>
 
                 <a

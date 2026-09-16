@@ -27,11 +27,11 @@ export default function Navbar() {
           <Link
             href="/"
             className="flex items-center"
-            aria-label="NexaPoker home"
+            aria-label="Nexa Poker home"
           >
             <Image
-              src="/images/nexapoker-logo.png"
-              alt="NexaPoker"
+              src="/images/Nexa Poker-logo.png"
+              alt="Nexa Poker"
               width={190}
               height={55}
               priority
@@ -65,7 +65,7 @@ export default function Navbar() {
             </Link>
 
             <Link href="/register" className="nexa-button-primary">
-              Join NexaPoker
+              Join Nexa Poker
             </Link>
           </div>
 
@@ -117,7 +117,7 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className="nexa-button-primary flex-1"
               >
-                Join NexaPoker
+                Join Nexa Poker
               </Link>
             </div>
           </nav>

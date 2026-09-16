@@ -101,7 +101,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
           {/* Eyebrow */}
 
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
-            NexaPoker
+            Nexa Poker
           </p>
 
           {/* Heading */}
@@ -113,7 +113,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
           {/* Description */}
 
           <p className="mt-4 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
-            Find answers to common questions about NexaPoker, getting started,
+            Find answers to common questions About Nexa Poker, getting started,
             playing online and more.
           </p>
         </motion.div>
@@ -200,7 +200,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
 
             <div className="mb-6 sm:mb-7">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#46b9ff]">
-                NexaPoker FAQ
+                Nexa Poker FAQ
               </p>
 
               <h3 className="mt-2 text-2xl font-black tracking-tight text-white sm:text-3xl">

@@ -20,11 +20,11 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
 
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#46b9ff] sm:text-sm">
-              Download NexaPoker
+              Download Nexa Poker
             </p>
 
             <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-              {page.Title || "Download NexaPoker"}
+              {page.Title || "Download Nexa Poker"}
             </h1>
 
             {page.Description && (
@@ -46,7 +46,7 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
                   alt={
                     page.BannerImage?.alternativeText ||
                     page.Title ||
-                    "Download NexaPoker"
+                    "Download Nexa Poker"
                   }
                   width={page.BannerImage?.width || 1200}
                   height={page.BannerImage?.height || 800}

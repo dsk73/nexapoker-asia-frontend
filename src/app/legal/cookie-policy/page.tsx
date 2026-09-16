@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "NexaPoker Cookie Policy | Cookies & Website Usage",
+  title: "Nexa Poker Cookie Policy | Cookies & Website Usage",
   description:
-    "Learn how NexaPoker may use cookies and similar technologies to support website functionality, improve performance, understand usage and enhance your experience.",
+    "Learn how Nexa Poker may use cookies and similar technologies to support website functionality, improve performance, understand usage and enhance your experience.",
   keywords: [
-    "NexaPoker cookie policy",
-    "NexaPoker cookies",
+    "Nexa Poker cookie policy",
+    "Nexa Poker cookies",
     "online poker cookie policy",
-    "NexaPoker website cookies",
-    "NexaPoker privacy",
+    "Nexa Poker website cookies",
+    "Nexa Poker privacy",
     "website cookies",
     "cookie policy",
   ],
@@ -21,17 +21,17 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "NexaPoker Cookie Policy | Cookies & Website Usage",
+    title: "Nexa Poker Cookie Policy | Cookies & Website Usage",
     description:
-      "Learn how NexaPoker may use cookies and similar technologies to support website functionality, improve performance and understand website usage.",
+      "Learn how Nexa Poker may use cookies and similar technologies to support website functionality, improve performance and understand website usage.",
     url: "/legal/cookie-policy",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexaPoker Cookie Policy | Cookies & Website Usage",
+    title: "Nexa Poker Cookie Policy | Cookies & Website Usage",
     description:
-      "Learn how NexaPoker may use cookies and similar technologies across the website.",
+      "Learn how Nexa Poker may use cookies and similar technologies across the website.",
   },
 };
 
@@ -54,7 +54,7 @@ export default function CookiePolicyPage() {
             </h1>
 
             <p className="mt-5 max-w-3xl text-base leading-7 text-white/60 sm:text-lg">
-              This Cookie Policy explains how NexaPoker may use cookies and
+              This Cookie Policy explains how Nexa Poker may use cookies and
               similar technologies when you visit or interact with our website.
             </p>
 
@@ -100,11 +100,11 @@ export default function CookiePolicyPage() {
 
             <section>
               <h2 className="mb-4 text-xl font-semibold text-white sm:text-2xl">
-                2. How NexaPoker May Use Cookies
+                2. How Nexa Poker May Use Cookies
               </h2>
 
               <p>
-                NexaPoker may use cookies and similar technologies to support
+                Nexa Poker may use cookies and similar technologies to support
                 website functionality, understand how visitors interact with the
                 website, improve performance and provide a more convenient user
                 experience.
@@ -195,7 +195,7 @@ export default function CookiePolicyPage() {
 
               <p className="mt-4">
                 Third-party providers may have their own privacy and cookie
-                policies. NexaPoker does not control the cookie practices of
+                policies. Nexa Poker does not control the cookie practices of
                 independent third-party services.
               </p>
             </section>
@@ -259,7 +259,7 @@ export default function CookiePolicyPage() {
 
               <p>
                 Information collected through cookies or similar technologies
-                may help NexaPoker understand website performance and identify
+                may help Nexa Poker understand website performance and identify
                 areas where the user experience can be improved.
               </p>
 
@@ -286,7 +286,7 @@ export default function CookiePolicyPage() {
 
               <p className="mt-4">
                 The handling of personal information is described in more detail
-                in the NexaPoker Privacy Policy.
+                in the Nexa Poker Privacy Policy.
               </p>
             </section>
 
@@ -300,7 +300,7 @@ export default function CookiePolicyPage() {
               </h2>
 
               <p>
-                NexaPoker may update this Cookie Policy when our website,
+                Nexa Poker may update this Cookie Policy when our website,
                 services, technologies or applicable requirements change.
               </p>
 
@@ -321,7 +321,7 @@ export default function CookiePolicyPage() {
 
               <p>
                 If you have questions about this Cookie Policy or how cookies
-                are used on the NexaPoker website, please contact NexaPoker
+                are used on the Nexa Poker website, please contact Nexa Poker
                 through the official support or community channels provided on
                 the website.
               </p>
@@ -335,7 +335,7 @@ export default function CookiePolicyPage() {
               <p className="text-sm leading-6 text-white/40">
                 This page provides general information about cookies and is
                 intended as an initial website version. It should be reviewed
-                and approved by the appropriate NexaPoker legal or compliance
+                and approved by the appropriate Nexa Poker legal or compliance
                 representative before being treated as the platform&apos;s final
                 Cookie Policy.
               </p>

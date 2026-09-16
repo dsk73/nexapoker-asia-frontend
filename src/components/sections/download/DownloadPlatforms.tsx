@@ -17,25 +17,25 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
   const platforms: DownloadOption[] = [
     {
       label: "Windows",
-      description: "Download NexaPoker for Windows",
+      description: "Download Nexa Poker for Windows",
       url: page.WindowsURL,
       icon: Monitor,
     },
     {
       label: "macOS",
-      description: "Download NexaPoker for Mac",
+      description: "Download Nexa Poker for Mac",
       url: page.MacURL,
       icon: Apple,
     },
     {
       label: "Android",
-      description: "Download the NexaPoker Android app",
+      description: "Download the Nexa Poker Android app",
       url: page.AndroidURL,
       icon: Smartphone,
     },
     {
       label: "iOS",
-      description: "Download the NexaPoker iOS app",
+      description: "Download the Nexa Poker iOS app",
       url: page.IOSURL,
       icon: TabletSmartphone,
     },
@@ -58,12 +58,12 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
-            Download NexaPoker
+            Download Nexa Poker
           </h2>
 
           <p className="mt-4 text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
             Choose the version that works best for your device and start playing
-            NexaPoker.
+            Nexa Poker.
           </p>
         </div>
 

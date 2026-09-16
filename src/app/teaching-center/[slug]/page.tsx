@@ -27,7 +27,7 @@ export async function generateMetadata({
 
   if (!guide) {
     return {
-      title: "Teaching Guide Not Found",
+      title: "Teaching Guide Not Found | Nexa Poker",
       robots: {
         index: false,
         follow: false,
@@ -35,11 +35,11 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${guide.Title} | NexaPoker Teaching Center`;
+  const title = `${guide.Title} | Nexa Poker Teaching Center`;
 
   const description =
-    `Learn ${guide.Title} with NexaPoker. Explore practical poker guides, ` +
-    "poker fundamentals, strategy and tips to help improve your game.";
+    `Learn ${guide.Title} with Nexa Poker. Explore practical poker guides, ` +
+    "poker fundamentals, strategy, rules and tips to help improve your game.";
 
   const canonicalUrl = `/teaching-center/${guide.Slug}`;
 
@@ -52,11 +52,15 @@ export async function generateMetadata({
     keywords: [
       "Nexa Poker",
       "NexaPoker",
+      "Nexa Poker Teaching Center",
       "learn poker",
       "how to play poker",
       "poker rules for beginners",
       "poker strategy for beginners",
+      "how to improve at poker",
       "online poker tips",
+      "poker fundamentals",
+      "Texas Hold'em",
       guide.Title,
     ],
 
@@ -69,7 +73,7 @@ export async function generateMetadata({
       title,
       description,
       url: canonicalUrl,
-      siteName: "NexaPoker",
+      siteName: "Nexa Poker",
       images: ogImage
         ? [
             {

@@ -61,19 +61,19 @@ export default function AboutFeatures({ page }: AboutFeaturesProps) {
           {/* Eyebrow */}
 
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
-            NexaPoker
+            Nexa Poker
           </p>
 
           {/* Heading */}
 
           <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Why Choose NexaPoker
+            Why Choose Nexa Poker
           </h2>
 
           {/* Description */}
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
-            Discover what makes NexaPoker a growing destination for poker
+            Discover what makes Nexa Poker a growing destination for poker
             players and communities worldwide.
           </p>
         </motion.div>

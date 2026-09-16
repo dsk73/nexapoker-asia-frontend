@@ -7,13 +7,15 @@ import Footer from "@/components/layout/Footer";
 import TeachingGuideCard from "@/components/cards/TeachingGuideCard";
 
 export const metadata: Metadata = {
-  title: "Poker Teaching Center | Learn Poker & Strategy",
+  title: "Poker Teaching Center | Learn Online Poker | Nexa Poker",
+
   description:
-    "Learn how to play poker with NexaPoker teaching guides covering poker fundamentals, Texas Hold'em, poker strategy, rules and practical tips for improving your game.",
+    "Learn how to play poker with Nexa Poker teaching guides covering poker fundamentals, Texas Hold'em, poker rules, poker strategy and practical tips for improving your game.",
 
   keywords: [
     "Nexa Poker",
     "NexaPoker",
+    "Nexa Poker Teaching Center",
     "how to play poker",
     "poker rules for beginners",
     "poker strategy for beginners",
@@ -22,6 +24,8 @@ export const metadata: Metadata = {
     "poker fundamentals",
     "Texas Hold'em",
     "learn poker",
+    "online poker strategy",
+    "poker tips",
   ],
 
   alternates: {
@@ -29,18 +33,28 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Poker Teaching Center | Learn Poker & Strategy",
+    title: "Poker Teaching Center | Learn Online Poker | Nexa Poker",
     description:
-      "Learn how to play poker with NexaPoker teaching guides covering poker fundamentals, Texas Hold'em, poker strategy, rules and practical tips for improving your game.",
+      "Learn how to play poker with Nexa Poker teaching guides covering poker fundamentals, Texas Hold'em, poker rules, poker strategy and practical tips for improving your game.",
     url: "/teaching-center",
+    siteName: "Nexa Poker",
     type: "website",
+    images: [
+      {
+        url: "/images/nexapoker-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Nexa Poker Poker Teaching Center | Learn Online Poker",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Poker Teaching Center | Learn Poker & Strategy",
+    title: "Poker Teaching Center | Learn Online Poker | Nexa Poker",
     description:
-      "Learn how to play poker with NexaPoker teaching guides covering poker fundamentals, Texas Hold'em, poker strategy, rules and practical tips for improving your game.",
+      "Learn how to play poker with Nexa Poker teaching guides covering poker fundamentals, Texas Hold'em, poker rules, poker strategy and practical tips for improving your game.",
+    images: ["/images/nexapoker-logo.png"],
   },
 };
 

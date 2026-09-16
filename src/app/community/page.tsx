@@ -10,9 +10,10 @@ import CommunitySocialLinks from "@/components/sections/community/CommunitySocia
 import CommunityCTA from "@/components/sections/community/CommunityCTA";
 
 export const metadata: Metadata = {
-  title: "NexaPoker Community | Online Poker Community",
+  title: "Nexa Poker Community | Online Poker Community",
+
   description:
-    "Join the NexaPoker community and connect with poker players worldwide. Stay updated with poker news, activities, events and opportunities to play online poker.",
+    "Join the Nexa Poker community and connect with poker players worldwide. Stay connected with online poker activities, updates, events and opportunities to play poker online.",
 
   keywords: [
     "Nexa Poker",
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     "poker player community",
     "online poker",
     "poker players worldwide",
+    "Nexa Poker community worldwide",
   ],
 
   alternates: {
@@ -30,18 +32,28 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "NexaPoker Community | Online Poker Community",
+    title: "Nexa Poker Community | Online Poker Community",
     description:
-      "Join the NexaPoker community and connect with poker players worldwide. Stay updated with poker news, activities, events and opportunities to play online poker.",
+      "Join the Nexa Poker community and connect with poker players worldwide. Stay connected with online poker activities, updates, events and opportunities to play poker online.",
     url: "/community",
+    siteName: "Nexa Poker",
     type: "website",
+    images: [
+      {
+        url: "/images/nexapoker-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Nexa Poker Community | Online Poker Community",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "NexaPoker Community | Online Poker Community",
+    title: "Nexa Poker Community | Online Poker Community",
     description:
-      "Join the NexaPoker community and connect with poker players worldwide. Stay updated with poker news, activities, events and opportunities to play online poker.",
+      "Join the Nexa Poker community and connect with poker players worldwide. Stay connected with online poker activities, updates, events and opportunities to play poker online.",
+    images: ["/images/nexapoker-logo.png"],
   },
 };
 

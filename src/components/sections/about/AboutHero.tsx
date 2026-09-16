@@ -23,7 +23,7 @@ export default function AboutHero({ page }: AboutHeroProps) {
         <div className="absolute inset-0">
           <Image
             src={imageUrl}
-            alt={page.HeroTitle || "About NexaPoker"}
+            alt={page.HeroTitle || "About Nexa Poker"}
             fill
             priority
             sizes="100vw"
@@ -71,7 +71,7 @@ export default function AboutHero({ page }: AboutHeroProps) {
           {/* Eyebrow */}
 
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.22em] text-[#ff1764] sm:text-base">
-            NexaPoker
+            Nexa Poker
           </p>
 
           {/* Title */}

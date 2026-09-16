@@ -36,7 +36,7 @@ export default function OtherActivities({
           </h2>
 
           <p className="mt-3 text-sm leading-6 text-white/50 sm:text-base sm:leading-7">
-            Discover more activities, events and experiences from NexaPoker.
+            Discover more activities, events and experiences from Nexa Poker.
           </p>
         </div>
 

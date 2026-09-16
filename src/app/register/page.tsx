@@ -10,21 +10,26 @@ import RegisterSteps from "@/components/sections/register/RegisterSteps";
 import RegisterCTA from "@/components/sections/register/RegisterCTA";
 
 export const metadata: Metadata = {
-  title: "NexaPoker Registration | Create Your Poker Account",
+  title: "Nexa Poker Registration | Join & Play Online Poker",
+
   description:
-    "Register with NexaPoker and create your poker account. Follow the simple registration steps and get ready to play poker online with NexaPoker.",
+    "Join Nexa Poker and create your online poker account. Follow the registration steps, download the poker app and get ready to play poker online.",
 
   keywords: [
     "Nexa Poker",
     "NexaPoker",
     "Nexa Poker registration",
     "NexaPoker registration",
+    "Nexa Poker register",
+    "Nexa Poker sign up",
+    "join Nexa Poker",
     "Nexa Poker account",
-    "create NexaPoker account",
+    "create Nexa Poker account",
     "poker registration",
     "online poker registration",
     "play poker online",
-    "NexaPoker sign up",
+    "Nexa Poker bonus code",
+    "NEXA40 bonus code",
   ],
 
   alternates: {
@@ -32,18 +37,28 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "NexaPoker Registration | Create Your Poker Account",
+    title: "Nexa Poker Registration | Join & Play Online Poker",
     description:
-      "Register with NexaPoker and create your poker account. Follow the simple registration steps and get ready to play poker online with NexaPoker.",
+      "Join Nexa Poker and create your online poker account. Follow the registration steps, download the poker app and get ready to play poker online.",
     url: "/register",
+    siteName: "Nexa Poker",
     type: "website",
+    images: [
+      {
+        url: "/images/nexapoker-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Nexa Poker Registration | Join & Play Online Poker",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "NexaPoker Registration | Create Your Poker Account",
+    title: "Nexa Poker Registration | Join & Play Online Poker",
     description:
-      "Register with NexaPoker and create your poker account. Follow the simple registration steps and get ready to play poker online with NexaPoker.",
+      "Join Nexa Poker and create your online poker account. Follow the registration steps, download the poker app and get ready to play poker online.",
+    images: ["/images/nexapoker-logo.png"],
   },
 };
 

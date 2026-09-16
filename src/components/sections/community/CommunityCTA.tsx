@@ -44,7 +44,7 @@ export default function CommunityCTA({ page }: CommunityCTAProps) {
               <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:h-24 sm:w-24">
                 <Image
                   src={imageUrl}
-                  alt={page.LINEImage?.alternativeText || "NexaPoker Community"}
+                  alt={page.LINEImage?.alternativeText || "Nexa Poker Community"}
                   width={page.LINEImage?.width || 200}
                   height={page.LINEImage?.height || 200}
                   className="h-full w-full object-contain p-2"
@@ -62,7 +62,7 @@ export default function CommunityCTA({ page }: CommunityCTAProps) {
               </p>
 
               <h2 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl">
-                Connect with NexaPoker
+                Connect with Nexa Poker
               </h2>
 
               {page.BottomDescription && (

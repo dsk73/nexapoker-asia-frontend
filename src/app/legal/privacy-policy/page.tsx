@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "NexaPoker Privacy Policy | Your Privacy & Data",
+  title: "Nexa Poker Privacy Policy | Your Privacy & Data",
   description:
-    "Read the NexaPoker Privacy Policy to understand how account information, personal data and website usage information may be collected, used, protected and managed.",
+    "Read the Nexa Poker Privacy Policy to understand how account information, personal data and website usage information may be collected, used, protected and managed.",
   keywords: [
-    "NexaPoker privacy policy",
-    "NexaPoker privacy",
-    "NexaPoker data protection",
+    "Nexa Poker privacy policy",
+    "Nexa Poker privacy",
+    "Nexa Poker data protection",
     "online poker privacy policy",
     "poker platform privacy",
-    "NexaPoker account privacy",
+    "Nexa Poker account privacy",
     "personal data protection",
   ],
   alternates: {
@@ -21,17 +21,17 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "NexaPoker Privacy Policy | Your Privacy & Data",
+    title: "Nexa Poker Privacy Policy | Your Privacy & Data",
     description:
-      "Read the NexaPoker Privacy Policy to understand how personal information and website usage data may be collected, used and protected.",
+      "Read the Nexa Poker Privacy Policy to understand how personal information and website usage data may be collected, used and protected.",
     url: "/legal/privacy-policy",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NexaPoker Privacy Policy | Your Privacy & Data",
+    title: "Nexa Poker Privacy Policy | Your Privacy & Data",
     description:
-      "Learn how NexaPoker handles personal information, account data and website usage information.",
+      "Learn how Nexa Poker handles personal information, account data and website usage information.",
   },
 };
 
@@ -54,7 +54,7 @@ export default function PrivacyPolicyPage() {
             </h1>
 
             <p className="mt-5 max-w-3xl text-base leading-7 text-white/60 sm:text-lg">
-              This Privacy Policy explains how NexaPoker may collect, use,
+              This Privacy Policy explains how Nexa Poker may collect, use,
               protect and manage information when you access or use our website
               and related services.
             </p>
@@ -83,14 +83,14 @@ export default function PrivacyPolicyPage() {
               </h2>
 
               <p>
-                NexaPoker respects your privacy and is committed to handling
+                Nexa Poker respects your privacy and is committed to handling
                 personal information responsibly. This Privacy Policy describes
                 the types of information that may be collected when you use the
-                NexaPoker website, applications and related services.
+                Nexa Poker website, applications and related services.
               </p>
 
               <p className="mt-4">
-                By accessing or using NexaPoker, you acknowledge that you have
+                By accessing or using Nexa Poker, you acknowledge that you have
                 read this Privacy Policy and understand how information may be
                 handled as described below.
               </p>
@@ -106,7 +106,7 @@ export default function PrivacyPolicyPage() {
               </h2>
 
               <p>
-                Depending on how you use NexaPoker, we may collect information
+                Depending on how you use Nexa Poker, we may collect information
                 that you provide directly, information generated through your
                 use of the platform and technical information associated with
                 your device or browser.
@@ -154,7 +154,7 @@ export default function PrivacyPolicyPage() {
                   <h3 className="font-semibold text-white">Communications</h3>
 
                   <p className="mt-2">
-                    If you contact NexaPoker through available support or
+                    If you contact Nexa Poker through available support or
                     community channels, information contained in your
                     communication may be used to respond to your request.
                   </p>
@@ -173,7 +173,7 @@ export default function PrivacyPolicyPage() {
 
               <p>
                 Information may be used for purposes such as providing and
-                maintaining NexaPoker services, managing accounts, responding to
+                maintaining Nexa Poker services, managing accounts, responding to
                 support requests and improving the website and user experience.
               </p>
 
@@ -224,7 +224,7 @@ export default function PrivacyPolicyPage() {
               </h2>
 
               <p>
-                NexaPoker does not treat personal information as something to be
+                Nexa Poker does not treat personal information as something to be
                 shared indiscriminately. Information may be disclosed where
                 reasonably necessary to provide services, operate the platform,
                 process transactions, maintain security or comply with
@@ -233,7 +233,7 @@ export default function PrivacyPolicyPage() {
 
               <p className="mt-4">
                 Service providers and technology partners may process certain
-                information on behalf of NexaPoker where required to support
+                information on behalf of Nexa Poker where required to support
                 website, hosting, payment, security, analytics or other
                 operational functions.
               </p>
@@ -249,14 +249,14 @@ export default function PrivacyPolicyPage() {
               </h2>
 
               <p>
-                NexaPoker may provide links to third-party websites,
+                Nexa Poker may provide links to third-party websites,
                 applications, platforms or services. These third parties may
                 collect and process information under their own privacy
                 policies.
               </p>
 
               <p className="mt-4">
-                NexaPoker does not control the privacy practices of third-party
+                Nexa Poker does not control the privacy practices of third-party
                 services. You should review the applicable privacy policies
                 before providing personal information to those services.
               </p>
@@ -272,7 +272,7 @@ export default function PrivacyPolicyPage() {
               </h2>
 
               <p>
-                NexaPoker takes reasonable measures designed to protect
+                Nexa Poker takes reasonable measures designed to protect
                 information against unauthorized access, misuse, alteration,
                 disclosure or loss.
               </p>
@@ -328,7 +328,7 @@ export default function PrivacyPolicyPage() {
 
               <p className="mt-4">
                 Requests relating to personal information should be submitted
-                through the appropriate official NexaPoker support channel.
+                through the appropriate official Nexa Poker support channel.
               </p>
             </section>
 
@@ -342,12 +342,12 @@ export default function PrivacyPolicyPage() {
               </h2>
 
               <p>
-                NexaPoker services are not intended for individuals who are not
+                Nexa Poker services are not intended for individuals who are not
                 legally permitted to use online poker services.
               </p>
 
               <p className="mt-4">
-                NexaPoker does not knowingly seek to collect personal
+                Nexa Poker does not knowingly seek to collect personal
                 information from individuals who are not eligible to use the
                 applicable services.
               </p>
@@ -363,14 +363,14 @@ export default function PrivacyPolicyPage() {
               </h2>
 
               <p>
-                NexaPoker may use cookies and similar technologies to support
+                Nexa Poker may use cookies and similar technologies to support
                 website functionality, understand website usage, improve
                 performance and provide a better user experience.
               </p>
 
               <p className="mt-4">
                 For more information about how cookies may be used, please
-                review the NexaPoker Cookie Policy.
+                review the Nexa Poker Cookie Policy.
               </p>
             </section>
 
@@ -386,7 +386,7 @@ export default function PrivacyPolicyPage() {
               <p>
                 Depending on the services used and the technology providers
                 involved, information may be processed or stored in locations
-                outside the place where you access NexaPoker.
+                outside the place where you access Nexa Poker.
               </p>
 
               <p className="mt-4">
@@ -406,7 +406,7 @@ export default function PrivacyPolicyPage() {
               </h2>
 
               <p>
-                NexaPoker may update this Privacy Policy from time to time to
+                Nexa Poker may update this Privacy Policy from time to time to
                 reflect changes to our services, technology, operational
                 practices or applicable requirements.
               </p>
@@ -427,8 +427,8 @@ export default function PrivacyPolicyPage() {
               </h2>
 
               <p>
-                If you have questions about this Privacy Policy or how NexaPoker
-                handles personal information, please contact NexaPoker through
+                If you have questions about this Privacy Policy or how Nexa Poker
+                handles personal information, please contact Nexa Poker through
                 the official support or community channels provided on the
                 website.
               </p>
@@ -442,7 +442,7 @@ export default function PrivacyPolicyPage() {
               <p className="text-sm leading-6 text-white/40">
                 This page provides general privacy information and is intended
                 as an initial website version. It should be reviewed and
-                approved by the appropriate NexaPoker legal or compliance
+                approved by the appropriate Nexa Poker legal or compliance
                 representative before being treated as the platform&apos;s final
                 Privacy Policy.
               </p>

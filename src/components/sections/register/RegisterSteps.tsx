@@ -28,7 +28,7 @@ export default function RegisterSteps({ page }: RegisterStepsProps) {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
-            {page.StepsTitle || "Create Your NexaPoker Account"}
+            {page.StepsTitle || "Create Your Nexa Poker Account"}
           </h2>
 
           {page.StepsDescription && (

@@ -20,7 +20,7 @@ export default function RegisterHero({ page }: RegisterHeroProps) {
 
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#46b9ff] sm:text-sm">
-              NexaPoker
+              Nexa Poker
             </p>
 
             <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
@@ -46,7 +46,7 @@ export default function RegisterHero({ page }: RegisterHeroProps) {
                   alt={
                     page.BannerImage?.alternativeText ||
                     page.Title ||
-                    "Register NexaPoker"
+                    "Register Nexa Poker"
                   }
                   width={page.BannerImage?.width || 1200}
                   height={page.BannerImage?.height || 800}

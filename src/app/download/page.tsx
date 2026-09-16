@@ -9,17 +9,20 @@ import DownloadHero from "@/components/sections/download/DownloadHero";
 import DownloadPlatforms from "@/components/sections/download/DownloadPlatforms";
 
 export const metadata: Metadata = {
-  title: "NexaPoker Download | Poker App & Software",
+  title: "Nexa Poker Download | Poker App & Software",
+
   description:
-    "Download NexaPoker for your device and get started with online poker. Find NexaPoker downloads for desktop and mobile platforms and start playing poker online.",
+    "Download Nexa Poker for your device and start playing online poker. Get the Nexa Poker app and software for supported desktop and mobile platforms.",
 
   keywords: [
     "Nexa Poker",
     "NexaPoker",
     "Nexa Poker download",
     "Nexa Poker app download",
+    "Nexa Poker app",
     "NexaPoker download",
     "online poker download",
+    "online poker app",
     "poker app",
     "poker software",
     "play poker online",
@@ -30,18 +33,28 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "NexaPoker Download | Poker App & Software",
+    title: "Nexa Poker Download | Poker App & Software",
     description:
-      "Download NexaPoker for your device and get started with online poker. Find NexaPoker downloads for desktop and mobile platforms and start playing poker online.",
+      "Download Nexa Poker for your device and start playing online poker. Get the Nexa Poker app and software for supported desktop and mobile platforms.",
     url: "/download",
+    siteName: "Nexa Poker",
     type: "website",
+    images: [
+      {
+        url: "/images/nexapoker-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Nexa Poker Download | Poker App & Software",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "NexaPoker Download | Poker App & Software",
+    title: "Nexa Poker Download | Poker App & Software",
     description:
-      "Download NexaPoker for your device and get started with online poker. Find NexaPoker downloads for desktop and mobile platforms and start playing poker online.",
+      "Download Nexa Poker for your device and start playing online poker. Get the Nexa Poker app and software for supported desktop and mobile platforms.",
+    images: ["/images/nexapoker-logo.png"],
   },
 };
 
