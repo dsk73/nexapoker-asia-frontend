@@ -8,9 +8,11 @@ import Breadcrumbs from "@/components/content/Breadcrumbs";
 import ActivityCard from "@/components/cards/ActivityCard";
 
 export const metadata: Metadata = {
-  title: "Poker Activities & Tournaments",
+  title: "Poker Activities & Tournaments | Nexa Poker",
+
   description:
-    "Discover poker activities, tournaments, events and poker experiences from NexaPoker. Explore online poker games, strategy content and competitive poker action.",
+    "Discover poker activities, tournaments, events and competitive poker action with Nexa Poker. Explore online poker games, poker strategy content and activities for players worldwide.",
+
   keywords: [
     "Nexa Poker",
     "NexaPoker",
@@ -20,22 +22,36 @@ export const metadata: Metadata = {
     "poker events",
     "competitive poker",
     "poker strategy",
+    "poker games and tournaments",
   ],
+
   alternates: {
     canonical: "/activities",
   },
+
   openGraph: {
-    title: "Poker Activities & Tournaments | NexaPoker",
+    title: "Poker Activities & Tournaments | Nexa Poker",
     description:
-      "Discover poker activities, tournaments, events and poker experiences from NexaPoker. Explore online poker games, strategy content and competitive poker action.",
+      "Discover poker activities, tournaments, events and competitive poker action with Nexa Poker. Explore online poker games, poker strategy content and activities for players worldwide.",
     url: "/activities",
+    siteName: "Nexa Poker",
     type: "website",
+    images: [
+      {
+        url: "/images/nexapoker-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Nexa Poker | Poker Activities & Tournaments",
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Poker Activities & Tournaments | NexaPoker",
+    title: "Poker Activities & Tournaments | Nexa Poker",
     description:
-      "Discover poker activities, tournaments, events and poker experiences from NexaPoker. Explore online poker games, strategy content and competitive poker action.",
+      "Discover poker activities, tournaments, events and competitive poker action with Nexa Poker. Explore online poker games, poker strategy content and activities for players worldwide.",
+    images: ["/images/nexapoker-logo.png"],
   },
 };
 
