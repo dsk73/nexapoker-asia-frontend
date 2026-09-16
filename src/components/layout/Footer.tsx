@@ -20,9 +20,9 @@ const supportLinks = [
 ];
 
 const legalLinks = [
-  { label: "Terms & Conditions", href: "/terms-and-conditions" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Cookie Policy", href: "/cookie-policy" },
+  { label: "Terms & Conditions", href: "/legal/terms-and-conditions" },
+  { label: "Privacy Policy", href: "/legal/privacy-policy" },
+  { label: "Cookie Policy", href: "/legal/cookie-policy" },
 ];
 
 export default function Footer() {
@@ -166,7 +166,7 @@ export default function Footer() {
             {/* Copyright */}
 
             <p className="text-white/40">
-              Â© {new Date().getFullYear()} NexaPoker. All rights reserved.
+              © {new Date().getFullYear()} NexaPoker. All rights reserved.
             </p>
 
             {/* Brand statement */}
