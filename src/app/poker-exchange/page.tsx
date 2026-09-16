@@ -1,7 +1,47 @@
+import type { Metadata } from "next";
+
 import { getPokerExchangePage } from "@/lib/api";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
+export const metadata: Metadata = {
+  title: "NexaPoker Poker Exchange | Online Poker Platform",
+  description:
+    "Explore NexaPoker Poker Exchange and discover an online poker platform with multiple poker games, competitive poker action, convenient account access and a connected poker community.",
+
+  keywords: [
+    "Nexa Poker",
+    "NexaPoker",
+    "Nexa Poker Poker Exchange",
+    "NexaPoker Poker Exchange",
+    "online poker platform",
+    "online poker games",
+    "play poker online",
+    "secure online poker platform",
+    "competitive poker",
+    "poker player community",
+  ],
+
+  alternates: {
+    canonical: "/poker-exchange",
+  },
+
+  openGraph: {
+    title: "NexaPoker Poker Exchange | Online Poker Platform",
+    description:
+      "Explore NexaPoker Poker Exchange and discover an online poker platform with multiple poker games, competitive poker action, convenient account access and a connected poker community.",
+    url: "/poker-exchange",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "NexaPoker Poker Exchange | Online Poker Platform",
+    description:
+      "Explore NexaPoker Poker Exchange and discover an online poker platform with multiple poker games, competitive poker action, convenient account access and a connected poker community.",
+  },
+};
 
 export default async function PokerExchangePage() {
   const page = await getPokerExchangePage();

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getTeachingGuideBySlug, getTeachingGuides } from "@/lib/api";
@@ -15,6 +16,77 @@ interface TeachingGuideDetailPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: TeachingGuideDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const guide = await getTeachingGuideBySlug(slug);
+
+  if (!guide) {
+    return {
+      title: "Teaching Guide Not Found",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const title = `${guide.Title} | NexaPoker Teaching Center`;
+
+  const description =
+    `Learn ${guide.Title} with NexaPoker. Explore practical poker guides, ` +
+    "poker fundamentals, strategy and tips to help improve your game.";
+
+  const canonicalUrl = `/teaching-center/${guide.Slug}`;
+
+  const ogImage = getMediaUrl(guide.Thumbnail, "large");
+
+  return {
+    title,
+    description,
+
+    keywords: [
+      "Nexa Poker",
+      "NexaPoker",
+      "learn poker",
+      "how to play poker",
+      "poker rules for beginners",
+      "poker strategy for beginners",
+      "online poker tips",
+      guide.Title,
+    ],
+
+    alternates: {
+      canonical: canonicalUrl,
+    },
+
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: "NexaPoker",
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+              alt: guide.Thumbnail?.alternativeText || guide.Title,
+            },
+          ]
+        : undefined,
+    },
+
+    twitter: {
+      card: ogImage ? "summary_large_image" : "summary",
+      title,
+      description,
+      images: ogImage ? [ogImage] : undefined,
+    },
+  };
 }
 
 export default async function TeachingGuideDetailPage({

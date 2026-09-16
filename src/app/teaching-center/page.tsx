@@ -1,8 +1,48 @@
+import type { Metadata } from "next";
+
 import { getTeachingGuides } from "@/lib/api";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TeachingGuideCard from "@/components/cards/TeachingGuideCard";
+
+export const metadata: Metadata = {
+  title: "Poker Teaching Center | Learn Poker & Strategy",
+  description:
+    "Learn how to play poker with NexaPoker teaching guides covering poker fundamentals, Texas Hold'em, poker strategy, rules and practical tips for improving your game.",
+
+  keywords: [
+    "Nexa Poker",
+    "NexaPoker",
+    "how to play poker",
+    "poker rules for beginners",
+    "poker strategy for beginners",
+    "how to improve at poker",
+    "online poker tips",
+    "poker fundamentals",
+    "Texas Hold'em",
+    "learn poker",
+  ],
+
+  alternates: {
+    canonical: "/teaching-center",
+  },
+
+  openGraph: {
+    title: "Poker Teaching Center | Learn Poker & Strategy",
+    description:
+      "Learn how to play poker with NexaPoker teaching guides covering poker fundamentals, Texas Hold'em, poker strategy, rules and practical tips for improving your game.",
+    url: "/teaching-center",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Poker Teaching Center | Learn Poker & Strategy",
+    description:
+      "Learn how to play poker with NexaPoker teaching guides covering poker fundamentals, Texas Hold'em, poker strategy, rules and practical tips for improving your game.",
+  },
+};
 
 export default async function TeachingCenterPage() {
   const guides = await getTeachingGuides();

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -14,6 +15,75 @@ interface ActivityDetailPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ActivityDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const activity = await getActivityBySlug(slug);
+
+  if (!activity) {
+    return {
+      title: "Activity Not Found",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const title = `${activity.Title} | NexaPoker`;
+
+  const description =
+    activity.Summary ||
+    `Explore ${activity.Title} on NexaPoker for poker insights, strategy, tournaments and useful poker content.`;
+
+  const canonicalUrl = `/activities/${activity.Slug}`;
+
+  const ogImage = getMediaUrl(activity.BannerImage, "large");
+
+  return {
+    title,
+    description,
+
+    keywords: [
+      "Nexa Poker",
+      "NexaPoker",
+      ...(Array.isArray(activity.Tags)
+        ? activity.Tags.filter((tag): tag is string => typeof tag === "string")
+        : []),
+    ],
+
+    alternates: {
+      canonical: canonicalUrl,
+    },
+
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: "NexaPoker",
+      publishedTime: activity.PublishDate,
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+              alt: activity.BannerImage?.alternativeText || activity.Title,
+            },
+          ]
+        : undefined,
+    },
+
+    twitter: {
+      card: ogImage ? "summary_large_image" : "summary",
+      title,
+      description,
+      images: ogImage ? [ogImage] : undefined,
+    },
+  };
 }
 
 export default async function ActivityDetailPage({

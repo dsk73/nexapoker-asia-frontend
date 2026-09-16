@@ -1,9 +1,43 @@
+import type { Metadata } from "next";
+
 import { getActivities } from "@/lib/api";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/content/Breadcrumbs";
 import ActivityCard from "@/components/cards/ActivityCard";
+
+export const metadata: Metadata = {
+  title: "Poker Activities & Tournaments",
+  description:
+    "Discover poker activities, tournaments, events and poker experiences from NexaPoker. Explore online poker games, strategy content and competitive poker action.",
+  keywords: [
+    "Nexa Poker",
+    "NexaPoker",
+    "poker activities",
+    "online poker games",
+    "poker tournaments",
+    "poker events",
+    "competitive poker",
+    "poker strategy",
+  ],
+  alternates: {
+    canonical: "/activities",
+  },
+  openGraph: {
+    title: "Poker Activities & Tournaments | NexaPoker",
+    description:
+      "Discover poker activities, tournaments, events and poker experiences from NexaPoker. Explore online poker games, strategy content and competitive poker action.",
+    url: "/activities",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Poker Activities & Tournaments | NexaPoker",
+    description:
+      "Discover poker activities, tournaments, events and poker experiences from NexaPoker. Explore online poker games, strategy content and competitive poker action.",
+  },
+};
 
 export default async function ActivitiesPage() {
   const activities = await getActivities();
@@ -62,8 +96,8 @@ export default async function ActivitiesPage() {
                 </h2>
 
                 <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-white/50">
-                  There are currently no poker activitiesavailable. Please check
-                  back again soon.
+                  There are currently no poker activities available. Please
+                  check back again soon.
                 </p>
               </div>
             )}
