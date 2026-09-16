@@ -2,7 +2,7 @@
 
 import { Send } from "lucide-react";
 
-const TELEGRAM_URL = "https://t.me/Nexa PokerCommunity";
+const TELEGRAM_URL = "https://t.me/NEXAPokerCommunity";
 
 export default function TelegramFloatingButton() {
   return (

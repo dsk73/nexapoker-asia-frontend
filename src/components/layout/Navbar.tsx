@@ -30,7 +30,7 @@ export default function Navbar() {
             aria-label="Nexa Poker home"
           >
             <Image
-              src="/images/Nexa Poker-logo.png"
+              src="/images/nexapoker-logo.png"
               alt="Nexa Poker"
               width={190}
               height={55}
