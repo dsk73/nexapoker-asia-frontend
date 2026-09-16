@@ -1,3 +1,5 @@
+// src/app/download/page.tsx
+
 import type { Metadata } from "next";
 
 import { getDownloadPage } from "@/lib/api";
@@ -7,6 +9,15 @@ import Footer from "@/components/layout/Footer";
 
 import DownloadHero from "@/components/sections/download/DownloadHero";
 import DownloadPlatforms from "@/components/sections/download/DownloadPlatforms";
+
+/**
+ * Force the page to render dynamically.
+ *
+ * This ensures updated Download content from Strapi
+ * can be fetched at runtime without requiring a new
+ * frontend deployment.
+ */
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Nexa Poker Download | Poker App & Software",

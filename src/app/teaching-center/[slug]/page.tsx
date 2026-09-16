@@ -1,3 +1,5 @@
+// src/app/teaching-center/[slug]/page.tsx
+
 /* eslint-disable @next/next/no-img-element */
 
 import type { Metadata } from "next";
@@ -17,6 +19,15 @@ interface TeachingGuideDetailPageProps {
     slug: string;
   }>;
 }
+
+/**
+ * Force the teaching guide detail page to render dynamically.
+ *
+ * This ensures updated Teaching Guide content from Strapi
+ * can be fetched at runtime without requiring a new
+ * frontend deployment.
+ */
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -292,7 +303,7 @@ export default async function TeachingGuideDetailPage({
 
         {/* =================================================
             CTA
-        ================================================= */}
+            ================================================= */}
 
         {guide.CTA?.Label && guide.CTA.URL && (
           <section className="px-6 pb-20 sm:pb-24">

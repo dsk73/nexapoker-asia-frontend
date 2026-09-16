@@ -1,3 +1,5 @@
+// src/app/teaching-center/page.tsx
+
 import type { Metadata } from "next";
 
 import { getTeachingGuides } from "@/lib/api";
@@ -5,6 +7,15 @@ import { getTeachingGuides } from "@/lib/api";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TeachingGuideCard from "@/components/cards/TeachingGuideCard";
+
+/**
+ * Force the page to render dynamically.
+ *
+ * This ensures updated Teaching Center content from Strapi
+ * can be fetched at runtime without requiring a new
+ * frontend deployment.
+ */
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Poker Teaching Center | Learn Online Poker | Nexa Poker",

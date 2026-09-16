@@ -1,3 +1,5 @@
+// src/components/content/MarkdownContent.tsx
+
 "use client";
 
 import ReactMarkdown from "react-markdown";
@@ -159,9 +161,7 @@ export default function MarkdownContent({
           ),
 
           tr: ({ children }) => (
-            <tr className="transition-colors hover:bg-white/2">
-              {children}
-            </tr>
+            <tr className="transition-colors hover:bg-white/2">{children}</tr>
           ),
 
           th: ({ children }) => (

@@ -1,9 +1,20 @@
+// src/app/poker-exchange/page.tsx
+
 import type { Metadata } from "next";
 
 import { getPokerExchangePage } from "@/lib/api";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
+/**
+ * Force the page to render dynamically.
+ *
+ * This ensures updated Poker Exchange content from Strapi
+ * can be fetched at runtime without requiring a new
+ * frontend deployment.
+ */
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Nexa Poker Poker Exchange | Online Poker Platform",

@@ -1,3 +1,5 @@
+// src/components/sections/FAQSection.tsx
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -56,7 +58,10 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#050507] py-20 sm:py-24 lg:py-28">
+    <section
+      id="faq"
+      className="relative scroll-mt-24 overflow-hidden bg-[#050507] py-20 sm:py-24 lg:py-28"
+    >
       {/* =====================================================
           BACKGROUND ATMOSPHERE
           ===================================================== */}
@@ -113,7 +118,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
           {/* Description */}
 
           <p className="mt-4 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
-            Find answers to common questions About Nexa Poker, getting started,
+            Find answers to common questions about Nexa Poker, getting started,
             playing online and more.
           </p>
         </motion.div>

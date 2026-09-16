@@ -1,3 +1,5 @@
+// src/app/activities/[slug]/page.tsx
+
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -16,6 +18,14 @@ interface ActivityDetailPageProps {
     slug: string;
   }>;
 }
+
+/**
+ * Force the activity detail page to render dynamically.
+ *
+ * This ensures updated activity content from Strapi can be
+ * fetched at runtime without requiring a new frontend deployment.
+ */
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,

@@ -1,3 +1,5 @@
+// src/app/about/page.tsx
+
 import type { Metadata } from "next";
 
 import { getAboutPage } from "@/lib/api";
@@ -9,6 +11,14 @@ import AboutHero from "@/components/sections/about/AboutHero";
 import AboutIntro from "@/components/sections/about/AboutIntro";
 import AboutStory from "@/components/sections/about/AboutStory";
 import AboutFeatures from "@/components/sections/about/AboutFeatures";
+
+/**
+ * Force the page to render dynamically.
+ *
+ * This ensures updated content from Strapi can be fetched
+ * at runtime without requiring a new frontend deployment.
+ */
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "About Nexa Poker | Online Poker Platform",

@@ -1,3 +1,5 @@
+// src/app/community/page.tsx
+
 import type { Metadata } from "next";
 
 import { getCommunityPage } from "@/lib/api";
@@ -8,6 +10,15 @@ import Footer from "@/components/layout/Footer";
 import CommunityHero from "@/components/sections/community/CommunityHero";
 import CommunitySocialLinks from "@/components/sections/community/CommunitySocialLinks";
 import CommunityCTA from "@/components/sections/community/CommunityCTA";
+
+/**
+ * Force the page to render dynamically.
+ *
+ * This ensures updated Community content from Strapi
+ * can be fetched at runtime without requiring a new
+ * frontend deployment.
+ */
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Nexa Poker Community | Online Poker Community",

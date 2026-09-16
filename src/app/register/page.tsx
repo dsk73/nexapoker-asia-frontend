@@ -1,3 +1,5 @@
+// src/app/register/page.tsx
+
 import type { Metadata } from "next";
 
 import { getRegisterPage } from "@/lib/api";
@@ -8,6 +10,15 @@ import Footer from "@/components/layout/Footer";
 import RegisterHero from "@/components/sections/register/RegisterHero";
 import RegisterSteps from "@/components/sections/register/RegisterSteps";
 import RegisterCTA from "@/components/sections/register/RegisterCTA";
+
+/**
+ * Force the page to render dynamically.
+ *
+ * This ensures updated Register Page content from Strapi
+ * can be fetched at runtime without requiring a new
+ * frontend deployment.
+ */
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Nexa Poker Registration | Join & Play Online Poker",

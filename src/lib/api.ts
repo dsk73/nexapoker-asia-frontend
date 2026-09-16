@@ -61,7 +61,7 @@ export async function getHeroPromotionCard(): Promise<HeroPromotionCard | null> 
 
 export async function getHomepageSettings(): Promise<HomepageSettings> {
   const response = await api.get<StrapiResponse<HomepageSettings>>(
-    "/homepage-setting?populate=*",
+    "/homepage-setting?populate[WhyChooseFeatures][populate]=*&populate[TransactionVideos][populate]=*&populate[JoinNexaPoker][populate]=*&populate[SEO][populate]=*",
   );
 
   return response.data.data;

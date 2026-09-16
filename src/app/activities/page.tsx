@@ -1,3 +1,5 @@
+// src/app/activities/page.tsx
+
 import type { Metadata } from "next";
 
 import { getActivities } from "@/lib/api";
@@ -6,6 +8,15 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/content/Breadcrumbs";
 import ActivityCard from "@/components/cards/ActivityCard";
+
+/**
+ * Force the page to render dynamically.
+ *
+ * This ensures updated Activities content from Strapi
+ * can be fetched at runtime without requiring a new
+ * frontend deployment.
+ */
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Poker Activities & Tournaments | Nexa Poker",
@@ -75,7 +86,7 @@ export default async function ActivitiesPage() {
 
             <div className="mt-10 max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#46b9ff]">
-                NexaPoker
+                Nexa Poker
               </p>
 
               <h1 className="mt-4 text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">

@@ -1,3 +1,5 @@
+// src/app/page.tsx
+
 import type { Metadata } from "next";
 
 import {
@@ -5,6 +7,7 @@ import {
   getFAQs,
   getHeroPromotionCard,
   getHeroSlides,
+  getHomepageSettings,
 } from "@/lib/api";
 
 import Navbar from "@/components/layout/Navbar";
@@ -12,7 +15,22 @@ import Footer from "@/components/layout/Footer";
 
 import HeroSection from "@/components/sections/HeroSection";
 import ActivitiesSection from "@/components/sections/ActivitiesSection";
+import WhyChooseNexaPokerSection from "@/components/sections/WhyChooseNexaPokerSection";
+import TransactionVideosSection from "@/components/sections/TransactionVideosSection";
+import JoinNexaPokerSection from "@/components/sections/JoinNexaPokerSection";
 import FAQSection from "@/components/sections/FAQSection";
+
+/**
+ * Force the homepage to render dynamically.
+ *
+ * This ensures content fetched from Strapi is requested at runtime
+ * instead of relying on a previously generated static page.
+ *
+ * Result:
+ * - Strapi content changes can appear without a frontend deployment.
+ * - Homepage remains server-rendered.
+ */
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Nexa Poker | Play Poker Online",
@@ -78,12 +96,14 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [slides, promotionCard, activities, faqs] = await Promise.all([
-    getHeroSlides(),
-    getHeroPromotionCard(),
-    getActivities(),
-    getFAQs(),
-  ]);
+  const [slides, promotionCard, activities, faqs, homepageSettings] =
+    await Promise.all([
+      getHeroSlides(),
+      getHeroPromotionCard(),
+      getActivities(),
+      getFAQs(),
+      getHomepageSettings(),
+    ]);
 
   return (
     <>
@@ -101,6 +121,30 @@ export default async function HomePage() {
             ================================================= */}
 
         <ActivitiesSection activities={activities} />
+
+        {/* =================================================
+            WHY CHOOSE NEXA POKER
+            ================================================= */}
+
+        <WhyChooseNexaPokerSection
+          title={homepageSettings?.WhyChooseTitle}
+          subtitle={homepageSettings?.WhyChooseSubtitle}
+          features={homepageSettings?.WhyChooseFeatures}
+        />
+
+        {/* =================================================
+            DEPOSIT & WITHDRAWAL VIDEOS
+            ================================================= */}
+
+        <TransactionVideosSection
+          videos={homepageSettings?.TransactionVideos}
+        />
+
+        {/* =================================================
+            JOIN NEXA POKER
+            ================================================= */}
+
+        <JoinNexaPokerSection data={homepageSettings?.JoinNexaPoker} />
 
         {/* =================================================
             FAQ

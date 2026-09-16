@@ -1,3 +1,5 @@
+// src/components/layout/Footer.tsx
+
 "use client";
 
 import Link from "next/link";
@@ -14,7 +16,7 @@ const navigationLinks = [
 ];
 
 const supportLinks = [
-  { label: "FAQ", href: "/faq" },
+  { label: "FAQ", href: "/#faq" },
   { label: "Download", href: "/download" },
   { label: "Register", href: "/register" },
 ];
@@ -39,7 +41,7 @@ export default function Footer() {
 
         {/* Pink glow */}
 
-        <div className="absolute bottom-[-25%] left-[-8%]h-120 w-120 rounded-full bg-[#ff1764]/6 blur-[140px]" />
+        <div className="absolute bottom-[-25%] left-[-8%] h-120 w-120 rounded-full bg-[#ff1764]/6 blur-[140px]" />
       </div>
 
       {/* =====================================================
@@ -166,7 +168,7 @@ export default function Footer() {
             {/* Copyright */}
 
             <p className="text-white/40">
-              Â© {new Date().getFullYear()} Nexa Poker. All rights reserved.
+              © {new Date().getFullYear()} Nexa Poker. All rights reserved.
             </p>
 
             {/* Brand statement */}
