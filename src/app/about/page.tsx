@@ -11,9 +11,10 @@ import AboutStory from "@/components/sections/about/AboutStory";
 import AboutFeatures from "@/components/sections/about/AboutFeatures";
 
 export const metadata: Metadata = {
-  title: "About NexaPoker | Online Poker Platform",
+  title: "About Nexa Poker | Online Poker Platform",
+
   description:
-    "Learn about NexaPoker, an international online poker platform built for players worldwide. Discover our poker community, gaming experience and approach to online poker.",
+    "Learn about Nexa Poker, an international online poker platform built for players worldwide. Discover our poker community, gaming experience and approach to online poker.",
 
   keywords: [
     "Nexa Poker",
@@ -31,18 +32,28 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "About NexaPoker | Online Poker Platform",
+    title: "About Nexa Poker | Online Poker Platform",
     description:
-      "Learn about NexaPoker, an international online poker platform built for players worldwide. Discover our poker community, gaming experience and approach to online poker.",
+      "Learn about Nexa Poker, an international online poker platform built for players worldwide. Discover our poker community, gaming experience and approach to online poker.",
     url: "/about",
+    siteName: "Nexa Poker",
     type: "website",
+    images: [
+      {
+        url: "/images/nexapoker-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "About Nexa Poker | Online Poker Platform",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "About NexaPoker | Online Poker Platform",
+    title: "About Nexa Poker | Online Poker Platform",
     description:
-      "Learn about NexaPoker, an international online poker platform built for players worldwide. Discover our poker community, gaming experience and approach to online poker.",
+      "Learn about Nexa Poker, an international online poker platform built for players worldwide. Discover our poker community, gaming experience and approach to online poker.",
+    images: ["/images/nexapoker-logo.png"],
   },
 };
 
