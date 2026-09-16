@@ -18,17 +18,20 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://nexapoker-asia.com"),
 
   title: {
-    default: "NexaPoker | Play Poker Online",
-    template: "%s | NexaPoker",
+    default: "Nexa Poker | Play Poker Online",
+    template: "%s | Nexa Poker",
   },
 
   description:
-    "Play poker online with NexaPoker. Explore online poker games, connect with poker players worldwide, and enjoy a convenient international poker platform.",
+    "Play poker online with Nexa Poker. Explore online poker games, connect with poker players worldwide, and enjoy a convenient international poker platform.",
 
   keywords: [
     "Nexa Poker",
     "NexaPoker",
     "Nexa Poker online",
+    "Nexa Poker download",
+    "Nexa Poker community",
+    "Nexa Poker registration",
     "online poker",
     "play poker online",
     "online poker games",
@@ -56,21 +59,30 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://nexapoker-asia.com",
-    siteName: "NexaPoker",
-    title: "NexaPoker | Play Poker Online",
+    siteName: "Nexa Poker",
+    title: "Nexa Poker | Play Poker Online",
     description:
-      "Play poker online with NexaPoker. Explore online poker games, connect with poker players worldwide, and enjoy a convenient international poker platform.",
+      "Play poker online with Nexa Poker. Explore online poker games, connect with poker players worldwide, and enjoy a convenient international poker platform.",
     locale: "en_US",
+    images: [
+      {
+        url: "/images/nexapoker-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Nexa Poker | Play Poker Online",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "NexaPoker | Play Poker Online",
+    title: "Nexa Poker | Play Poker Online",
     description:
-      "Play poker online with NexaPoker. Explore online poker games, connect with poker players worldwide, and enjoy a convenient international poker platform.",
+      "Play poker online with Nexa Poker. Explore online poker games, connect with poker players worldwide, and enjoy a convenient international poker platform.",
+    images: ["/images/nexapoker-logo.png"],
   },
 
-  applicationName: "NexaPoker",
+  applicationName: "Nexa Poker",
   generator: "Next.js",
 };
 

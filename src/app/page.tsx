@@ -1,76 +1,94 @@
 import type { Metadata } from "next";
 
-import {
-  getActivities,
-  getFAQs,
-  getHeroPromotionCard,
-  getHeroSlides,
-} from "@/lib/api";
+import { getAboutPage } from "@/lib/api";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-import HeroSection from "@/components/sections/HeroSection";
-import ActivitiesSection from "@/components/sections/ActivitiesSection";
-import FAQSection from "@/components/sections/FAQSection";
+import AboutHero from "@/components/sections/about/AboutHero";
+import AboutIntro from "@/components/sections/about/AboutIntro";
+import AboutStory from "@/components/sections/about/AboutStory";
+import AboutFeatures from "@/components/sections/about/AboutFeatures";
 
 export const metadata: Metadata = {
-  title: "NexaPoker | Play Poker Online",
+  title: "About Nexa Poker | Online Poker Platform",
+
   description:
-    "Play poker online with NexaPoker. Explore online poker games, discover exciting activities, connect with poker players worldwide, and enjoy a convenient international poker platform.",
+    "Learn about Nexa Poker, an international online poker platform built for players worldwide. Discover our poker community, gaming experience and approach to online poker.",
+
+  keywords: [
+    "Nexa Poker",
+    "NexaPoker",
+    "Nexa Poker online",
+    "online poker platform",
+    "international poker platform",
+    "poker community",
+    "online poker",
+    "poker players worldwide",
+  ],
+
   alternates: {
-    canonical: "/",
+    canonical: "/about",
   },
+
   openGraph: {
-    title: "NexaPoker | Play Poker Online",
+    title: "About Nexa Poker | Online Poker Platform",
     description:
-      "Play poker online with NexaPoker. Explore online poker games, discover exciting activities, connect with poker players worldwide, and enjoy a convenient international poker platform.",
-    url: "/",
+      "Learn about Nexa Poker, an international online poker platform built for players worldwide. Discover our poker community, gaming experience and approach to online poker.",
+    url: "/about",
+    siteName: "Nexa Poker",
     type: "website",
+    images: [
+      {
+        url: "/images/nexapoker-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "About Nexa Poker | Online Poker Platform",
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "NexaPoker | Play Poker Online",
+    title: "About Nexa Poker | Online Poker Platform",
     description:
-      "Play poker online with NexaPoker. Explore online poker games, discover exciting activities, connect with poker players worldwide, and enjoy a convenient international poker platform.",
+      "Learn about Nexa Poker, an international online poker platform built for players worldwide. Discover our poker community, gaming experience and approach to online poker.",
+    images: ["/images/nexapoker-logo.png"],
   },
 };
 
-export default async function HomePage() {
-  const [slides, promotionCard, activities, faqs] = await Promise.all([
-    getHeroSlides(),
-    getHeroPromotionCard(),
-    getActivities(),
-    getFAQs(),
-  ]);
+export default async function AboutPage() {
+  const page = await getAboutPage();
 
   return (
     <>
       <Navbar />
 
-      <main>
+      <main className="min-h-screen bg-[#050507]">
         {/* =================================================
             HERO
             ================================================= */}
 
-        <HeroSection slides={slides} promotionCard={promotionCard} />
+        <AboutHero page={page} />
 
         {/* =================================================
-            ACTIVITIES
+            INTRO
             ================================================= */}
 
-        <ActivitiesSection activities={activities} />
+        <AboutIntro page={page} />
 
         {/* =================================================
-            FAQ
+            STORY
             ================================================= */}
 
-        <FAQSection faqs={faqs} />
+        <AboutStory page={page} />
+
+        {/* =================================================
+            FEATURES
+            ================================================= */}
+
+        <AboutFeatures page={page} />
       </main>
-
-      {/* =================================================
-          FOOTER
-          ================================================= */}
 
       <Footer />
     </>
