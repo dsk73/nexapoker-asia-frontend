@@ -108,6 +108,28 @@ export interface HeroPromotionCard {
 
 /* =========================================================
 
+   FEATURED PROMOTION
+
+========================================================= */
+
+export interface FeaturedPromotion {
+  id: number;
+  documentId?: string;
+  Title: string;
+  Slug: string;
+  Description?: string;
+  Icon?: StrapiImage | null;
+  Image?: StrapiImage | null;
+  Content?: string;
+  DisplayOrder?: number;
+  Active: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
+}
+
+/* =========================================================
+
    CATEGORY
 
 ========================================================= */

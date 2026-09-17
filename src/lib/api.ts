@@ -7,6 +7,7 @@ import type {
   Activity,
   BrandAmbassador,
   FAQ,
+  FeaturedPromotion,
   HeroPromotionCard,
   HeroSlide,
   PaymentMethod,
@@ -65,6 +66,32 @@ export async function getHomepageSettings(): Promise<HomepageSettings> {
   );
 
   return response.data.data;
+}
+
+/* =========================================================
+   FEATURED PROMOTIONS
+========================================================= */
+
+export async function getFeaturedPromotions(): Promise<FeaturedPromotion[]> {
+  const response = await api.get<StrapiCollectionResponse<FeaturedPromotion>>(
+    "/featured-promotions?populate=*",
+  );
+
+  return response.data.data
+    .filter((promotion) => promotion.Active)
+    .sort((a, b) => (a.DisplayOrder ?? 0) - (b.DisplayOrder ?? 0));
+}
+
+export async function getFeaturedPromotionBySlug(
+  slug: string,
+): Promise<FeaturedPromotion | null> {
+  const response = await api.get<StrapiCollectionResponse<FeaturedPromotion>>(
+    `/featured-promotions?filters[Slug][$eq]=${encodeURIComponent(
+      slug,
+    )}&populate=*`,
+  );
+
+  return response.data.data[0] ?? null;
 }
 
 /* =========================================================
