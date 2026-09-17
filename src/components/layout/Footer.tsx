@@ -74,7 +74,7 @@ export default function Footer() {
             {/* Description */}
 
             <p className="mt-6 text-sm leading-6 text-white/55 sm:text-base">
-              Your next poker journey starts here. Discover exciting games,
+              Your Nexa Poker journey starts here. Discover exciting games,
               improve your strategy and connect with poker players worldwide.
             </p>
 
