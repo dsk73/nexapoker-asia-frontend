@@ -10,15 +10,16 @@ const navigationLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Activities", href: "/activities" },
+  { label: "Promotions", href: "/promotion" },
   // { label: "Teaching Center", href: "/teaching-center" },
   { label: "Poker Exchange", href: "/poker-exchange" },
-  { label: "Community", href: "/community" },
 ];
 
 const supportLinks = [
   { label: "FAQ", href: "/#faq" },
   { label: "Download", href: "/download" },
   { label: "Register", href: "/register" },
+  { label: "Community", href: "/community" },
 ];
 
 const legalLinks = [

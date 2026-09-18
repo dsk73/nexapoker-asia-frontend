@@ -11,6 +11,7 @@ export default function Navbar() {
   const links = [
     { label: "About", href: "/about" },
     { label: "Activities", href: "/activities" },
+    { label: "Promotions", href: "/promotion" },
     // { label: "Teaching Center", href: "/teaching-center" },
     { label: "Poker Exchange", href: "/poker-exchange" },
     { label: "Community", href: "/community" },
