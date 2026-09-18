@@ -47,13 +47,28 @@ export const metadata: Metadata = {
     canonical: "/register",
   },
 
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
   openGraph: {
     title: "Nexa Poker Registration | Join & Play Online Poker",
+
     description:
       "Join Nexa Poker and create your online poker account. Follow the registration steps, download the poker app and get ready to play poker online.",
+
     url: "/register",
     siteName: "Nexa Poker",
     type: "website",
+
     images: [
       {
         url: "/images/nexapoker-logo.png",
@@ -66,9 +81,12 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
+
     title: "Nexa Poker Registration | Join & Play Online Poker",
+
     description:
       "Join Nexa Poker and create your online poker account. Follow the registration steps, download the poker app and get ready to play poker online.",
+
     images: ["/images/nexapoker-logo.png"],
   },
 };

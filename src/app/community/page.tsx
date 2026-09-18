@@ -8,23 +8,23 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 import CommunityHero from "@/components/sections/community/CommunityHero";
-import CommunitySocialLinks from "@/components/sections/community/CommunitySocialLinks";
 import CommunityCTA from "@/components/sections/community/CommunityCTA";
+import CommunitySocialLinks from "@/components/sections/community/CommunitySocialLinks";
 
 /**
  * Force the page to render dynamically.
  *
- * This ensures updated Community content from Strapi
+ * This ensures updated Community Page content from Strapi
  * can be fetched at runtime without requiring a new
  * frontend deployment.
  */
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Nexa Poker Community | Online Poker Community",
+  title: "Nexa Poker Community | Connect with Poker Players",
 
   description:
-    "Join the Nexa Poker community and connect with poker players worldwide. Stay connected with online poker activities, updates, events and opportunities to play poker online.",
+    "Join the Nexa Poker community, connect with poker players, follow updates and stay connected with the latest online poker activities and events.",
 
   keywords: [
     "Nexa Poker",
@@ -34,36 +34,57 @@ export const metadata: Metadata = {
     "online poker community",
     "poker player community",
     "online poker",
-    "poker players worldwide",
-    "Nexa Poker community worldwide",
+    "poker players",
+    "Nexa Poker channel",
+    "Nexa Poker Telegram",
   ],
 
   alternates: {
     canonical: "/community",
   },
 
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
   openGraph: {
-    title: "Nexa Poker Community | Online Poker Community",
+    title: "Nexa Poker Community | Connect with Poker Players",
+
     description:
-      "Join the Nexa Poker community and connect with poker players worldwide. Stay connected with online poker activities, updates, events and opportunities to play poker online.",
+      "Join the Nexa Poker community, connect with poker players, follow updates and stay connected with the latest online poker activities and events.",
+
     url: "/community",
+
     siteName: "Nexa Poker",
+
     type: "website",
+
     images: [
       {
         url: "/images/nexapoker-logo.png",
         width: 1200,
         height: 630,
-        alt: "Nexa Poker Community | Online Poker Community",
+        alt: "Nexa Poker Community",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Nexa Poker Community | Online Poker Community",
+
+    title: "Nexa Poker Community | Connect with Poker Players",
+
     description:
-      "Join the Nexa Poker community and connect with poker players worldwide. Stay connected with online poker activities, updates, events and opportunities to play poker online.",
+      "Join the Nexa Poker community, connect with poker players, follow updates and stay connected with the latest online poker activities and events.",
+
     images: ["/images/nexapoker-logo.png"],
   },
 };
@@ -77,20 +98,20 @@ export default async function CommunityPage() {
 
       <main className="min-h-screen bg-[#050507] text-white">
         {/* =================================================
-            HERO
-        =================================================*/}
+            COMMUNITY HERO
+        ================================================= */}
 
         <CommunityHero page={page} />
 
         {/* =================================================
-            CTA
-        =================================================*/}
+            OFFICIAL COMMUNITY CTA
+        ================================================= */}
 
         <CommunityCTA page={page} />
 
         {/* =================================================
-            SOCIAL LINKS
-        =================================================*/}
+            SOCIAL CHANNELS
+        ================================================= */}
 
         <CommunitySocialLinks />
       </main>
