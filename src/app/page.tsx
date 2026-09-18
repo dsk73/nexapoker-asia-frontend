@@ -3,7 +3,6 @@
 import type { Metadata } from "next";
 
 import {
-  getActivities,
   getFAQs,
   getFeaturedPromotions,
   getHeroPromotionCard,
@@ -15,11 +14,9 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 import HeroSection from "@/components/sections/HeroSection";
-import ActivitiesSection from "@/components/sections/ActivitiesSection";
 import PromotionSection from "@/components/sections/PromotionSection";
 import WhyChooseNexaPokerSection from "@/components/sections/WhyChooseNexaPokerSection";
-import TransactionVideosSection from "@/components/sections/TransactionVideosSection";
-import JoinNexaPokerSection from "@/components/sections/JoinNexaPokerSection";
+import GridSection from "@/components/sections/GridSection";
 import FAQSection from "@/components/sections/FAQSection";
 
 /**
@@ -98,21 +95,14 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [
-    slides,
-    promotionCard,
-    activities,
-    featuredPromotions,
-    faqs,
-    homepageSettings,
-  ] = await Promise.all([
-    getHeroSlides(),
-    getHeroPromotionCard(),
-    getActivities(),
-    getFeaturedPromotions(),
-    getFAQs(),
-    getHomepageSettings(),
-  ]);
+  const [slides, promotionCard, featuredPromotions, faqs, homepageSettings] =
+    await Promise.all([
+      getHeroSlides(),
+      getHeroPromotionCard(),
+      getFeaturedPromotions(),
+      getFAQs(),
+      getHomepageSettings(),
+    ]);
 
   return (
     <>
@@ -124,12 +114,6 @@ export default async function HomePage() {
             ================================================= */}
 
         <HeroSection slides={slides} promotionCard={promotionCard} />
-
-        {/* =================================================
-            ACTIVITIES
-            ================================================= */}
-
-        <ActivitiesSection activities={activities} />
 
         {/* =================================================
             FEATURED PROMOTIONS
@@ -148,18 +132,13 @@ export default async function HomePage() {
         />
 
         {/* =================================================
-            DEPOSIT & WITHDRAWAL VIDEOS
+            GET STARTED WITH NEXA POKER
             ================================================= */}
 
-        <TransactionVideosSection
+        <GridSection
           videos={homepageSettings?.TransactionVideos}
+          joinData={homepageSettings?.JoinNexaPoker}
         />
-
-        {/* =================================================
-            JOIN NEXA POKER
-            ================================================= */}
-
-        <JoinNexaPokerSection data={homepageSettings?.JoinNexaPoker} />
 
         {/* =================================================
             FAQ

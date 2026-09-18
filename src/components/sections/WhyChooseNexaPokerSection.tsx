@@ -2,12 +2,9 @@
 
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 import type { WhyChooseFeature } from "@/types/pages";
-
-import { getMediaUrl } from "@/lib/media";
 
 interface WhyChooseNexaPokerSectionProps {
   title?: string;
@@ -77,7 +74,7 @@ export default function WhyChooseNexaPokerSection({
           transition={{
             duration: 0.6,
           }}
-          className="mx-auto mb-12 max-w-3xl text-center sm:mb-14"
+          className="mx-auto mb-12 max-w-4xl text-center sm:mb-14"
         >
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
             Nexa Poker
@@ -88,7 +85,7 @@ export default function WhyChooseNexaPokerSection({
           </h2>
 
           {subtitle && (
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-white/55 sm:text-lg">
               {subtitle}
             </p>
           )}
@@ -100,7 +97,7 @@ export default function WhyChooseNexaPokerSection({
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {activeFeatures.map((feature, index) => {
-            const iconUrl = getMediaUrl(feature.Icon, "medium");
+            const isPink = index % 3 === 1;
 
             return (
               <motion.article
@@ -121,47 +118,156 @@ export default function WhyChooseNexaPokerSection({
                   duration: 0.5,
                   delay: Math.min(index * 0.08, 0.4),
                 }}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a0d14] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1877ff]/30 hover:bg-[#0d111c] sm:p-7"
+                className="group relative min-h-55 overflow-hidden rounded-2xl border border-white/10 bg-[#090c13] p-6 transition-all duration-500 hover:-translate-y-1.5 hover:bg-[#0c1019] sm:p-7"
               >
-                {/* Card glow */}
+                {/* =================================================
+                    CARD BORDER GLOW
+                    ================================================= */}
 
-                <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#1877ff]/8 blur-[60px] transition-opacity duration-300 group-hover:bg-[#1877ff]/15" />
+                <div
+                  className={`pointer-events-none absolute inset-0 rounded-2xl border opacity-40 transition-all duration-500 group-hover:opacity-100 ${
+                    isPink
+                      ? "border-[#ff1764]/40 group-hover:border-[#ff1764]/70"
+                      : "border-[#1877ff]/40 group-hover:border-[#1877ff]/70"
+                  }`}
+                />
 
-                {/* Icon */}
+                {/* =================================================
+                    CARD BACKGROUND GRADIENT
+                    ================================================= */}
 
-                <div className="relative mb-6 flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/5">
-                  {iconUrl ? (
-                    <Image
-                      src={iconUrl}
-                      alt={feature.Title}
-                      width={56}
-                      height={56}
-                      className="h-full w-full object-contain p-2"
+                <div
+                  className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 ${
+                    isPink
+                      ? "bg-[radial-gradient(circle_at_85%_10%,rgba(255,23,100,0.15),transparent_48%)]"
+                      : "bg-[radial-gradient(circle_at_85%_10%,rgba(24,119,255,0.15),transparent_48%)]"
+                  }`}
+                />
+
+                {/* =================================================
+                    TOP ACCENT
+                    ================================================= */}
+
+                <div
+                  className={`absolute left-6 right-6 top-0 h-px sm:left-7 sm:right-7 ${
+                    isPink
+                      ? "bg-linear-to-r from-transparent via-[#ff1764]/70 to-transparent"
+                      : "bg-linear-to-r from-transparent via-[#1877ff]/70 to-transparent"
+                  }`}
+                />
+
+                {/* =================================================
+                    TOP RIGHT GLOW
+                    ================================================= */}
+
+                <div
+                  className={`pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full blur-[70px] transition-all duration-500 ${
+                    isPink
+                      ? "bg-[#ff1764]/8 group-hover:bg-[#ff1764]/18"
+                      : "bg-[#1877ff]/8 group-hover:bg-[#1877ff]/18"
+                  }`}
+                />
+
+                {/* =================================================
+                    CONTENT
+                    ================================================= */}
+
+                <div className="relative z-10">
+                  {/* Title */}
+
+                  <div className="flex items-start gap-4">
+                    <span
+                      className={`mt-0.5 h-8 w-0.75 shrink-0 rounded-full ${
+                        isPink
+                          ? "bg-linear-to-b from-[#ff1764] via-[#ff1764]/80 to-transparent"
+                          : "bg-linear-to-b from-[#1877ff] via-[#1877ff]/80 to-transparent"
+                      }`}
                     />
-                  ) : (
-                    <span className="text-xl font-black text-[#ff1764]">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  )}
-                </div>
 
-                {/* Content */}
+                    <h3 className="text-xl font-bold leading-tight tracking-tight text-white sm:text-[21px]">
+                      {feature.Title}
+                    </h3>
+                  </div>
 
-                <div className="relative">
-                  <h3 className="text-xl font-bold tracking-tight text-white">
-                    {feature.Title}
-                  </h3>
+                  {/* Description */}
 
                   {feature.Description && (
-                    <p className="mt-3 text-sm leading-7 text-white/55 sm:text-base">
+                    <p className="mt-5 max-w-[94%] text-sm leading-7 text-white/50 transition-colors duration-300 group-hover:text-white/65 sm:text-base">
                       {feature.Description}
                     </p>
                   )}
                 </div>
 
-                {/* Bottom accent */}
+            
+                {/* =================================================
+                    BOTTOM RIGHT POKER CHIP
+                    ================================================= */}
 
-                <div className="absolute bottom-0 left-0 h-px w-0 bg-linear-to-r from-[#ff1764] to-[#1877ff] transition-all duration-500 group-hover:w-full" />
+                <div
+                  className={`pointer-events-none absolute -bottom-12 -right-8 h-28 w-28 rounded-full border opacity-30 transition-all duration-500 group-hover:scale-105 group-hover:opacity-50 ${
+                    isPink ? "border-[#ff1764]" : "border-[#1877ff]"
+                  }`}
+                >
+                  <div
+                    className={`absolute inset-2 rounded-full border ${
+                      isPink ? "border-[#ff1764]/60" : "border-[#1877ff]/60"
+                    }`}
+                  />
+
+                  <div
+                    className={`absolute inset-6 flex items-center justify-center rounded-full border ${
+                      isPink ? "border-[#ff1764]/40" : "border-[#1877ff]/40"
+                    }`}
+                  >
+                    {/* Spade */}
+
+                    <span
+                      className={`translate-y-1 text-3xl font-black ${
+                        isPink ? "text-[#ff1764]/40" : "text-[#1877ff]/40"
+                      }`}
+                    >
+                      ♠
+                    </span>
+                  </div>
+
+                  {/* Chip markings */}
+
+                  <div
+                    className={`absolute left-1/2 top-0 h-3 w-1 -translate-x-1/2 ${
+                      isPink ? "bg-[#ff1764]/50" : "bg-[#1877ff]/50"
+                    }`}
+                  />
+
+                  <div
+                    className={`absolute bottom-0 left-1/2 h-3 w-1 -translate-x-1/2 ${
+                      isPink ? "bg-[#ff1764]/50" : "bg-[#1877ff]/50"
+                    }`}
+                  />
+
+                  <div
+                    className={`absolute left-0 top-1/2 h-1 w-3 -translate-y-1/2 ${
+                      isPink ? "bg-[#ff1764]/50" : "bg-[#1877ff]/50"
+                    }`}
+                  />
+
+                  <div
+                    className={`absolute right-0 top-1/2 h-1 w-3 -translate-y-1/2 ${
+                      isPink ? "bg-[#ff1764]/50" : "bg-[#1877ff]/50"
+                    }`}
+                  />
+                </div>
+
+                {/* =================================================
+                    BOTTOM ACCENT
+                    ================================================= */}
+
+                <div
+                  className={`absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 group-hover:w-full ${
+                    isPink
+                      ? "bg-linear-to-r from-[#ff1764] via-[#ff1764]/60 to-transparent"
+                      : "bg-linear-to-r from-[#1877ff] via-[#1877ff]/60 to-transparent"
+                  }`}
+                />
               </motion.article>
             );
           })}

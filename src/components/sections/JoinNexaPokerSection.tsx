@@ -1,5 +1,3 @@
-// src/components/sections/JoinNexaPokerSection.tsx
-
 "use client";
 
 import Image from "next/image";
@@ -34,162 +32,167 @@ export default function JoinNexaPokerSection({
     data.ButtonURL?.startsWith("tel:");
 
   return (
-    <section className="relative overflow-hidden bg-[#050507] py-20 sm:py-24 lg:py-28">
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 24,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.12,
+      }}
+      transition={{
+        duration: 0.6,
+        delay: 0.08,
+      }}
+      className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-[#090c13]"
+    >
       {/* =====================================================
-          BACKGROUND ATMOSPHERE
+          PANEL ATMOSPHERE
           ===================================================== */}
 
       <div className="pointer-events-none absolute inset-0">
         {/* Pink glow */}
 
-        <div className="absolute left-[-12%] top-[20%] h-105 w-105 rounded-full bg-[#ff1764]/8 blur-[140px]" />
+        <div className="absolute right-[-15%] top-[15%] h-80 w-80 rounded-full bg-[#ff1764]/10 blur-[130px]" />
 
         {/* Blue glow */}
 
-        <div className="absolute bottom-[-12%] right-[-8%] h-105 w-105 rounded-full bg-[#1877ff]/8 blur-[140px]" />
+        <div className="absolute bottom-[-15%] left-[-15%] h-72 w-72 rounded-full bg-[#1877ff]/8 blur-[120px]" />
+
+        {/* Top gradient */}
+
+        <div className="absolute inset-x-0 top-0 h-48 bg-linear-to-b from-white/2.5 to-transparent" />
       </div>
+
+      {/* =====================================================
+          PANEL BORDER
+          ===================================================== */}
+
+      <div className="pointer-events-none absolute inset-0 rounded-3xl border border-transparent transition-colors duration-500 group-hover:border-[#ff1764]/30" />
 
       {/* =====================================================
           CONTENT
           ===================================================== */}
 
-      <div className="container-nexa relative z-10">
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 24,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
-          transition={{
-            duration: 0.6,
-          }}
-          className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0a0d14]"
-        >
-          {/* =================================================
-              CARD ATMOSPHERE
-              ================================================= */}
+      <div className="relative z-10 flex h-full flex-col p-6 sm:p-7 lg:p-8">
+        {/* =================================================
+            TEXT CONTENT
+            ================================================= */}
 
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-1/2 top-[-30%] h-80 w-80 -translate-x-1/2 rounded-full bg-[#1877ff]/8 blur-[120px]" />
+        <div className="relative z-20 max-w-xl">
+          {/* Eyebrow */}
 
-            <div className="absolute bottom-[-30%] left-[10%] h-72 w-72 rounded-full bg-[#ff1764]/7 blur-[120px]" />
-          </div>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#ff1764] sm:text-sm">
+            Nexa Poker
+          </p>
 
-          {/* =================================================
-              MAIN GRID
-              ================================================= */}
+          {/* Title */}
 
-          <div className="relative grid items-center lg:grid-cols-2">
-            {/* =================================================
-                CONTENT
-                ================================================= */}
+          <h3 className="max-w-xl text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl">
+            {data.Title}
+          </h3>
 
-            <div className="px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
-              {/* Eyebrow */}
+          {/* Description */}
 
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
-                Nexa Poker
-              </p>
-
-              {/* Title */}
-
-              <h2 className="max-w-xl text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-                {data.Title}
-              </h2>
-
-              {/* Description */}
-
-              {data.Description && (
-                <div className="mt-5 max-w-xl">
-                  <MarkdownContent content={data.Description} />
-                </div>
-              )}
-
-              {/* CTA */}
-
-              {hasButton && data.ButtonURL && (
-                <div className="mt-7">
-                  {isExternalURL || data.OpenInNewTab ? (
-                    <a
-                      href={data.ButtonURL}
-                      target={data.OpenInNewTab ? "_blank" : undefined}
-                      rel={
-                        data.OpenInNewTab ? "noopener noreferrer" : undefined
-                      }
-                      className="nexa-button-primary"
-                    >
-                      {data.ButtonText}
-
-                      <ChevronRight size={17} />
-                    </a>
-                  ) : (
-                    <Link href={data.ButtonURL} className="nexa-button-primary">
-                      {data.ButtonText}
-
-                      <ChevronRight size={17} />
-                    </Link>
-                  )}
-                </div>
-              )}
+          {data.Description && (
+            <div className="mt-5 max-w-xl text-sm leading-7 text-white/55 sm:text-base">
+              <MarkdownContent content={data.Description} />
             </div>
+          )}
 
-            {/* =================================================
-                SCREENSHOT
-                ================================================= */}
+          {/* CTA */}
 
-            <div className="relative p-5 sm:p-7 lg:p-8">
-              {screenshotUrl ? (
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    scale: 0.97,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  viewport={{
-                    once: true,
-                    amount: 0.15,
-                  }}
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.1,
-                  }}
-                  className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#050507] shadow-[0_25px_80px_rgba(0,0,0,0.45)]"
+          {hasButton && data.ButtonURL && (
+            <div className="mt-7">
+              {isExternalURL || data.OpenInNewTab ? (
+                <a
+                  href={data.ButtonURL}
+                  target={data.OpenInNewTab ? "_blank" : undefined}
+                  rel={data.OpenInNewTab ? "noopener noreferrer" : undefined}
+                  className="nexa-button-primary"
                 >
-                  <Image
-                    src={screenshotUrl}
-                    alt={`${data.Title} screenshot`}
-                    width={1200}
-                    height={900}
-                    className="h-auto w-full object-contain"
-                  />
+                  {data.ButtonText}
 
-                  {/* Image overlay */}
-
-                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/15 via-transparent to-transparent" />
-                </motion.div>
+                  <ChevronRight size={17} />
+                </a>
               ) : (
-                <div className="flex aspect-video items-center justify-center rounded-2xl border border-dashed border-white/10 bg-[#050507] text-sm text-white/30">
-                  Screenshot unavailable
-                </div>
+                <Link href={data.ButtonURL} className="nexa-button-primary">
+                  {data.ButtonText}
+
+                  <ChevronRight size={17} />
+                </Link>
               )}
             </div>
+          )}
+        </div>
+
+        {/* =================================================
+            SCREENSHOT
+            ================================================= */}
+
+        {screenshotUrl && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              scale: 0.96,
+            }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.1,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.15,
+            }}
+            className="relative mt-7 flex flex-1 items-end justify-center lg:mt-5"
+          >
+            {/* Image glow */}
+
+            <div className="pointer-events-none absolute bottom-[8%] right-[8%] h-48 w-48 rounded-full bg-[#1877ff]/15 blur-[80px]" />
+
+            <div className="pointer-events-none absolute bottom-[5%] left-[15%] h-40 w-40 rounded-full bg-[#ff1764]/10 blur-[70px]" />
+
+            <div className="relative w-full max-w-140 overflow-hidden rounded-2xl border border-white/10 bg-[#050507] shadow-[0_25px_80px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:scale-[1.01]">
+              <Image
+                src={screenshotUrl}
+                alt={`${data.Title} screenshot`}
+                width={1200}
+                height={900}
+                className="h-auto w-full object-contain"
+              />
+
+              {/* Image overlay */}
+
+              <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent" />
+
+              {/* Bottom image accent */}
+
+              <div className="pointer-events-none absolute bottom-0 left-0 h-px w-full bg-linear-to-r from-transparent via-[#ff1764]/70 to-[#1877ff]/70" />
+            </div>
+          </motion.div>
+        )}
+
+        {!screenshotUrl && (
+          <div className="mt-8 flex min-h-55 flex-1 items-center justify-center rounded-2xl border border-dashed border-white/10 bg-[#050507] text-sm text-white/30">
+            Screenshot unavailable
           </div>
-
-          {/* Bottom accent */}
-
-          <div className="h-px w-full bg-linear-to-r from-[#ff1764]/60 via-[#1877ff]/60 to-transparent" />
-        </motion.div>
+        )}
       </div>
-    </section>
+
+      {/* =====================================================
+          OUTER ACCENT
+          ===================================================== */}
+
+      <div className="absolute bottom-0 left-0 h-px w-full bg-linear-to-r from-[#ff1764]/70 via-[#1877ff]/60 to-transparent opacity-70" />
+    </motion.div>
   );
 }
