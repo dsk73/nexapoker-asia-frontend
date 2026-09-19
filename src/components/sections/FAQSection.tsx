@@ -60,7 +60,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
   return (
     <section
       id="faq"
-      className="relative scroll-mt-24 overflow-hidden bg-[#050507] py-20 sm:py-24 lg:py-28"
+      className="relative scroll-mt-24 overflow-hidden bg-[#050507] px-4 py-14 sm:px-6 sm:py-20 lg:px-0 lg:py-28"
     >
       {/* =====================================================
           BACKGROUND ATMOSPHERE
@@ -69,11 +69,11 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
       <div className="pointer-events-none absolute inset-0">
         {/* Blue glow */}
 
-        <div className="absolute right-[-10%] top-[5%] h-105 w-105 rounded-full bg-[#1877ff]/6 blur-[140px]" />
+        <div className="absolute right-[-20%] top-[5%] h-72 w-72 rounded-full bg-[#1877ff]/6 blur-[110px] sm:right-[-10%] sm:h-105 sm:w-105 sm:blur-[140px]" />
 
         {/* Pink glow */}
 
-        <div className="absolute bottom-[5%] left-[-10%] h-105 w-105 rounded-full bg-[#ff1764]/6 blur-[140px]" />
+        <div className="absolute bottom-[5%] left-[-20%] h-72 w-72 rounded-full bg-[#ff1764]/6 blur-[110px] sm:left-[-10%] sm:h-105 sm:w-105 sm:blur-[140px]" />
       </div>
 
       {/* =====================================================
@@ -101,23 +101,23 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
           transition={{
             duration: 0.6,
           }}
-          className="mb-10 max-w-3xl sm:mb-12"
+          className="mb-8 max-w-3xl sm:mb-10 lg:mb-12"
         >
           {/* Eyebrow */}
 
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
+          <p className="mb-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#ff1764] sm:mb-3 sm:text-sm">
             Nexa Poker
           </p>
 
           {/* Heading */}
 
-          <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
             Frequently Asked Questions
           </h2>
 
           {/* Description */}
 
-          <p className="mt-4 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-white/55 sm:mt-5 sm:text-lg sm:leading-7">
             Find answers to common questions about Nexa Poker, getting started,
             playing online and more.
           </p>
@@ -127,13 +127,13 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
             FAQ LAYOUT
             ================================================= */}
 
-        <div className="grid gap-6 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-8">
+        <div className="grid min-w-0 gap-5 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-8">
           {/* =================================================
               MOBILE CATEGORY NAVIGATION
               ================================================= */}
 
-          <div className="overflow-x-auto lg:hidden">
-            <div className="flex min-w-max gap-2 pb-2">
+          <div className="min-w-0 overflow-x-auto lg:hidden">
+            <div className="flex w-max min-w-full gap-2 pb-2">
               {availableCategories.map((category) => {
                 const isActive = activeCategory === category;
 
@@ -142,7 +142,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
                     key={category}
                     type="button"
                     onClick={() => handleCategoryChange(category)}
-                    className={`rounded-xl border px-4 py-3 text-sm font-semibold transition-all duration-300 ${
+                    className={`shrink-0 rounded-xl border px-3.5 py-2.5 text-xs font-semibold transition-all duration-300 sm:px-4 sm:py-3 sm:text-sm ${
                       isActive
                         ? "border-[#ff1764]/40 bg-[#ff1764] text-white shadow-[0_10px_30px_rgba(255,23,100,0.18)]"
                         : "border-white/10 bg-[#0a0d14] text-white/60 hover:border-white/20 hover:text-white"
@@ -199,23 +199,23 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
             transition={{
               duration: 0.3,
             }}
-            className="rounded-2xl border border-white/10 bg-[#080b12] p-5 sm:p-6 lg:p-8"
+            className="min-w-0 rounded-2xl border border-white/10 bg-[#080b12] p-4 sm:p-6 lg:p-8"
           >
             {/* Category heading */}
 
-            <div className="mb-6 sm:mb-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#46b9ff]">
+            <div className="mb-5 sm:mb-7">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#46b9ff] sm:text-xs">
                 Nexa Poker FAQ
               </p>
 
-              <h3 className="mt-2 text-2xl font-black tracking-tight text-white sm:text-3xl">
+              <h3 className="mt-1.5 text-2xl font-black leading-tight tracking-tight text-white sm:mt-2 sm:text-3xl">
                 {activeCategory}
               </h3>
             </div>
 
             {/* FAQ items */}
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {categoryFAQs.map((faq, index) => (
                 <motion.div
                   key={faq.id}
@@ -231,6 +231,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
                     duration: 0.35,
                     delay: Math.min(index * 0.05, 0.25),
                   }}
+                  className="min-w-0"
                 >
                   <FAQItem
                     faq={faq}

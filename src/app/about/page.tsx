@@ -74,7 +74,7 @@ export default async function AboutPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#050507]">
+      <main className="min-h-screen overflow-x-hidden bg-[#050507]">
         {/* =================================================
             HERO
             ================================================= */}

@@ -76,29 +76,36 @@ export default async function TeachingCenterPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#050507] text-white">
+      <main className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
         {/* =================================================
             HERO
             ================================================= */}
 
-        <section className="px-6 pb-14 pt-28 sm:pb-16 sm:pt-32 lg:pt-36">
-          <div className="container-nexa">
-            <div className="max-w-5xl">
+        <section className="relative overflow-hidden px-4 pb-12 pt-24 sm:px-6 sm:pb-16 sm:pt-28 md:pb-20 md:pt-32 lg:pt-36">
+          {/* Background atmosphere */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute right-[-20%] top-[-20%] h-72 w-72 rounded-full bg-[#46b9ff]/4 blur-[100px] sm:right-[-10%] sm:h-105 sm:w-105 sm:blur-[140px]" />
+
+            <div className="absolute bottom-[-30%] left-[-20%] h-64 w-64 rounded-full bg-[#ff1764]/3 blur-[100px] sm:left-[-10%] sm:h-96 sm:w-96 sm:blur-[140px]" />
+          </div>
+
+          <div className="container-nexa relative z-10">
+            <div className="w-full max-w-5xl">
               {/* Eyebrow */}
 
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#46b9ff] sm:text-sm">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#46b9ff] sm:text-xs sm:tracking-[0.18em] md:text-sm">
                 Learning Center
               </p>
 
               {/* Title */}
 
-              <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+              <h1 className="mt-2.5 wrap-break-word text-3xl font-bold leading-[1.1] tracking-tight text-white sm:mt-3 sm:text-4xl md:text-5xl">
                 Learn Poker. Improve Your Game.
               </h1>
 
               {/* Description */}
 
-              <p className="mt-5 max-w-4xl text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
+              <p className="mt-4 max-w-4xl text-[14px] leading-6 text-white/60 sm:mt-5 sm:text-lg sm:leading-8">
                 Learn poker fundamentals, understand Texas Hold&apos;em, sharpen
                 your strategy and become a more confident player.
               </p>
@@ -110,10 +117,10 @@ export default async function TeachingCenterPage() {
             TEACHING GUIDES
             ================================================= */}
 
-        <section className="px-6 pb-20 sm:pb-24 lg:pb-28">
-          <div className="container-nexa">
+        <section className="relative overflow-hidden px-4 pb-16 sm:px-6 sm:pb-20 md:pb-24 lg:pb-28">
+          <div className="container-nexa relative z-10">
             {guides.length > 0 ? (
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
                 {guides.map((guide) => (
                   <TeachingGuideCard
                     key={guide.documentId ?? guide.id}
@@ -122,8 +129,8 @@ export default async function TeachingCenterPage() {
                 ))}
               </div>
             ) : (
-              <div className="rounded-3xl border border-white/10 bg-white/3 px-6 py-16 text-center">
-                <p className="text-sm text-white/50">
+              <div className="rounded-2xl border border-white/10 bg-white/3 px-5 py-12 text-center sm:rounded-3xl sm:px-6 sm:py-16">
+                <p className="text-[14px] leading-6 text-white/50 sm:text-sm">
                   No teaching guides are available yet.
                 </p>
               </div>

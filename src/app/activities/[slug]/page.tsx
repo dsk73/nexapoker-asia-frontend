@@ -129,13 +129,20 @@ export default async function ActivityDetailPage({
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#050507] text-white">
+      <main className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
         {/* =================================================
             HERO + BANNER
             ================================================= */}
 
-        <section className="px-6 pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pt-36">
-          <div className="container-nexa">
+        <section className="relative overflow-hidden px-4 pb-12 pt-24 sm:px-6 sm:pb-16 sm:pt-28 md:pb-20 md:pt-32 lg:pt-36">
+          {/* Background atmosphere */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute right-[-20%] top-[-20%] h-72 w-72 rounded-full bg-[#46b9ff]/4 blur-[100px] sm:right-[-10%] sm:h-105 sm:w-105 sm:blur-[140px]" />
+
+            <div className="absolute bottom-[-25%] left-[-20%] h-64 w-64 rounded-full bg-[#ff1764]/3 blur-[100px] sm:left-[-10%] sm:h-96 sm:w-96 sm:blur-[140px]" />
+          </div>
+
+          <div className="container-nexa relative z-10">
             {/* =================================================
                 BREADCRUMBS
                 ================================================= */}
@@ -152,40 +159,46 @@ export default async function ActivityDetailPage({
                 ARTICLE HEADER
                 ================================================= */}
 
-            <div className="mt-8 w-full sm:mt-10">
+            <div className="mt-6 w-full sm:mt-8 md:mt-10">
               {/* Category */}
 
               {activity.category?.Name && (
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#46b9ff] sm:text-sm">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#46b9ff] sm:text-xs sm:tracking-[0.18em] md:text-sm">
                   {activity.category.Name}
                 </p>
               )}
 
               {/* Title */}
 
-              <h1 className="mt-3 w-full max-w-6xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+              <h1 className="mt-2.5 w-full max-w-6xl wrap-break-word text-2xl font-bold leading-[1.12] tracking-tight text-white sm:mt-3 sm:text-4xl md:text-5xl">
                 {activity.Title}
               </h1>
 
               {/* Summary */}
 
               {activity.Summary && (
-                <p className="mt-5 w-full max-w-5xl text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
+                <p className="mt-4 w-full max-w-5xl text-[14px] leading-6 text-white/60 sm:mt-5 sm:text-lg sm:leading-8">
                   {activity.Summary}
                 </p>
               )}
 
               {/* Meta */}
 
-              <div className="mt-5 flex flex-wrap items-center gap-3 text-xs text-white/40 sm:text-sm">
-                {activity.PublishDate && <span>{activity.PublishDate}</span>}
+              <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-white/40 sm:mt-5 sm:text-sm">
+                {activity.PublishDate && (
+                  <span className="whitespace-nowrap">
+                    {activity.PublishDate}
+                  </span>
+                )}
 
                 {activity.PublishDate && activity.ReadingTime && (
-                  <span className="h-1 w-1 rounded-full bg-white/20" />
+                  <span className="hidden h-1 w-1 shrink-0 rounded-full bg-white/20 sm:block" />
                 )}
 
                 {activity.ReadingTime && (
-                  <span>{activity.ReadingTime} min read</span>
+                  <span className="whitespace-nowrap">
+                    {activity.ReadingTime} min read
+                  </span>
                 )}
               </div>
             </div>
@@ -194,13 +207,13 @@ export default async function ActivityDetailPage({
                 BANNER IMAGE
 
                 Left aligned with article content.
-                Desktop width: approximately 60vw.
-                Aspect ratio: 4:3.
+                Desktop width remains approximately 60vw.
+                Mobile uses the full available width.
                 ================================================= */}
 
             {bannerImageUrl && (
-              <div className="mt-10 sm:mt-12">
-                <div className="relative aspect-4/3 w-full max-w-[60vw] overflow-hidden rounded-2xl border border-white/10 bg-[#0a0d14] sm:rounded-3xl">
+              <div className="mt-7 sm:mt-10 md:mt-12">
+                <div className="relative aspect-4/3 w-full max-w-full overflow-hidden rounded-2xl border border-white/10 bg-[#0a0d14] shadow-[0_20px_60px_rgba(0,0,0,0.35)] sm:max-w-[60vw] sm:rounded-3xl">
                   <Image
                     src={bannerImageUrl}
                     alt={
@@ -211,6 +224,8 @@ export default async function ActivityDetailPage({
                     sizes="(max-width: 640px) 100vw, 60vw"
                     className="object-cover"
                   />
+
+                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#050507]/20 via-transparent to-transparent" />
                 </div>
               </div>
             )}
@@ -222,9 +237,9 @@ export default async function ActivityDetailPage({
             ================================================= */}
 
         {activity.Content && (
-          <section className="px-6 pb-20 sm:pb-24 lg:pb-28">
+          <section className="relative overflow-hidden px-4 pb-16 sm:px-6 sm:pb-20 md:pb-24 lg:pb-28">
             <div className="container-nexa">
-              <div className="w-full max-w-6xl">
+              <div className="w-full max-w-6xl min-w-0">
                 <MarkdownContent content={activity.Content} />
               </div>
             </div>

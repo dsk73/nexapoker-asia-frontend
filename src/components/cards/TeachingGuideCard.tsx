@@ -1,3 +1,5 @@
+// src/components/cards/TeachingGuideCard.tsx
+
 "use client";
 
 import Image from "next/image";
@@ -15,7 +17,7 @@ export default function TeachingGuideCard({ guide }: TeachingGuideCardProps) {
   const imageUrl = getMediaUrl(guide.Thumbnail, "medium");
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0a0d14] transition-all duration-300 hover:-translate-y-1 hover:border-[#1877ff]/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
+    <article className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0a0d14] transition-all duration-300 hover:-translate-y-1 hover:border-[#1877ff]/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.45)] sm:rounded-3xl">
       {/* =====================================================
           IMAGE
           ===================================================== */}
@@ -34,7 +36,7 @@ export default function TeachingGuideCard({ guide }: TeachingGuideCardProps) {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-[#111827] via-[#0b1220] to-[#080a10]">
-            <span className="text-5xl font-black text-white/10">
+            <span className="text-4xl font-black text-white/10 sm:text-5xl">
               {guide.Title.charAt(0).toUpperCase()}
             </span>
           </div>
@@ -46,8 +48,8 @@ export default function TeachingGuideCard({ guide }: TeachingGuideCardProps) {
 
         {/* Hover arrow */}
 
-        <div className="absolute bottom-4 right-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-          <ArrowUpRight size={18} />
+        <div className="absolute bottom-3 right-3 flex h-9 w-9 translate-y-2 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:bottom-4 sm:right-4 sm:h-10 sm:w-10">
+          <ArrowUpRight size={17} className="sm:h-4.5 sm:w-4.5" />
         </div>
       </Link>
 
@@ -55,13 +57,13 @@ export default function TeachingGuideCard({ guide }: TeachingGuideCardProps) {
           CONTENT
           ===================================================== */}
 
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
+      <div className="flex min-w-0 flex-1 flex-col p-4 sm:p-6">
         {/* =================================================
             TITLE
             ================================================= */}
 
-        <Link href={`/teaching-center/${guide.Slug}`}>
-          <h3 className="text-xl font-bold leading-tight tracking-tight text-white transition-colors duration-200 group-hover:text-[#46b9ff] sm:text-2xl">
+        <Link href={`/teaching-center/${guide.Slug}`} className="min-w-0">
+          <h3 className="wrap-break-word text-lg font-bold leading-tight tracking-tight text-white transition-colors duration-200 group-hover:text-[#46b9ff] sm:text-2xl">
             {guide.Title}
           </h3>
         </Link>
@@ -71,7 +73,7 @@ export default function TeachingGuideCard({ guide }: TeachingGuideCardProps) {
             ================================================= */}
 
         {guide.Sections && guide.Sections.length > 0 && (
-          <p className="mt-3 text-sm leading-6 text-white/45">
+          <p className="mt-2 wrap-break-word text-sm leading-6 text-white/45 sm:mt-3">
             {guide.Sections.length}{" "}
             {guide.Sections.length === 1 ? "section" : "sections"} available
           </p>
@@ -81,15 +83,16 @@ export default function TeachingGuideCard({ guide }: TeachingGuideCardProps) {
             BOTTOM LINK
             ================================================= */}
 
-        <div className="mt-auto pt-6">
+        <div className="mt-auto pt-5 sm:pt-6">
           <Link
             href={`/teaching-center/${guide.Slug}`}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors duration-200 hover:text-[#ff1764]"
+            className="inline-flex max-w-full items-center gap-2 text-sm font-semibold text-white transition-colors duration-200 hover:text-[#ff1764]"
           >
-            View Guide
+            <span>View Guide</span>
+
             <ArrowUpRight
               size={16}
-              className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              className="shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
           </Link>
         </div>

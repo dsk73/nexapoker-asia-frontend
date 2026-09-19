@@ -73,27 +73,33 @@ export default async function ActivitiesPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#050507] text-white">
+      <main className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
         {/* =================================================
             PAGE HERO
             ================================================= */}
 
-        <section className="border-b border-white/8 px-6 pb-16 pt-32 sm:pb-20 sm:pt-36">
-          <div className="container-nexa">
+        <section className="relative overflow-hidden border-b border-white/8 px-4 pb-14 pt-24 sm:px-6 sm:pb-20 sm:pt-28 md:pt-32 lg:pb-24 lg:pt-36">
+          {/* Background atmosphere */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute right-[-20%] top-[-25%] h-72 w-72 rounded-full bg-[#46b9ff]/4 blur-[100px] sm:right-[-10%] sm:h-105 sm:w-105 sm:blur-[140px]" />
+            <div className="absolute bottom-[-30%] left-[-20%] h-64 w-64 rounded-full bg-[#ff1764]/3 blur-[100px] sm:left-[-10%] sm:h-96 sm:w-96 sm:blur-[140px]" />
+          </div>
+
+          <div className="container-nexa relative z-10">
             <Breadcrumbs
               items={[{ label: "Home", href: "/" }, { label: "Activities" }]}
             />
 
-            <div className="mt-10 max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#46b9ff]">
+            <div className="mt-7 w-full max-w-3xl sm:mt-10">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#46b9ff] sm:text-xs sm:tracking-[0.2em] md:text-sm">
                 Nexa Poker
               </p>
 
-              <h1 className="mt-4 text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
+              <h1 className="mt-2.5 wrap-break-word text-3xl font-black leading-[1.08] tracking-tight text-white sm:mt-4 sm:text-5xl md:text-6xl">
                 Poker Activities
               </h1>
 
-              <p className="mt-5 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
+              <p className="mt-4 max-w-2xl text-[14px] leading-6 text-white/55 sm:mt-5 sm:text-lg sm:leading-8">
                 Discover poker activities, tournaments, events and experiences
                 available for players worldwide.
               </p>
@@ -105,10 +111,10 @@ export default async function ActivitiesPage() {
             ACTIVITIES GRID
             ================================================= */}
 
-        <section className="px-6 py-16 sm:py-20 lg:py-24">
-          <div className="container-nexa">
+        <section className="relative overflow-hidden px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
+          <div className="container-nexa relative z-10">
             {activities.length > 0 ? (
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
                 {activities.map((activity) => (
                   <ActivityCard
                     key={activity.documentId ?? activity.id}
@@ -117,12 +123,12 @@ export default async function ActivitiesPage() {
                 ))}
               </div>
             ) : (
-              <div className="rounded-3xl border border-white/10 bg-[#0a0d14] px-6 py-16 text-center">
-                <h2 className="text-2xl font-bold text-white">
+              <div className="rounded-2xl border border-white/10 bg-[#0a0d14] px-5 py-12 text-center sm:rounded-3xl sm:px-6 sm:py-16">
+                <h2 className="text-xl font-bold leading-tight text-white sm:text-2xl">
                   No activities available
                 </h2>
 
-                <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-white/50">
+                <p className="mx-auto mt-3 max-w-lg text-[14px] leading-6 text-white/50 sm:text-sm sm:leading-6">
                   There are currently no poker activities available. Please
                   check back again soon.
                 </p>

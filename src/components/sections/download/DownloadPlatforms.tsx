@@ -1,3 +1,5 @@
+// src/components/sections/download/DownloadPlatforms.tsx
+
 import {
   Apple,
   ArrowUpRight,
@@ -16,7 +18,10 @@ interface DownloadOption {
   label: string;
   description: string;
   url: string;
-  icon: React.ComponentType<{ size?: number; strokeWidth?: number }>;
+  icon: React.ComponentType<{
+    size?: number;
+    strokeWidth?: number;
+  }>;
   badge: string;
 }
 
@@ -57,15 +62,15 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
   }
 
   return (
-    <section className="relative overflow-hidden px-6 pb-20 pt-4 sm:pb-24 sm:pt-6 lg:pb-28 lg:pt-8">
+    <section className="relative overflow-hidden px-4 pb-16 pt-2 sm:px-6 sm:pb-20 sm:pt-4 md:pb-24 md:pt-6 lg:pb-28 lg:pt-8">
       {/* =================================================
           BACKGROUND
       ================================================= */}
 
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[8%] top-[15%] h-72 w-72 rounded-full bg-[#1877ff]/5 blur-[120px]" />
+        <div className="absolute left-[-15%] top-[12%] h-60 w-60 rounded-full bg-[#1877ff]/5 blur-[100px] sm:left-[8%] sm:h-72 sm:w-72 sm:blur-[120px]" />
 
-        <div className="absolute right-[5%] top-[25%] h-80 w-80 rounded-full bg-[#7c3aed]/5 blur-[130px]" />
+        <div className="absolute right-[-15%] top-[30%] h-64 w-64 rounded-full bg-[#7c3aed]/5 blur-[110px] sm:right-[5%] sm:h-80 sm:w-80 sm:blur-[130px]" />
       </div>
 
       <div className="container-nexa relative z-10">
@@ -78,7 +83,7 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
             Choose Your Device
           </h2>
 
-          <p className="mt-4 max-w-2xl text-base leading-7 text-white/55 sm:text-lg sm:leading-8">
+          <p className="mt-3 max-w-2xl text-[15px] leading-7 text-white/55 sm:mt-4 sm:text-lg sm:leading-8">
             Select the version that works best for your device and start playing
             Nexa Poker.
           </p>
@@ -88,7 +93,7 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
             PLATFORM GRID
         ================================================= */}
 
-        <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <div className="mt-7 grid grid-cols-1 gap-4 sm:mt-8 sm:gap-5 lg:grid-cols-2">
           {platforms.map((platform) => {
             const Icon = platform.icon;
 
@@ -99,17 +104,24 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-                  group relative overflow-hidden
-                  rounded-[1.75rem]
-                  border border-white/8
+                  group
+                  relative
+                  overflow-hidden
+                  rounded-3xl
+                  border
+                  border-white/8
                   bg-[#0a0d14]
-                  p-6
-                  transition-all duration-300 ease-out
+                  p-4
+                  transition-all
+                  duration-300
+                  ease-out
                   hover:-translate-y-1
                   hover:border-[#1877ff]/40
                   hover:bg-[#0d111a]
                   hover:shadow-[0_25px_70px_rgba(0,0,0,0.4)]
-                  sm:p-7
+                  sm:rounded-[1.75rem]
+                  sm:p-6
+                  md:p-7
                 "
               >
                 {/* =================================================
@@ -122,14 +134,16 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
                     absolute
                     -right-16
                     -top-16
-                    h-40
-                    w-40
+                    h-32
+                    w-32
                     rounded-full
                     bg-[#1877ff]/7
                     blur-3xl
                     transition-all
                     duration-500
                     group-hover:bg-[#1877ff]/14
+                    sm:h-40
+                    sm:w-40
                   "
                 />
 
@@ -139,7 +153,7 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
                   className="
                     pointer-events-none
                     absolute
-                    inset-x-8
+                    inset-x-6
                     top-0
                     h-px
                     bg-linear-to-r
@@ -150,6 +164,7 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
                     transition-opacity
                     duration-300
                     group-hover:opacity-100
+                    sm:inset-x-8
                   "
                 />
 
@@ -157,18 +172,18 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
                     CONTENT
                 ================================================= */}
 
-                <div className="relative flex items-center gap-5 sm:gap-6">
+                <div className="relative flex min-w-0 items-center gap-3 sm:gap-5 md:gap-6">
                   {/* Platform Icon */}
 
                   <div
                     className="
                       flex
-                      h-16
-                      w-16
+                      h-12
+                      w-12
                       shrink-0
                       items-center
                       justify-center
-                      rounded-2xl
+                      rounded-xl
                       border
                       border-white/9
                       bg-white/[0.035]
@@ -179,26 +194,30 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
                       group-hover:border-[#1877ff]/35
                       group-hover:bg-[#1877ff]/10
                       group-hover:shadow-[0_0_30px_rgba(24,119,255,0.12)]
-                      sm:h-18
-                      sm:w-18
+                      sm:h-16
+                      sm:w-16
+                      sm:rounded-2xl
+                      md:h-18
+                      md:w-18
                     "
                   >
-                    <Icon size={28} strokeWidth={1.65} />
+                    <Icon size={24} strokeWidth={1.65} />
                   </div>
 
                   {/* Platform Information */}
 
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
+                    <div className="flex min-w-0 flex-wrap items-center gap-2">
                       <h3
                         className="
-                          text-xl
+                          text-lg
                           font-semibold
                           tracking-tight
                           text-white
                           transition-colors
                           duration-200
                           group-hover:text-[#46b9ff]
+                          sm:text-xl
                         "
                       >
                         {platform.label}
@@ -206,24 +225,29 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
 
                       <span
                         className="
+                          shrink-0
                           rounded-full
                           border
                           border-white/8
                           bg-white/[0.035]
-                          px-2.5
-                          py-1
-                          text-[10px]
+                          px-2
+                          py-0.5
+                          text-[9px]
                           font-semibold
                           uppercase
-                          tracking-[0.12em]
+                          tracking-widest
                           text-white/35
+                          sm:px-2.5
+                          sm:py-1
+                          sm:text-[10px]
+                          sm:tracking-[0.12em]
                         "
                       >
                         {platform.badge}
                       </span>
                     </div>
 
-                    <p className="mt-1.5 text-sm leading-6 text-white/45 sm:text-[15px]">
+                    <p className="mt-1 text-xs leading-5 text-white/45 sm:mt-1.5 sm:text-sm sm:leading-6 md:text-[15px]">
                       {platform.description}
                     </p>
                   </div>
@@ -233,8 +257,8 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
                   <div
                     className="
                       flex
-                      h-10
-                      w-10
+                      h-9
+                      w-9
                       shrink-0
                       items-center
                       justify-center
@@ -249,9 +273,11 @@ export default function DownloadPlatforms({ page }: DownloadPlatformsProps) {
                       group-hover:border-[#1877ff]/30
                       group-hover:bg-[#1877ff]/10
                       group-hover:text-[#46b9ff]
+                      sm:h-10
+                      sm:w-10
                     "
                   >
-                    <ArrowUpRight size={18} strokeWidth={1.8} />
+                    <ArrowUpRight size={17} strokeWidth={1.8} />
                   </div>
                 </div>
               </a>

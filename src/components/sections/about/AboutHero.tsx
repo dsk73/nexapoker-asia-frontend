@@ -1,3 +1,5 @@
+//src/components/sections/about/AboutHero.tsx
+
 "use client";
 
 import Image from "next/image";
@@ -14,7 +16,7 @@ export default function AboutHero({ page }: AboutHeroProps) {
   const imageUrl = getMediaUrl(page.HeroBannerImage, "large");
 
   return (
-    <section className="relative min-h-105 overflow-hidden bg-[#050507] sm:min-h-120 lg:min-h-135">
+    <section className="relative min-h-90 overflow-hidden bg-[#050507] sm:min-h-100 lg:min-h-110">
       {/* =====================================================
           BACKGROUND IMAGE
           ===================================================== */}
@@ -49,18 +51,18 @@ export default function AboutHero({ page }: AboutHeroProps) {
           ===================================================== */}
 
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-20 top-10 h-80 w-80 rounded-full bg-[#ff1764]/10 blur-[120px]" />
+        <div className="absolute -left-24 top-5 h-64 w-64 rounded-full bg-[#ff1764]/8 blur-[100px] sm:-left-20 sm:top-10 sm:h-80 sm:w-80 sm:bg-[#ff1764]/10 sm:blur-[120px]" />
 
-        <div className="absolute right-[-5%] top-10 h-100 w-100 rounded-full bg-[#1877ff]/10 blur-[140px]" />
+        <div className="absolute right-[-10%] top-5 h-72 w-72 rounded-full bg-[#1877ff]/8 blur-[110px] sm:right-[-5%] sm:top-10 sm:h-100 sm:w-100 sm:bg-[#1877ff]/10 sm:blur-[140px]" />
       </div>
 
       {/* =====================================================
           CONTENT
           ===================================================== */}
 
-      <div className="container-nexa relative z-10 flex min-h-105 items-center py-20 sm:min-h-120 sm:py-24 lg:min-h-135 lg:py-28">
+      <div className="container-nexa relative z-10 flex min-h-90 items-center py-16 sm:min-h-100 sm:py-20 lg:min-h-110 lg:py-20">
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.7,
@@ -70,14 +72,14 @@ export default function AboutHero({ page }: AboutHeroProps) {
         >
           {/* Eyebrow */}
 
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.22em] text-[#ff1764] sm:text-base">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#ff1764] sm:mb-4 sm:text-sm sm:tracking-[0.22em]">
             Nexa Poker
           </p>
 
           {/* Title */}
 
           {page.HeroTitle && (
-            <h1 className="max-w-4xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+            <h1 className="max-w-4xl text-3xl font-black leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.6rem]">
               {page.HeroTitle}
             </h1>
           )}
@@ -85,7 +87,7 @@ export default function AboutHero({ page }: AboutHeroProps) {
           {/* Subtitle */}
 
           {page.HeroSubtitle && (
-            <p className="mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-lg lg:text-xl">
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-white/70 sm:mt-5 sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
               {page.HeroSubtitle}
             </p>
           )}

@@ -73,11 +73,11 @@ export default function PromotionCard({
         duration: 0.55,
         delay: Math.min(index * 0.1, 0.3),
       }}
-      className="relative h-full"
+      className="relative h-full min-w-0"
     >
       <Link
         href={`/promotion/${promotion.Slug}`}
-        className="group block h-full"
+        className="group block h-full min-w-0"
       >
         {/* =================================================
             CARD WRAPPER
@@ -86,7 +86,7 @@ export default function PromotionCard({
             to extend outside the card frame.
         ================================================= */}
 
-        <article className="relative pt-16">
+        <article className="relative pt-14 sm:pt-16">
           {/* =================================================
               CARD
           ================================================= */}
@@ -94,9 +94,10 @@ export default function PromotionCard({
           <div
             className={`
               relative
-              h-55
+              h-52
+              min-w-0
               overflow-visible
-              rounded-[22px]
+              rounded-2xl
               border
               ${theme.border}
               ${theme.hoverBorder}
@@ -104,39 +105,45 @@ export default function PromotionCard({
               transition-all
               duration-400
               group-hover:-translate-y-1
+              sm:h-55
+              sm:rounded-[22px]
             `}
           >
             {/* =================================================
                 CARD ATMOSPHERE
             ================================================= */}
 
-            <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[22px]">
+            <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl sm:rounded-[22px]">
               {/* Main glow behind icon */}
 
               <div
                 className={`
                   absolute
                   left-1/2
-                  -top-22.5
-                  h-64
-                  w-64
+                  -top-20
+                  h-56
+                  w-56
                   -translate-x-1/2
                   rounded-full
                   ${theme.glow}
-                  blur-[80px]
+                  blur-[70px]
                   transition-all
                   duration-500
                   group-hover:scale-125
+                  sm:-top-22.5
+                  sm:h-64
+                  sm:w-64
+                  sm:blur-[80px]
                 `}
               />
 
               {/* Bottom glow */}
 
-              <div className="absolute -bottom-25 left-1/2 h-56 w-80 -translate-x-1/2 rounded-full bg-white/5 blur-[85px]" />
+              <div className="absolute -bottom-20 left-1/2 h-48 w-72 -translate-x-1/2 rounded-full bg-white/5 blur-[70px] sm:-bottom-25 sm:h-56 sm:w-80 sm:blur-[85px]" />
 
               {/* Top border highlight */}
 
-              <div className="absolute inset-x-5 top-0 h-px bg-white/20" />
+              <div className="absolute inset-x-4 top-0 h-px bg-white/20 sm:inset-x-5" />
             </div>
 
             {/* =================================================
@@ -151,25 +158,26 @@ export default function PromotionCard({
                   pointer-events-none
                   absolute
                   left-1/2
-                  -top-22
+                  -top-20
                   z-20
-                  h-51.25
-                  w-51.25
+                  h-45
+                  w-45
                   -translate-x-1/2
                   transition-transform
                   duration-500
-                  group-hover:-translate-y-3
+                  group-hover:-translate-y-2
                   group-hover:scale-[1.05]
-                  sm:h-55
-                  sm:w-55
+                  sm:-top-22
+                  sm:h-51.25
+                  sm:w-51.25
                 "
               >
                 <Image
                   src={iconUrl}
                   alt={promotion.Title}
                   fill
-                  sizes="220px"
-                  className="object-contain drop-shadow-[0_22px_32px_rgba(0,0,0,0.6)]"
+                  sizes="(max-width: 640px) 180px, 220px"
+                  className="object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.6)] sm:drop-shadow-[0_22px_32px_rgba(0,0,0,0.6)]"
                 />
               </div>
             )}
@@ -177,17 +185,17 @@ export default function PromotionCard({
             {/* =================================================
                 CARD CONTENT
 
-                Title stays on one line.
-                Description wraps naturally inside the card.
+                Title stays on one line on larger screens,
+                while mobile allows wrapping when necessary.
             ================================================= */}
 
-            <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 text-center sm:px-6">
+            <div className="absolute inset-x-0 bottom-0 z-10 px-4 pb-5 text-center sm:px-6 sm:pb-6">
               {/* Title */}
 
               <h3
                 className="
-                  whitespace-nowrap
-                  text-[18px]
+                  wrap-break-word
+                  text-base
                   font-bold
                   leading-tight
                   tracking-tight
@@ -195,6 +203,7 @@ export default function PromotionCard({
                   transition-colors
                   duration-300
                   group-hover:text-white
+                  sm:whitespace-nowrap
                   sm:text-[20px]
                 "
               >
@@ -207,13 +216,14 @@ export default function PromotionCard({
                 <p
                   className="
                     mx-auto
-                    mt-3
+                    mt-2
                     max-w-full
-                    text-[13px]
+                    wrap-break-word
+                    text-xs
                     leading-5
                     text-white/70
+                    sm:mt-3
                     sm:text-sm
-                    sm:leading-5
                   "
                 >
                   {promotion.Description}

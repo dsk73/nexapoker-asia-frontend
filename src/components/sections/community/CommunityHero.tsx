@@ -12,12 +12,15 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
       className="
         relative
         overflow-hidden
-        px-6
-        pb-16
-        pt-28
+        px-4
+        pb-14
+        pt-24
+        sm:px-6
         sm:pb-20
-        sm:pt-32
-        lg:pb-24
+        sm:pt-28
+        md:pb-24
+        md:pt-32
+        lg:px-0
         lg:pt-36
       "
     >
@@ -31,13 +34,17 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
         <div
           className="
             absolute
-            left-[-15%]
+            left-[-20%]
             top-[5%]
-            h-128
-            w-lg
+            h-72
+            w-72
             rounded-full
             bg-[#1877ff]/10
-            blur-[140px]
+            blur-[110px]
+            sm:left-[-15%]
+            sm:h-128
+            sm:w-lg
+            sm:blur-[140px]
           "
         />
 
@@ -46,13 +53,17 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
         <div
           className="
             absolute
-            right-[-10%]
+            right-[-18%]
             top-[5%]
-            h-152
-            w-152
+            h-80
+            w-80
             rounded-full
             bg-[#7c3aed]/10
-            blur-[150px]
+            blur-[120px]
+            sm:right-[-10%]
+            sm:h-152
+            sm:w-152
+            sm:blur-[150px]
           "
         />
 
@@ -61,13 +72,17 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
         <div
           className="
             absolute
-            right-[15%]
+            right-[5%]
             bottom-[-25%]
-            h-80
-            w-80
+            h-64
+            w-64
             rounded-full
             bg-[#ff1473]/7
-            blur-[130px]
+            blur-[100px]
+            sm:right-[15%]
+            sm:h-80
+            sm:w-80
+            sm:blur-[130px]
           "
         />
 
@@ -76,13 +91,17 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
         <div
           className="
             absolute
-            left-[30%]
+            left-[20%]
             bottom-[-20%]
-            h-72
-            w-72
+            h-60
+            w-60
             rounded-full
             bg-[#46b9ff]/6
-            blur-[120px]
+            blur-[100px]
+            sm:left-[30%]
+            sm:h-72
+            sm:w-72
+            sm:blur-[120px]
           "
         />
 
@@ -94,7 +113,8 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
             inset-0
             opacity-[0.025]
             bg-[linear-gradient(rgba(255,255,255,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.8)_1px,transparent_1px)]
-            bg-size-[70px_70px]
+            bg-size-[45px_45px]
+            sm:bg-size-[70px_70px]
           "
         />
 
@@ -103,14 +123,18 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
         <div
           className="
             absolute
-            right-[-8%]
+            right-[-20%]
             top-1/2
-            h-136
-            w-136
+            h-80
+            w-80
             -translate-y-1/2
             rounded-full
             bg-[radial-gradient(circle,rgba(24,119,255,0.12),rgba(124,58,237,0.08)_42%,transparent_72%)]
-            blur-2xl
+            blur-xl
+            sm:right-[-8%]
+            sm:h-136
+            sm:w-136
+            sm:blur-2xl
           "
         />
       </div>
@@ -119,8 +143,8 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
           CONTENT
       ================================================= */}
 
-      <div className="container-nexa relative z-10">
-        <div className="max-w-5xl">
+      <div className="container-nexa relative z-10 min-w-0">
+        <div className="max-w-5xl min-w-0">
           {/* =================================================
               EYEBROW
           ================================================= */}
@@ -128,18 +152,21 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
           <div
             className="
               inline-flex
+              max-w-full
               items-center
               gap-2
               rounded-full
               border
               border-[#46b9ff]/20
               bg-[#46b9ff]/5
-              px-3.5
-              py-2
+              px-3
+              py-1.5
               shadow-[0_0_30px_rgba(70,185,255,0.05)]
+              sm:px-3.5
+              sm:py-2
             "
           >
-            <span className="relative flex h-2 w-2">
+            <span className="relative flex h-2 w-2 shrink-0">
               <span
                 className="
                   absolute
@@ -167,12 +194,13 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
 
             <span
               className="
-                text-[11px]
+                text-[10px]
                 font-semibold
                 uppercase
-                tracking-[0.2em]
+                tracking-[0.16em]
                 text-[#46b9ff]
                 sm:text-xs
+                sm:tracking-[0.2em]
               "
             >
               Community
@@ -185,13 +213,15 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
 
           <h1
             className="
-              mt-6
-              whitespace-nowrap
-              text-[2.75rem]
+              mt-5
+              max-w-full
+              wrap-break-word
+              text-[2.35rem]
               font-bold
-              leading-[1.05]
+              leading-[1.08]
               tracking-[-0.035em]
               text-white
+              sm:mt-6
               sm:text-5xl
               md:text-[3.4rem]
               lg:text-[3.55rem]
@@ -207,14 +237,16 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
 
           <div
             className="
-              mt-6
+              mt-5
               h-1
-              w-20
+              w-16
               rounded-full
               bg-linear-to-r
               from-[#46b9ff]
               via-[#7c3aed]
               to-[#ff1473]
+              sm:mt-6
+              sm:w-20
             "
           />
 
@@ -225,11 +257,13 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
           {page.HeroDescription && (
             <p
               className="
-                mt-6
+                mt-5
                 max-w-4xl
-                text-base
-                leading-7
+                wrap-break-word
+                text-sm
+                leading-6
                 text-white/55
+                sm:mt-6
                 sm:text-lg
                 sm:leading-8
               "
@@ -244,11 +278,12 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
 
           <div
             className="
-              mt-9
+              mt-7
               grid
               max-w-4xl
               grid-cols-1
               gap-3
+              sm:mt-9
               sm:grid-cols-3
             "
           >
@@ -258,6 +293,7 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
               className="
                 group
                 flex
+                min-w-0
                 items-center
                 gap-3
                 rounded-2xl
@@ -294,12 +330,12 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
                 <span className="text-lg">✦</span>
               </div>
 
-              <div>
-                <p className="text-xs font-semibold text-white">
+              <div className="min-w-0">
+                <p className="wrap-break-word text-xs font-semibold text-white">
                   Stay Connected
                 </p>
 
-                <p className="mt-0.5 text-[11px] text-white/40">
+                <p className="mt-0.5 wrap-break-word text-[11px] leading-5 text-white/40">
                   Keep up with Nexa Poker
                 </p>
               </div>
@@ -311,6 +347,7 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
               className="
                 group
                 flex
+                min-w-0
                 items-center
                 gap-3
                 rounded-2xl
@@ -347,12 +384,12 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
                 <span className="text-lg">◈</span>
               </div>
 
-              <div>
-                <p className="text-xs font-semibold text-white">
+              <div className="min-w-0">
+                <p className="wrap-break-word text-xs font-semibold text-white">
                   Community Updates
                 </p>
 
-                <p className="mt-0.5 text-[11px] text-white/40">
+                <p className="mt-0.5 wrap-break-word text-[11px] leading-5 text-white/40">
                   News, events and updates
                 </p>
               </div>
@@ -364,6 +401,7 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
               className="
                 group
                 flex
+                min-w-0
                 items-center
                 gap-3
                 rounded-2xl
@@ -400,12 +438,12 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
                 <span className="text-lg">♠</span>
               </div>
 
-              <div>
-                <p className="text-xs font-semibold text-white">
+              <div className="min-w-0">
+                <p className="wrap-break-word text-xs font-semibold text-white">
                   Player Community
                 </p>
 
-                <p className="mt-0.5 text-[11px] text-white/40">
+                <p className="mt-0.5 wrap-break-word text-[11px] leading-5 text-white/40">
                   Connect with fellow players
                 </p>
               </div>
@@ -425,12 +463,13 @@ export default function CommunityHero({ page }: CommunityHeroProps) {
           bottom-0
           left-1/2
           h-px
-          w-[70%]
+          w-[85%]
           -translate-x-1/2
           bg-linear-to-r
           from-transparent
           via-[#1877ff]/20
           to-transparent
+          sm:w-[70%]
         "
       />
     </section>

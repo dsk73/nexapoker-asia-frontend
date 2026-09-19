@@ -1,3 +1,5 @@
+// src/components/cards/AmbassadorCard.tsx
+
 "use client";
 
 import Image from "next/image";
@@ -13,7 +15,7 @@ export default function AmbassadorCard({ ambassador }: AmbassadorCardProps) {
   const imageUrl = getMediaUrl(ambassador.Photo, "medium");
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0a0d14] transition-all duration-300 hover:-translate-y-1 hover:border-[#1877ff]/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
+    <article className="group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0a0d14] transition-all duration-300 hover:-translate-y-1 hover:border-[#1877ff]/30 hover:shadow-[0_20px_60px_rgba(0,0,0,0.45)] sm:rounded-3xl">
       {/* =====================================================
           IMAGE
           ===================================================== */}
@@ -29,7 +31,7 @@ export default function AmbassadorCard({ ambassador }: AmbassadorCardProps) {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-[#111827] via-[#0b1220] to-[#080a10]">
-            <span className="text-6xl font-black text-white/10">
+            <span className="text-5xl font-black text-white/10 sm:text-6xl">
               {ambassador.Name.charAt(0).toUpperCase()}
             </span>
           </div>
@@ -41,11 +43,11 @@ export default function AmbassadorCard({ ambassador }: AmbassadorCardProps) {
 
         {/* Pink atmosphere */}
 
-        <div className="pointer-events-none absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-[#ff1764]/20 blur-[70px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="pointer-events-none absolute -bottom-14 -left-14 h-32 w-32 rounded-full bg-[#ff1764]/20 blur-[60px] opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:-bottom-16 sm:-left-16 sm:h-40 sm:w-40 sm:blur-[70px]" />
 
         {/* Blue atmosphere */}
 
-        <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#1877ff]/15 blur-[70px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="pointer-events-none absolute -right-14 -top-14 h-32 w-32 rounded-full bg-[#1877ff]/15 blur-[60px] opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:-right-16 sm:-top-16 sm:h-40 sm:w-40 sm:blur-[70px]" />
       </div>
 
       {/* =====================================================
@@ -55,12 +57,12 @@ export default function AmbassadorCard({ ambassador }: AmbassadorCardProps) {
           when one ambassador has a longer position.
           ===================================================== */}
 
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
+      <div className="flex min-w-0 flex-1 flex-col p-4 sm:p-6">
         {/* Position */}
 
-        <div className="min-h-10">
+        <div className="min-h-9 sm:min-h-10">
           {ambassador.Position && (
-            <p className="text-xs font-semibold uppercase leading-5 tracking-[0.14em] text-[#46b9ff]">
+            <p className="wrap-break-word text-[10px] font-semibold uppercase leading-5 tracking-[0.12em] text-[#46b9ff] sm:text-xs sm:tracking-[0.14em]">
               {ambassador.Position}
             </p>
           )}
@@ -68,14 +70,14 @@ export default function AmbassadorCard({ ambassador }: AmbassadorCardProps) {
 
         {/* Name */}
 
-        <h3 className="mt-1 text-xl font-bold leading-tight tracking-tight text-white sm:text-2xl">
+        <h3 className="mt-1 wrap-break-word text-lg font-bold leading-tight tracking-tight text-white sm:text-2xl">
           {ambassador.Name}
         </h3>
 
         {/* Description */}
 
         {ambassador.Description && (
-          <p className="mt-3 text-sm leading-6 text-white/55">
+          <p className="mt-2 wrap-break-word text-sm leading-6 text-white/55 sm:mt-3">
             {ambassador.Description}
           </p>
         )}

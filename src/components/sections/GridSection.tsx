@@ -1,3 +1,5 @@
+// src/components/sections/GridSection.tsx
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -25,7 +27,7 @@ export default function GridSection({
   }
 
   return (
-    <section className="relative overflow-hidden bg-[#050507] py-20 sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-[#050507] px-4 py-14 sm:px-6 sm:py-20 lg:px-0 lg:py-28">
       {/* =====================================================
           BACKGROUND ATMOSPHERE
           ===================================================== */}
@@ -33,22 +35,22 @@ export default function GridSection({
       <div className="pointer-events-none absolute inset-0">
         {/* Pink glow */}
 
-        <div className="absolute left-[-10%] top-[10%] h-105 w-105 rounded-full bg-[#ff1764]/7 blur-[140px]" />
+        <div className="absolute left-[-18%] top-[10%] h-72 w-72 rounded-full bg-[#ff1764]/7 blur-[110px] sm:left-[-10%] sm:h-105 sm:w-105 sm:blur-[140px]" />
 
         {/* Blue glow */}
 
-        <div className="absolute bottom-[5%] right-[-10%] h-105 w-105 rounded-full bg-[#1877ff]/7 blur-[140px]" />
+        <div className="absolute bottom-[5%] right-[-18%] h-72 w-72 rounded-full bg-[#1877ff]/7 blur-[110px] sm:right-[-10%] sm:h-105 sm:w-105 sm:blur-[140px]" />
 
         {/* Center glow */}
 
-        <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1877ff]/3 blur-[150px]" />
+        <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1877ff]/3 blur-[110px] sm:h-96 sm:w-96 sm:blur-[150px]" />
       </div>
 
       {/* =====================================================
           CONTENT
           ===================================================== */}
 
-      <div className="container-nexa relative z-10">
+      <div className="container-nexa relative z-10 min-w-0">
         {/* =================================================
             SECTION HEADER
             ================================================= */}
@@ -69,29 +71,34 @@ export default function GridSection({
           transition={{
             duration: 0.6,
           }}
-          className="mx-auto mb-10 max-w-4xl text-center sm:mb-12"
+          className="mx-auto mb-8 max-w-4xl text-center sm:mb-12"
         >
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#ff1764] sm:mb-3 sm:text-sm sm:tracking-[0.2em]">
             Nexa Poker
           </p>
 
-          <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="wrap-break-word text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
             Get Started with Nexa Poker
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-white/55 sm:mt-4 sm:text-lg sm:leading-7">
             Get started, manage your account, and join the Nexa Poker community.
           </p>
         </motion.div>
 
         {/* =================================================
             TWO COLUMN GRID
-            ================================================= */}
 
-        <div className="grid items-stretch gap-6 lg:grid-cols-2">
+            Mobile:
+            - Sections stack vertically
+
+            Large screens:
+            - Two equal columns
+        ================================================= */}
+
+        <div className="grid min-w-0 grid-cols-1 items-stretch gap-5 sm:gap-6 lg:grid-cols-2">
           {/* =================================================
               LEFT — VIDEO GUIDES
-              50%
               ================================================= */}
 
           {hasVideos && (
@@ -102,7 +109,6 @@ export default function GridSection({
 
           {/* =================================================
               RIGHT — JOIN NEXA POKER
-              50%
               ================================================= */}
 
           {joinData && (

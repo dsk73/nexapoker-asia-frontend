@@ -96,7 +96,7 @@ export default async function CommunityPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#050507] text-white">
+      <main className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
         {/* =================================================
             COMMUNITY HERO
         ================================================= */}

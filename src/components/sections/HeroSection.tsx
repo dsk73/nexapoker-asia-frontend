@@ -1,4 +1,4 @@
-//src/components/sections/HeroSection.tsx
+// src/components/sections/HeroSection.tsx
 
 "use client";
 
@@ -47,7 +47,7 @@ export default function HeroSection({
   const mobileImage = getMediaUrl(activeSlide.MobileImage, "large");
 
   return (
-    <section className="relative overflow-hidden bg-[#050507] pt-22 lg:min-h-175 lg:pt-23">
+    <section className="relative overflow-hidden bg-[#050507] pt-20 sm:pt-22 lg:min-h-175 lg:pt-23">
       {/* =====================================================
           HERO SLIDE AREA
           ===================================================== */}
@@ -113,11 +113,11 @@ export default function HeroSection({
 
               {/* Pink atmosphere */}
 
-              <div className="absolute left-[-8%] top-[8%] h-105 w-105 rounded-full bg-[#ff1764]/10 blur-[130px]" />
+              <div className="absolute left-[-18%] top-[8%] h-72 w-72 rounded-full bg-[#ff1764]/10 blur-[110px] sm:left-[-8%] sm:h-105 sm:w-105 sm:blur-[130px]" />
 
               {/* Blue atmosphere */}
 
-              <div className="absolute right-[5%] top-[8%] h-125 w-125 rounded-full bg-[#1877ff]/10 blur-[140px]" />
+              <div className="absolute right-[-12%] top-[8%] h-80 w-80 rounded-full bg-[#1877ff]/10 blur-[120px] sm:right-[5%] sm:h-125 sm:w-125 sm:blur-[140px]" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -126,7 +126,7 @@ export default function HeroSection({
             HERO CONTENT
             ===================================================== */}
 
-        <div className="container-nexa relative z-10 flex min-h-145 items-center lg:min-h-147.5">
+        <div className="container-nexa relative z-10 flex min-h-135 items-center sm:min-h-145 lg:min-h-147.5">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSlide.id}
@@ -134,23 +134,23 @@ export default function HeroSection({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className="grid w-full items-center gap-8 py-4 lg:grid-cols-[0.95fr_1.05fr] lg:gap-4 lg:py-4"
+              className="grid w-full items-center gap-7 py-6 sm:gap-8 sm:py-4 lg:grid-cols-[0.95fr_1.05fr] lg:gap-4 lg:py-4"
             >
               {/* =================================================
                   LEFT CONTENT
                   ================================================= */}
 
-              <div className="relative z-20 max-w-2xl lg:-translate-x-8 xl:-translate-x-12">
+              <div className="relative z-20 min-w-0 max-w-2xl lg:-translate-x-8 xl:-translate-x-12">
                 {/* Title */}
 
-                <h1 className="max-w-2xl text-4xl font-black leading-[1.03] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
+                <h1 className="max-w-full wrap-break-word text-3xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl xl:text-7xl">
                   {activeSlide.Title}
                 </h1>
 
                 {/* Subtitle */}
 
                 {activeSlide.Subtitle && (
-                  <div className="mt-4 text-xl font-semibold text-[#1877ff] sm:text-2xl">
+                  <div className="mt-3 max-w-xl wrap-break-word text-lg font-semibold leading-7 text-[#1877ff] sm:mt-4 sm:text-2xl sm:leading-8">
                     {activeSlide.Subtitle.replace(/^##\s*/, "")}
                   </div>
                 )}
@@ -158,7 +158,7 @@ export default function HeroSection({
                 {/* Description */}
 
                 {activeSlide.Description && (
-                  <p className="mt-4 max-w-xl text-base leading-7 text-white/70 sm:text-lg">
+                  <p className="mt-3 max-w-xl text-sm leading-6 text-white/70 sm:mt-4 sm:text-lg sm:leading-7">
                     {activeSlide.Description}
                   </p>
                 )}
@@ -169,14 +169,16 @@ export default function HeroSection({
 
                 {activeSlide.PrimaryButtonText &&
                   activeSlide.PrimaryButtonURL && (
-                    <div className="mt-7">
+                    <div className="mt-6 sm:mt-7">
                       <Link
                         href={activeSlide.PrimaryButtonURL}
-                        className="nexa-button-primary"
+                        className="nexa-button-primary max-w-full"
                       >
-                        {activeSlide.PrimaryButtonText}
+                        <span className="truncate">
+                          {activeSlide.PrimaryButtonText}
+                        </span>
 
-                        <ChevronRight size={17} />
+                        <ChevronRight size={17} className="shrink-0" />
                       </Link>
                     </div>
                   )}
@@ -235,8 +237,8 @@ export default function HeroSection({
             ===================================================== */}
 
         {slides.length > 1 && (
-          <div className="container-nexa relative z-30 pb-5 lg:absolute lg:bottom-5 lg:left-1/2 lg:-translate-x-1/2 lg:pb-0">
-            <div className="flex items-center gap-2">
+          <div className="container-nexa relative z-30 pb-4 sm:pb-5 lg:absolute lg:bottom-5 lg:left-1/2 lg:-translate-x-1/2 lg:pb-0">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               {slides.map((slide, index) => (
                 <button
                   key={slide.id}
@@ -249,8 +251,8 @@ export default function HeroSection({
                   <span
                     className={`block h-1 rounded-full transition-all duration-300 ${
                       index === activeIndex
-                        ? "w-10 bg-[#ff1764]"
-                        : "w-5 bg-white/30 group-hover:bg-white/60"
+                        ? "w-8 bg-[#ff1764] sm:w-10"
+                        : "w-4 bg-white/30 group-hover:bg-white/60 sm:w-5"
                     }`}
                   />
                 </button>
@@ -270,7 +272,7 @@ export default function HeroSection({
           not cover the hero slide.
           ===================================================== */}
 
-      <div className="relative z-20 px-4 pb-10 pt-6 lg:hidden sm:px-6">
+      <div className="relative z-20 px-4 pb-10 pt-5 sm:px-6 sm:pt-6 lg:hidden">
         <div className="mx-auto w-full max-w-115">
           <motion.div
             key={`promotion-card-mobile-${activeSlide.id}`}

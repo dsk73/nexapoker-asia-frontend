@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function CookiePolicyPage() {
   return (
-    <div className="min-h-screen bg-[#050507] text-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
       <Navbar />
 
       <main>
@@ -54,11 +54,11 @@ export default function CookiePolicyPage() {
           {/* Background atmosphere */}
 
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-[-10%] top-[-35%] h-125 w-125 rounded-full bg-[#1877ff]/10 blur-[140px]" />
+            <div className="absolute left-[-25%] top-[-30%] h-80 w-80 rounded-full bg-[#1877ff]/10 blur-[110px] sm:left-[-10%] sm:h-125 sm:w-125 sm:blur-[140px]" />
 
-            <div className="absolute right-[-8%] top-[-25%] h-112.5 w-112.5 rounded-full bg-[#8b2cff]/10 blur-[140px]" />
+            <div className="absolute right-[-20%] top-[-20%] h-72 w-72 rounded-full bg-[#8b2cff]/10 blur-[110px] sm:right-[-8%] sm:h-112.5 sm:w-112.5 sm:blur-[140px]" />
 
-            <div className="absolute bottom-[-45%] left-1/2 h-100 w-150 -translate-x-1/2 rounded-full bg-[#ff1764]/5 blur-[140px]" />
+            <div className="absolute bottom-[-35%] left-1/2 h-80 w-105 -translate-x-1/2 rounded-full bg-[#ff1764]/5 blur-[110px] sm:bottom-[-45%] sm:h-100 sm:w-150 sm:blur-[140px]" />
           </div>
 
           {/* Subtle grid */}
@@ -71,25 +71,27 @@ export default function CookiePolicyPage() {
             "
           />
 
-          <div className="container-nexa relative z-10 px-5 py-20 sm:px-6 sm:py-24 lg:py-28">
+          {/* Extra mobile top spacing keeps the Legal badge below the fixed Navbar. */}
+
+          <div className="container-nexa relative z-10 px-4 pb-16 pt-28 sm:px-6 sm:py-20 md:py-24 lg:py-28">
             <div className="max-w-5xl">
               {/* Eyebrow */}
 
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#1877ff] shadow-[0_0_10px_rgba(24,119,255,0.8)]" />
+              <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/4 px-3 py-2 sm:mb-6 sm:px-4">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1877ff] shadow-[0_0_10px_rgba(24,119,255,0.8)]" />
 
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/55 sm:text-xs sm:tracking-[0.18em]">
                   Legal
                 </span>
               </div>
 
               {/* Heading */}
 
-              <h1 className="max-w-4xl text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl">
+              <h1 className="max-w-4xl wrap-break-word text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl">
                 Cookie Policy
               </h1>
 
-              <p className="mt-6 max-w-3xl text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
+              <p className="mt-5 max-w-3xl text-[14px] leading-6 text-white/60 sm:mt-6 sm:text-lg sm:leading-8">
                 This Cookie Policy explains how Nexa Poker may use cookies and
                 similar technologies when you visit or interact with our
                 website.
@@ -97,12 +99,12 @@ export default function CookiePolicyPage() {
 
               {/* Updated date */}
 
-              <div className="mt-8 inline-flex items-center rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3">
-                <span className="mr-2 text-xs uppercase tracking-[0.14em] text-white/35">
+              <div className="mt-6 inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2.5 sm:mt-8 sm:px-4 sm:py-3">
+                <span className="text-[10px] uppercase tracking-[0.12em] text-white/35 sm:text-xs sm:tracking-[0.14em]">
                   Last updated
                 </span>
 
-                <span className="text-sm font-medium text-white/70">
+                <span className="text-xs font-medium text-white/70 sm:text-sm">
                   September 16, 2026
                 </span>
               </div>
@@ -118,34 +120,34 @@ export default function CookiePolicyPage() {
           {/* Background atmosphere */}
 
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-[-15%] top-[10%] h-125 w-125 rounded-full bg-[#1877ff]/2.5 blur-[130px]" />
+            <div className="absolute left-[-20%] top-[10%] h-80 w-80 rounded-full bg-[#1877ff]/2.5 blur-[110px] sm:left-[-15%] sm:h-125 sm:w-125 sm:blur-[130px]" />
 
-            <div className="absolute right-[-15%] top-[45%] h-125 w-125 rounded-full bg-[#ff1764]/2.5 blur-[130px]" />
+            <div className="absolute right-[-20%] top-[45%] h-80 w-80 rounded-full bg-[#ff1764]/2.5 blur-[110px] sm:right-[-15%] sm:h-125 sm:w-125 sm:blur-[130px]" />
           </div>
 
-          <div className="container-nexa relative z-10 px-5 py-14 sm:px-6 sm:py-18 lg:py-24">
-            <article className="mx-auto max-w-6xl">
+          <div className="container-nexa relative z-10 px-4 py-12 sm:px-6 sm:py-16 lg:py-24">
+            <article className="mx-auto w-full max-w-6xl">
               {/* Intro */}
 
-              <div className="mb-12 max-w-4xl">
-                <p className="text-base leading-8 text-white/60 sm:text-lg">
+              <div className="mb-9 max-w-4xl sm:mb-12">
+                <p className="text-[14px] leading-7 text-white/60 sm:text-lg sm:leading-8">
                   Please read this Cookie Policy carefully to understand how
                   cookies and similar technologies may be used when interacting
                   with Nexa Poker.
                 </p>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-4 sm:space-y-5">
                 {/* =================================================
                     1. WHAT ARE COOKIES
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     1. What Are Cookies?
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Cookies are small text files that may be stored on your
                       device when you visit a website. They allow websites to
@@ -165,12 +167,12 @@ export default function CookiePolicyPage() {
                     2. HOW WE USE COOKIES
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     2. How Nexa Poker May Use Cookies
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker may use cookies and similar technologies to
                       support website functionality, understand how visitors
@@ -189,20 +191,20 @@ export default function CookiePolicyPage() {
                     3. TYPES OF COOKIES
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-6 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-5 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-6 sm:text-2xl">
                     3. Types of Cookies
                   </h2>
 
-                  <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                     {/* Essential */}
 
-                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-5">
-                      <h3 className="font-semibold text-white">
+                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-4 sm:p-5">
+                      <h3 className="text-base font-semibold leading-6 text-white sm:text-lg">
                         Essential Cookies
                       </h3>
 
-                      <p className="mt-2 text-sm leading-6 text-white/55">
+                      <p className="mt-2 text-[13px] leading-6 text-white/55 sm:text-sm">
                         These cookies may be necessary for core website
                         functionality, security and the operation of certain
                         features. Without them, some parts of the website may
@@ -212,12 +214,12 @@ export default function CookiePolicyPage() {
 
                     {/* Functional */}
 
-                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-5">
-                      <h3 className="font-semibold text-white">
+                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-4 sm:p-5">
+                      <h3 className="text-base font-semibold leading-6 text-white sm:text-lg">
                         Functional Cookies
                       </h3>
 
-                      <p className="mt-2 text-sm leading-6 text-white/55">
+                      <p className="mt-2 text-[13px] leading-6 text-white/55 sm:text-sm">
                         Functional cookies may help remember preferences or
                         settings and support features designed to improve the
                         user experience.
@@ -226,12 +228,12 @@ export default function CookiePolicyPage() {
 
                     {/* Analytics */}
 
-                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-5">
-                      <h3 className="font-semibold text-white">
+                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-4 sm:p-5">
+                      <h3 className="text-base font-semibold leading-6 text-white sm:text-lg">
                         Analytics Cookies
                       </h3>
 
-                      <p className="mt-2 text-sm leading-6 text-white/55">
+                      <p className="mt-2 text-[13px] leading-6 text-white/55 sm:text-sm">
                         Analytics technologies may help us understand how
                         visitors use the website, which pages are viewed and how
                         the website performs. This information can be used to
@@ -241,12 +243,12 @@ export default function CookiePolicyPage() {
 
                     {/* Preference */}
 
-                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-5">
-                      <h3 className="font-semibold text-white">
+                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-4 sm:p-5">
+                      <h3 className="text-base font-semibold leading-6 text-white sm:text-lg">
                         Preference Cookies
                       </h3>
 
-                      <p className="mt-2 text-sm leading-6 text-white/55">
+                      <p className="mt-2 text-[13px] leading-6 text-white/55 sm:text-sm">
                         Preference technologies may remember choices made during
                         website visits so that certain settings can be retained
                         when you return.
@@ -259,12 +261,12 @@ export default function CookiePolicyPage() {
                     4. THIRD PARTY
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     4. Third-Party Technologies
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Some website functions may rely on third-party services.
                       These services may use their own cookies or similar
@@ -284,12 +286,12 @@ export default function CookiePolicyPage() {
                     5. COOKIE CONTROL
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     5. Managing Cookies
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Most modern web browsers allow you to view, block, delete
                       or otherwise manage cookies through browser settings.
@@ -313,12 +315,12 @@ export default function CookiePolicyPage() {
                     6. COOKIE DURATION
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     6. How Long Cookies May Remain
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Some cookies may remain on your device only for the
                       duration of your browsing session. Others may remain for a
@@ -336,12 +338,12 @@ export default function CookiePolicyPage() {
                     7. WEBSITE PERFORMANCE
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     7. Cookies and Website Performance
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Information collected through cookies or similar
                       technologies may help Nexa Poker understand website
@@ -361,12 +363,12 @@ export default function CookiePolicyPage() {
                     8. PRIVACY
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     8. Cookies and Personal Information
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Depending on how particular cookies or technologies are
                       configured, information associated with them may be
@@ -384,12 +386,12 @@ export default function CookiePolicyPage() {
                     9. POLICY CHANGES
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     9. Changes to This Cookie Policy
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker may update this Cookie Policy when our website,
                       services, technologies or applicable requirements change.
@@ -406,12 +408,12 @@ export default function CookiePolicyPage() {
                     10. CONTACT
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     10. Contact
                   </h2>
 
-                  <p>
+                  <p className="text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     If you have questions about this Cookie Policy or how
                     cookies are used on the Nexa Poker website, please contact
                     Nexa Poker through the official support or community
@@ -423,11 +425,11 @@ export default function CookiePolicyPage() {
                     LEGAL NOTICE
                     ================================================= */}
 
-                <section className="mt-8 rounded-2xl border border-[#1877ff]/15 bg-[#1877ff]/[0.035] p-6 sm:p-8">
-                  <div className="flex gap-4">
-                    <div className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#1877ff] shadow-[0_0_12px_rgba(24,119,255,0.8)]" />
+                <section className="mt-6 rounded-2xl border border-[#1877ff]/15 bg-[#1877ff]/[0.035] p-5 sm:mt-8 sm:p-8">
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#1877ff] shadow-[0_0_12px_rgba(24,119,255,0.8)]" />
 
-                    <p className="text-sm leading-7 text-white/40">
+                    <p className="text-[13px] leading-6 text-white/40 sm:text-sm sm:leading-7">
                       This page provides general information about cookies and
                       is intended as an initial website version. It should be
                       reviewed and approved by the appropriate Nexa Poker legal

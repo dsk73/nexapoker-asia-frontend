@@ -1,4 +1,4 @@
-//src/components/sections/ActivitiesSection.tsx
+// src/components/sections/ActivitiesSection.tsx
 
 "use client";
 
@@ -22,7 +22,7 @@ export default function ActivitiesSection({
   }
 
   return (
-    <section className="relative overflow-hidden bg-[#050507] py-20 sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-[#050507] px-4 py-14 sm:px-6 sm:py-20 lg:px-0 lg:py-28">
       {/* =====================================================
           BACKGROUND ATMOSPHERE
           ===================================================== */}
@@ -30,15 +30,15 @@ export default function ActivitiesSection({
       <div className="pointer-events-none absolute inset-0">
         {/* Blue glow */}
 
-        <div className="absolute right-[-10%] top-[10%] h-105 w-105 rounded-full bg-[#1877ff]/6 blur-[140px]" />
+        <div className="absolute right-[-20%] top-[10%] h-72 w-72 rounded-full bg-[#1877ff]/6 blur-[110px] sm:right-[-10%] sm:h-105 sm:w-105 sm:blur-[140px]" />
 
         {/* Pink glow */}
 
-        <div className="absolute bottom-[5%] left-[-10%] h-105 w-105 rounded-full bg-[#ff1764]/6 blur-[140px]" />
+        <div className="absolute bottom-[5%] left-[-20%] h-72 w-72 rounded-full bg-[#ff1764]/6 blur-[110px] sm:left-[-10%] sm:h-105 sm:w-105 sm:blur-[140px]" />
 
         {/* Subtle center glow */}
 
-        <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1877ff]/3 blur-[130px]" />
+        <div className="absolute left-1/2 top-1/2 h-60 w-60 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1877ff]/3 blur-[100px] sm:h-80 sm:w-80 sm:blur-[130px]" />
       </div>
 
       {/* =====================================================
@@ -55,26 +55,26 @@ export default function ActivitiesSection({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 flex flex-col gap-6 sm:mb-14 lg:flex-row lg:items-end lg:justify-between"
+          className="mb-9 flex flex-col gap-5 sm:mb-12 sm:gap-6 lg:mb-14 lg:flex-row lg:items-end lg:justify-between"
         >
           {/* Heading content */}
 
-          <div className="max-w-2xl">
+          <div className="min-w-0 max-w-2xl">
             {/* Eyebrow */}
 
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
+            <p className="mb-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#ff1764] sm:mb-3 sm:text-sm">
               Nexa Poker
             </p>
 
             {/* Heading */}
 
-            <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
               Latest Activities
             </h2>
 
             {/* Description */}
 
-            <p className="mt-5 max-w-xl text-base leading-7 text-white/55 sm:text-lg">
+            <p className="mt-4 max-w-xl text-sm leading-6 text-white/55 sm:mt-5 sm:text-lg sm:leading-7">
               Stay updated with the latest poker activities, events, insights
               and community highlights from Nexa Poker.
             </p>
@@ -84,12 +84,13 @@ export default function ActivitiesSection({
 
           <Link
             href="/activities"
-            className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-xl border border-white/10 bg-white/3 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-[#1877ff]/30 hover:bg-[#1877ff]/10"
+            className="group inline-flex w-fit shrink-0 items-center gap-2 rounded-xl border border-white/10 bg-white/3 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:border-[#1877ff]/30 hover:bg-[#1877ff]/10 sm:px-5 sm:py-3"
           >
-            View All Activities
+            <span>View All Activities</span>
+
             <ArrowRight
               size={17}
-              className="transition-transform duration-300 group-hover:translate-x-1"
+              className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
             />
           </Link>
         </motion.div>
@@ -98,7 +99,7 @@ export default function ActivitiesSection({
             ACTIVITY CARDS
             ================================================= */}
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {activities.map((activity, index) => (
             <motion.div
               key={activity.id}
@@ -118,7 +119,7 @@ export default function ActivitiesSection({
                 duration: 0.5,
                 delay: Math.min(index * 0.08, 0.24),
               }}
-              className="h-full"
+              className="h-full min-w-0"
             >
               <ActivityCard activity={activity} />
             </motion.div>

@@ -1,3 +1,5 @@
+// src/components/sections/TransactionVideosSection.tsx
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -42,7 +44,7 @@ export default function TransactionVideosSection({
       transition={{
         duration: 0.6,
       }}
-      className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-[#090c13]"
+      className="group relative h-full min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-[#090c13] sm:rounded-3xl"
     >
       {/* =====================================================
           PANEL ATMOSPHERE
@@ -51,42 +53,42 @@ export default function TransactionVideosSection({
       <div className="pointer-events-none absolute inset-0">
         {/* Pink glow */}
 
-        <div className="absolute left-[-15%] top-[-10%] h-64 w-64 rounded-full bg-[#ff1764]/8 blur-[110px]" />
+        <div className="absolute left-[-20%] top-[-10%] h-52 w-52 rounded-full bg-[#ff1764]/8 blur-[90px] sm:left-[-15%] sm:h-64 sm:w-64 sm:blur-[110px]" />
 
         {/* Blue glow */}
 
-        <div className="absolute bottom-[-15%] right-[-10%] h-72 w-72 rounded-full bg-[#1877ff]/8 blur-[120px]" />
+        <div className="absolute bottom-[-18%] right-[-15%] h-60 w-60 rounded-full bg-[#1877ff]/8 blur-[100px] sm:bottom-[-15%] sm:right-[-10%] sm:h-72 sm:w-72 sm:blur-[120px]" />
 
         {/* Top gradient */}
 
-        <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-white/2.5 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-white/2.5 to-transparent sm:h-40" />
       </div>
 
       {/* =====================================================
           PANEL BORDER GLOW
           ===================================================== */}
 
-      <div className="pointer-events-none absolute inset-0 rounded-3xl border border-transparent transition-colors duration-500 group-hover:border-[#1877ff]/30" />
+      <div className="pointer-events-none absolute inset-0 rounded-2xl border border-transparent transition-colors duration-500 group-hover:border-[#1877ff]/30 sm:rounded-3xl" />
 
       {/* =====================================================
           CONTENT
           ===================================================== */}
 
-      <div className="relative z-10 flex h-full flex-col p-6 sm:p-7 lg:p-8">
+      <div className="relative z-10 flex h-full min-w-0 flex-col p-5 sm:p-7 lg:p-8">
         {/* =================================================
             HEADER
             ================================================= */}
 
-        <div className="mb-7">
-          <div className="flex items-center gap-3">
-            <span className="h-8 w-0.75 rounded-full bg-linear-to-b from-[#ff1764] to-[#1877ff]" />
+        <div className="mb-6 min-w-0 sm:mb-7">
+          <div className="flex min-w-0 items-start gap-3">
+            <span className="mt-0.5 h-7 w-0.75 shrink-0 rounded-full bg-linear-to-b from-[#ff1764] to-[#1877ff] sm:h-8" />
 
-            <h3 className="text-2xl font-black tracking-tight text-white sm:text-3xl">
+            <h3 className="min-w-0 wrap-break-word text-2xl font-black leading-tight tracking-tight text-white sm:text-3xl">
               Watch Video Guides
             </h3>
           </div>
 
-          <p className="mt-4 max-w-xl text-sm leading-7 text-white/55 sm:text-base">
+          <p className="mt-3 max-w-xl text-sm leading-6 text-white/55 sm:mt-4 sm:text-base sm:leading-7">
             Follow our step-by-step tutorials to make a deposit and withdraw
             funds from your Nexa Poker account.
           </p>
@@ -94,13 +96,19 @@ export default function TransactionVideosSection({
 
         {/* =================================================
             VIDEO GRID
-            ================================================= */}
+
+            Mobile:
+            - One video per row
+
+            Small screens and above:
+            - Two videos per row
+        ================================================= */}
 
         <div
-          className={`grid flex-1 gap-4 ${
+          className={`grid flex-1 gap-5 sm:gap-4 ${
             activeVideos.length === 1
               ? "mx-auto w-full max-w-70"
-              : "grid-cols-2"
+              : "grid-cols-1 sm:grid-cols-2"
           }`}
         >
           {activeVideos.map((video, index) => {
@@ -131,7 +139,7 @@ export default function TransactionVideosSection({
                   duration: 0.5,
                   delay: Math.min(index * 0.1, 0.2),
                 }}
-                className="group/video relative overflow-hidden rounded-2xl border border-white/10 bg-[#050507] transition-all duration-300 hover:border-[#1877ff]/40"
+                className="group/video relative min-w-0 overflow-hidden rounded-xl border border-white/10 bg-[#050507] transition-all duration-300 hover:border-[#1877ff]/40 sm:rounded-2xl"
               >
                 {/* =================================================
                     VIDEO
@@ -167,13 +175,13 @@ export default function TransactionVideosSection({
                     VIDEO INFORMATION
                     ================================================= */}
 
-                <div className="p-4 sm:p-5">
-                  <h4 className="text-base font-bold leading-tight tracking-tight text-white sm:text-lg">
+                <div className="min-w-0 p-4 sm:p-5">
+                  <h4 className="wrap-break-word text-base font-bold leading-tight tracking-tight text-white sm:text-lg">
                     {video.Title}
                   </h4>
 
                   {video.Description && (
-                    <p className="mt-2 text-xs leading-6 text-white/50 sm:text-sm">
+                    <p className="mt-2 wrap-break-word text-xs leading-6 text-white/50 sm:text-sm">
                       {video.Description}
                     </p>
                   )}

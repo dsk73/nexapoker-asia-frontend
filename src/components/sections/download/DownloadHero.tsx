@@ -1,3 +1,5 @@
+// src/components/sections/download/DownloadHero.tsx
+
 import Image from "next/image";
 import { ArrowDownToLine, ShieldCheck, Zap } from "lucide-react";
 
@@ -12,7 +14,7 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
   const imageUrl = getMediaUrl(page.BannerImage, "large");
 
   return (
-    <section className="relative overflow-hidden px-6 pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pb-28 lg:pt-36">
+    <section className="relative overflow-hidden px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 md:pb-24 md:pt-32 lg:pb-28 lg:pt-36">
       {/* =================================================
           BACKGROUND
       ================================================= */}
@@ -20,28 +22,30 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
       <div className="pointer-events-none absolute inset-0">
         {/* Blue glow */}
 
-        <div className="absolute left-[-15%] top-[5%] h-128 w-lg rounded-full bg-[#1877ff]/10 blur-[140px]" />
+        <div className="absolute left-[-30%] top-[8%] h-96 w-96 rounded-full bg-[#1877ff]/10 blur-[120px] sm:left-[-15%] sm:h-128 sm:w-lg sm:blur-[140px]" />
 
         {/* Purple glow */}
 
-        <div className="absolute right-[-8%] top-[5%] h-152 w-152 rounded-full bg-[#7c3aed]/12 blur-[150px]" />
+        <div className="absolute right-[-25%] top-[5%] h-112 w-md rounded-full bg-[#7c3aed]/10 blur-[120px] sm:right-[-8%] sm:h-152 sm:w-152 sm:bg-[#7c3aed]/12 sm:blur-[150px]" />
 
         {/* Pink accent */}
 
-        <div className="absolute right-[8%] bottom-[-15%] h-80 w-80 rounded-full bg-[#ff1473]/8 blur-[140px]" />
+        <div className="absolute bottom-[-12%] right-[-10%] h-64 w-64 rounded-full bg-[#ff1473]/7 blur-[110px] sm:right-[8%] sm:h-80 sm:w-80 sm:bg-[#ff1473]/8 sm:blur-[140px]" />
 
         {/* Bottom blue glow */}
 
-        <div className="absolute left-[35%] bottom-[-20%] h-72 w-72 rounded-full bg-[#46b9ff]/6 blur-[120px]" />
+        <div className="absolute bottom-[-15%] left-[25%] h-60 w-60 rounded-full bg-[#46b9ff]/5 blur-[100px] sm:left-[35%] sm:h-72 sm:w-72 sm:bg-[#46b9ff]/6 sm:blur-[120px]" />
 
         {/* Grid */}
 
         <div
           className="
             absolute inset-0
-            opacity-[0.028]
+            opacity-[0.022]
             bg-[linear-gradient(rgba(255,255,255,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.8)_1px,transparent_1px)]
-            bg-size-[70px_70px]
+            bg-size-[50px_50px]
+            sm:bg-size-[70px_70px]
+            sm:opacity-[0.028]
           "
         />
 
@@ -49,12 +53,19 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
 
         <div
           className="
-            absolute right-[-5%] top-1/2
-            h-152 w-152
+            absolute
+            right-[-25%]
+            top-[55%]
+            h-96
+            w-96
             -translate-y-1/2
             rounded-full
             bg-[radial-gradient(circle,rgba(24,119,255,0.14),rgba(124,58,237,0.08)_45%,transparent_72%)]
             blur-2xl
+            sm:right-[-5%]
+            sm:top-1/2
+            sm:h-152
+            sm:w-152
           "
         />
       </div>
@@ -65,22 +76,22 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
             LEFT 60% / RIGHT 40%
         ================================================= */}
 
-        <div className="grid items-center gap-10 lg:grid-cols-[3fr_2fr] lg:gap-6 xl:gap-10">
+        <div className="grid items-center gap-12 lg:grid-cols-[3fr_2fr] lg:gap-6 xl:gap-10">
           {/* =================================================
               LEFT CONTENT — 60%
           ================================================= */}
 
-          <div className="relative z-20 max-w-3xl">
+          <div className="relative z-20 min-w-0 max-w-3xl">
             {/* Eyebrow */}
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#46b9ff]/20 bg-[#46b9ff]/5 px-3.5 py-2 shadow-[0_0_30px_rgba(70,185,255,0.05)]">
-              <span className="relative flex h-2 w-2">
+            <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#46b9ff]/20 bg-[#46b9ff]/5 px-3 py-2 shadow-[0_0_30px_rgba(70,185,255,0.05)] sm:px-3.5">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#46b9ff]/60" />
 
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#46b9ff] shadow-[0_0_12px_rgba(70,185,255,0.9)]" />
               </span>
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#46b9ff] sm:text-xs">
+              <span className="truncate text-[10px] font-semibold uppercase tracking-[0.16em] text-[#46b9ff] sm:text-xs sm:tracking-[0.2em]">
                 Nexa Poker
               </span>
             </div>
@@ -91,13 +102,16 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
 
             <h1
               className="
-                mt-6
-                whitespace-nowrap
-                text-[2.65rem]
+                mt-5
+                max-w-full
+                wrap-break-word
+                text-[2.35rem]
                 font-bold
                 leading-[1.05]
                 tracking-[-0.04em]
                 text-white
+                sm:mt-6
+                sm:whitespace-nowrap
                 sm:text-5xl
                 md:text-[3.5rem]
                 lg:text-[3.55rem]
@@ -109,14 +123,14 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
 
             {/* Accent line */}
 
-            <div className="mt-6 h-1 w-20 rounded-full bg-linear-to-r from-[#46b9ff] via-[#7c3aed] to-[#ff1473]" />
+            <div className="mt-5 h-1 w-16 rounded-full bg-linear-to-r from-[#46b9ff] via-[#7c3aed] to-[#ff1473] sm:mt-6 sm:w-20" />
 
             {/* =================================================
                 DESCRIPTION
             ================================================= */}
 
             {page.Description && (
-              <p className="mt-6 max-w-2xl text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
+              <p className="mt-5 max-w-2xl text-[15px] leading-7 text-white/60 sm:mt-6 sm:text-lg sm:leading-8">
                 {page.Description}
               </p>
             )}
@@ -125,24 +139,25 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
                 SUPPORTING FEATURES
             ================================================= */}
 
-            <div className="mt-9 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="mt-8 grid max-w-2xl grid-cols-1 gap-3 sm:mt-9 sm:grid-cols-3">
               {/* Easy Download */}
 
               <div
                 className="
-                  group flex items-center gap-3
+                  group flex min-w-0 items-center gap-3
                   rounded-2xl
                   border border-white/[0.07]
                   bg-white/2.5
-                  px-4 py-3.5
+                  px-3.5 py-3
                   transition-all duration-300
                   hover:border-[#46b9ff]/25
                   hover:bg-[#1877ff]/4
+                  sm:px-4 sm:py-3.5
                 "
               >
                 <div
                   className="
-                    flex h-10 w-10 shrink-0
+                    flex h-9 w-9 shrink-0
                     items-center justify-center
                     rounded-xl
                     border border-[#1877ff]/20
@@ -150,17 +165,18 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
                     text-[#46b9ff]
                     transition-transform duration-300
                     group-hover:scale-105
+                    sm:h-10 sm:w-10
                   "
                 >
-                  <ArrowDownToLine size={19} strokeWidth={1.8} />
+                  <ArrowDownToLine size={18} strokeWidth={1.8} />
                 </div>
 
-                <div>
-                  <p className="text-xs font-semibold text-white">
+                <div className="min-w-0">
+                  <p className="truncate text-xs font-semibold text-white">
                     Easy Download
                   </p>
 
-                  <p className="mt-0.5 text-[11px] text-white/40">
+                  <p className="mt-0.5 truncate text-[11px] text-white/40">
                     Simple setup
                   </p>
                 </div>
@@ -170,19 +186,20 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
 
               <div
                 className="
-                  group flex items-center gap-3
+                  group flex min-w-0 items-center gap-3
                   rounded-2xl
                   border border-white/[0.07]
                   bg-white/2.5
-                  px-4 py-3.5
+                  px-3.5 py-3
                   transition-all duration-300
                   hover:border-[#8b5cf6]/25
                   hover:bg-[#7c3aed]/4
+                  sm:px-4 sm:py-3.5
                 "
               >
                 <div
                   className="
-                    flex h-10 w-10 shrink-0
+                    flex h-9 w-9 shrink-0
                     items-center justify-center
                     rounded-xl
                     border border-[#8b5cf6]/20
@@ -190,17 +207,18 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
                     text-[#a78bfa]
                     transition-transform duration-300
                     group-hover:scale-105
+                    sm:h-10 sm:w-10
                   "
                 >
-                  <ShieldCheck size={19} strokeWidth={1.8} />
+                  <ShieldCheck size={18} strokeWidth={1.8} />
                 </div>
 
-                <div>
-                  <p className="text-xs font-semibold text-white">
+                <div className="min-w-0">
+                  <p className="truncate text-xs font-semibold text-white">
                     Secure Access
                   </p>
 
-                  <p className="mt-0.5 text-[11px] text-white/40">
+                  <p className="mt-0.5 truncate text-[11px] text-white/40">
                     Trusted platform
                   </p>
                 </div>
@@ -210,19 +228,20 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
 
               <div
                 className="
-                  group flex items-center gap-3
+                  group flex min-w-0 items-center gap-3
                   rounded-2xl
                   border border-white/[0.07]
                   bg-white/2.5
-                  px-4 py-3.5
+                  px-3.5 py-3
                   transition-all duration-300
                   hover:border-[#46b9ff]/25
                   hover:bg-[#46b9ff]/4
+                  sm:px-4 sm:py-3.5
                 "
               >
                 <div
                   className="
-                    flex h-10 w-10 shrink-0
+                    flex h-9 w-9 shrink-0
                     items-center justify-center
                     rounded-xl
                     border border-[#46b9ff]/20
@@ -230,17 +249,18 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
                     text-[#46b9ff]
                     transition-transform duration-300
                     group-hover:scale-105
+                    sm:h-10 sm:w-10
                   "
                 >
-                  <Zap size={19} strokeWidth={1.8} />
+                  <Zap size={18} strokeWidth={1.8} />
                 </div>
 
-                <div>
-                  <p className="text-xs font-semibold text-white">
+                <div className="min-w-0">
+                  <p className="truncate text-xs font-semibold text-white">
                     Ready to Play
                   </p>
 
-                  <p className="mt-0.5 text-[11px] text-white/40">
+                  <p className="mt-0.5 truncate text-[11px] text-white/40">
                     Get started fast
                   </p>
                 </div>
@@ -251,9 +271,9 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
                 PLATFORM SUMMARY
             ================================================= */}
 
-            <div className="mt-7 flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-2 text-sm text-white/50">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#46b9ff] shadow-[0_0_8px_rgba(70,185,255,0.8)]" />
+            <div className="mt-6 flex flex-col items-start gap-3 sm:mt-7 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              <div className="flex max-w-full items-start gap-2 text-sm leading-6 text-white/50 sm:items-center">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#46b9ff] shadow-[0_0_8px_rgba(70,185,255,0.8)] sm:mt-0" />
 
                 <span>Available on Windows, macOS, Android and iOS</span>
               </div>
@@ -275,6 +295,7 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
               className="
                 relative
                 flex
+                min-w-0
                 items-center
                 justify-center
                 lg:-mr-10
@@ -287,10 +308,11 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
                 className="
                   pointer-events-none
                   absolute
-                  inset-[-18%]
+                  inset-[-12%]
                   rounded-full
                   bg-[radial-gradient(circle,rgba(24,119,255,0.18),rgba(124,58,237,0.1)_42%,transparent_72%)]
                   blur-3xl
+                  sm:inset-[-18%]
                 "
               />
 
@@ -302,11 +324,15 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
                   absolute
                   right-[5%]
                   top-[20%]
-                  h-52
-                  w-52
+                  h-40
+                  w-40
                   rounded-full
-                  bg-[#ff1473]/10
-                  blur-[100px]
+                  bg-[#ff1473]/8
+                  blur-[80px]
+                  sm:h-52
+                  sm:w-52
+                  sm:bg-[#ff1473]/10
+                  sm:blur-[100px]
                 "
               />
 
@@ -328,8 +354,12 @@ export default function DownloadHero({ page }: DownloadHeroProps) {
                   z-10
                   h-auto
                   w-full
+                  max-w-105
                   object-contain
-                  drop-shadow-[0_35px_70px_rgba(0,0,0,0.5)]
+                  drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)]
+                  sm:max-w-130
+                  lg:max-w-none
+                  lg:drop-shadow-[0_35px_70px_rgba(0,0,0,0.5)]
                 "
                 priority
               />

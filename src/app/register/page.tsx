@@ -98,7 +98,7 @@ export default async function RegisterPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#050507] text-white">
+      <main className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
         {/* =================================================
             HERO
         ================================================= */}

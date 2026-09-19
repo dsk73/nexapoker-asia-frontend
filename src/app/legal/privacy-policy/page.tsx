@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-[#050507] text-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
       <Navbar />
 
       <main>
@@ -54,11 +54,11 @@ export default function PrivacyPolicyPage() {
           {/* Background atmosphere */}
 
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-[-10%] top-[-35%] h-125 w-125 rounded-full bg-[#1877ff]/10 blur-[140px]" />
+            <div className="absolute left-[-25%] top-[-30%] h-80 w-80 rounded-full bg-[#1877ff]/10 blur-[110px] sm:left-[-10%] sm:h-125 sm:w-125 sm:blur-[140px]" />
 
-            <div className="absolute right-[-8%] top-[-25%] h-112.5 w-112.5 rounded-full bg-[#8b2cff]/10 blur-[140px]" />
+            <div className="absolute right-[-20%] top-[-20%] h-72 w-72 rounded-full bg-[#8b2cff]/10 blur-[110px] sm:right-[-8%] sm:h-112.5 sm:w-112.5 sm:blur-[140px]" />
 
-            <div className="absolute bottom-[-45%] left-1/2 h-100 w-150 -translate-x-1/2 rounded-full bg-[#ff1764]/5 blur-[140px]" />
+            <div className="absolute bottom-[-35%] left-1/2 h-80 w-105 -translate-x-1/2 rounded-full bg-[#ff1764]/5 blur-[110px] sm:bottom-[-45%] sm:h-100 sm:w-150 sm:blur-[140px]" />
           </div>
 
           {/* Subtle grid */}
@@ -71,25 +71,27 @@ export default function PrivacyPolicyPage() {
             "
           />
 
-          <div className="container-nexa relative z-10 px-5 py-20 sm:px-6 sm:py-24 lg:py-28">
+          {/* Extra mobile top spacing keeps the Legal badge below the fixed Navbar. */}
+
+          <div className="container-nexa relative z-10 px-4 pb-16 pt-28 sm:px-6 sm:py-20 md:py-24 lg:py-28">
             <div className="max-w-5xl">
               {/* Eyebrow */}
 
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#1877ff] shadow-[0_0_10px_rgba(24,119,255,0.8)]" />
+              <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/4 px-3 py-2 sm:mb-6 sm:px-4">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1877ff] shadow-[0_0_10px_rgba(24,119,255,0.8)]" />
 
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/55 sm:text-xs sm:tracking-[0.18em]">
                   Legal
                 </span>
               </div>
 
               {/* Heading */}
 
-              <h1 className="max-w-4xl text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl">
+              <h1 className="max-w-4xl wrap-break-word text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl">
                 Privacy Policy
               </h1>
 
-              <p className="mt-6 max-w-3xl text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
+              <p className="mt-5 max-w-3xl text-[14px] leading-6 text-white/60 sm:mt-6 sm:text-lg sm:leading-8">
                 This Privacy Policy explains how Nexa Poker may collect, use,
                 protect and manage information when you access or use our
                 website and related services.
@@ -97,12 +99,12 @@ export default function PrivacyPolicyPage() {
 
               {/* Updated date */}
 
-              <div className="mt-8 inline-flex items-center rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3">
-                <span className="mr-2 text-xs uppercase tracking-[0.14em] text-white/35">
+              <div className="mt-6 inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2.5 sm:mt-8 sm:px-4 sm:py-3">
+                <span className="text-[10px] uppercase tracking-[0.12em] text-white/35 sm:text-xs sm:tracking-[0.14em]">
                   Last updated
                 </span>
 
-                <span className="text-sm font-medium text-white/70">
+                <span className="text-xs font-medium text-white/70 sm:text-sm">
                   September 16, 2026
                 </span>
               </div>
@@ -118,34 +120,34 @@ export default function PrivacyPolicyPage() {
           {/* Background atmosphere */}
 
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-[-15%] top-[10%] h-125 w-125 rounded-full bg-[#1877ff]/2.5 blur-[130px]" />
+            <div className="absolute left-[-20%] top-[10%] h-80 w-80 rounded-full bg-[#1877ff]/2.5 blur-[110px] sm:left-[-15%] sm:h-125 sm:w-125 sm:blur-[130px]" />
 
-            <div className="absolute right-[-15%] top-[45%] h-125 w-125 rounded-full bg-[#ff1764]/2.5 blur-[130px]" />
+            <div className="absolute right-[-20%] top-[45%] h-80 w-80 rounded-full bg-[#ff1764]/2.5 blur-[110px] sm:right-[-15%] sm:h-125 sm:w-125 sm:blur-[130px]" />
           </div>
 
-          <div className="container-nexa relative z-10 px-5 py-14 sm:px-6 sm:py-18 lg:py-24">
-            <article className="mx-auto max-w-6xl">
+          <div className="container-nexa relative z-10 px-4 py-12 sm:px-6 sm:py-16 lg:py-24">
+            <article className="mx-auto w-full max-w-6xl">
               {/* Intro */}
 
-              <div className="mb-12 max-w-4xl">
-                <p className="text-base leading-8 text-white/60 sm:text-lg">
+              <div className="mb-9 max-w-4xl sm:mb-12">
+                <p className="text-[14px] leading-7 text-white/60 sm:text-lg sm:leading-8">
                   Please read this Privacy Policy carefully to understand how
                   information may be handled when using Nexa Poker and its
                   related services.
                 </p>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-4 sm:space-y-5">
                 {/* =================================================
                     1. INTRODUCTION
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     1. Introduction
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker respects your privacy and is committed to
                       handling personal information responsibly. This Privacy
@@ -166,27 +168,27 @@ export default function PrivacyPolicyPage() {
                     2. INFORMATION WE MAY COLLECT
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     2. Information We May Collect
                   </h2>
 
-                  <p>
+                  <p className="text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     Depending on how you use Nexa Poker, we may collect
                     information that you provide directly, information generated
                     through your use of the platform and technical information
                     associated with your device or browser.
                   </p>
 
-                  <div className="mt-7 grid gap-5 sm:grid-cols-2">
+                  <div className="mt-5 grid gap-4 sm:mt-7 sm:grid-cols-2 sm:gap-5">
                     {/* Account Information */}
 
-                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-5">
-                      <h3 className="font-semibold text-white">
+                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-4 sm:p-5">
+                      <h3 className="text-base font-semibold leading-6 text-white sm:text-lg">
                         Account Information
                       </h3>
 
-                      <p className="mt-2 text-sm leading-6 text-white/55">
+                      <p className="mt-2 text-[13px] leading-6 text-white/55 sm:text-sm">
                         When you create or maintain an account, information such
                         as your name, date of birth, email address and other
                         registration details may be collected.
@@ -195,12 +197,12 @@ export default function PrivacyPolicyPage() {
 
                     {/* Transaction Information */}
 
-                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-5">
-                      <h3 className="font-semibold text-white">
+                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-4 sm:p-5">
+                      <h3 className="text-base font-semibold leading-6 text-white sm:text-lg">
                         Transaction Information
                       </h3>
 
-                      <p className="mt-2 text-sm leading-6 text-white/55">
+                      <p className="mt-2 text-[13px] leading-6 text-white/55 sm:text-sm">
                         Where payment, deposit or withdrawal services are
                         available, information associated with transactions may
                         be processed as necessary to provide those services.
@@ -209,12 +211,12 @@ export default function PrivacyPolicyPage() {
 
                     {/* Technical Information */}
 
-                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-5">
-                      <h3 className="font-semibold text-white">
+                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-4 sm:p-5">
+                      <h3 className="text-base font-semibold leading-6 text-white sm:text-lg">
                         Technical Information
                       </h3>
 
-                      <p className="mt-2 text-sm leading-6 text-white/55">
+                      <p className="mt-2 text-[13px] leading-6 text-white/55 sm:text-sm">
                         Technical information may include details such as
                         browser type, device information, operating system, IP
                         address and other technical data generated when
@@ -224,12 +226,12 @@ export default function PrivacyPolicyPage() {
 
                     {/* Communications */}
 
-                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-5">
-                      <h3 className="font-semibold text-white">
+                    <div className="rounded-xl border border-white/[0.07] bg-black/20 p-4 sm:p-5">
+                      <h3 className="text-base font-semibold leading-6 text-white sm:text-lg">
                         Communications
                       </h3>
 
-                      <p className="mt-2 text-sm leading-6 text-white/55">
+                      <p className="mt-2 text-[13px] leading-6 text-white/55 sm:text-sm">
                         If you contact Nexa Poker through available support or
                         community channels, information contained in your
                         communication may be used to respond to your request.
@@ -242,48 +244,48 @@ export default function PrivacyPolicyPage() {
                     3. HOW INFORMATION IS USED
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     3. How Information May Be Used
                   </h2>
 
-                  <p>
+                  <p className="text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     Information may be used for purposes such as providing and
                     maintaining Nexa Poker services, managing accounts,
                     responding to support requests and improving the website and
                     user experience.
                   </p>
 
-                  <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-sm text-white/60">
+                  <ul className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-2">
+                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-[13px] leading-6 text-white/60 sm:text-sm">
                       Creating and managing user accounts.
                     </li>
 
-                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-sm text-white/60">
+                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-[13px] leading-6 text-white/60 sm:text-sm">
                       Providing requested services and platform features.
                     </li>
 
-                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-sm text-white/60">
+                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-[13px] leading-6 text-white/60 sm:text-sm">
                       Processing applicable transactions.
                     </li>
 
-                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-sm text-white/60">
+                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-[13px] leading-6 text-white/60 sm:text-sm">
                       Communicating important account or service information.
                     </li>
 
-                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-sm text-white/60">
+                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-[13px] leading-6 text-white/60 sm:text-sm">
                       Providing customer or technical support.
                     </li>
 
-                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-sm text-white/60">
+                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-[13px] leading-6 text-white/60 sm:text-sm">
                       Maintaining platform security and preventing misuse.
                     </li>
 
-                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-sm text-white/60">
+                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-[13px] leading-6 text-white/60 sm:text-sm">
                       Understanding website usage and improving our services.
                     </li>
 
-                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-sm text-white/60">
+                    <li className="rounded-lg border border-white/6 bg-black/15 px-4 py-3 text-[13px] leading-6 text-white/60 sm:text-sm">
                       Complying with applicable legal or regulatory
                       requirements.
                     </li>
@@ -294,12 +296,12 @@ export default function PrivacyPolicyPage() {
                     4. LEGAL BASIS
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     4. How We May Process Information
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Personal information may be processed where necessary to
                       provide requested services, manage an account, maintain
@@ -319,12 +321,12 @@ export default function PrivacyPolicyPage() {
                     5. INFORMATION SHARING
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     5. Sharing of Information
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker does not treat personal information as
                       something to be shared indiscriminately. Information may
@@ -347,12 +349,12 @@ export default function PrivacyPolicyPage() {
                     6. THIRD-PARTY SERVICES
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     6. Third-Party Services and Links
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker may provide links to third-party websites,
                       applications, platforms or services. These third parties
@@ -373,12 +375,12 @@ export default function PrivacyPolicyPage() {
                     7. DATA SECURITY
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     7. Data Security
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker takes reasonable measures designed to protect
                       information against unauthorized access, misuse,
@@ -396,12 +398,12 @@ export default function PrivacyPolicyPage() {
                     8. DATA RETENTION
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     8. Data Retention
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Personal information may be retained for as long as
                       reasonably necessary to provide services, maintain account
@@ -421,12 +423,12 @@ export default function PrivacyPolicyPage() {
                     9. YOUR INFORMATION
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     9. Your Information and Privacy Choices
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Depending on applicable law, you may have rights relating
                       to your personal information, including rights to request
@@ -452,12 +454,12 @@ export default function PrivacyPolicyPage() {
                     10. CHILDREN
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     10. Children&apos;s Privacy
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker services are not intended for individuals who
                       are not legally permitted to use online poker services.
@@ -475,12 +477,12 @@ export default function PrivacyPolicyPage() {
                     11. COOKIES
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     11. Cookies and Similar Technologies
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker may use cookies and similar technologies to
                       support website functionality, understand website usage,
@@ -498,12 +500,12 @@ export default function PrivacyPolicyPage() {
                     12. INTERNATIONAL DATA
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     12. Data Transfers
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Depending on the services used and the technology
                       providers involved, information may be processed or stored
@@ -523,12 +525,12 @@ export default function PrivacyPolicyPage() {
                     13. POLICY CHANGES
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     13. Changes to This Privacy Policy
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker may update this Privacy Policy from time to
                       time to reflect changes to our services, technology,
@@ -547,12 +549,12 @@ export default function PrivacyPolicyPage() {
                     14. CONTACT
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     14. Contact
                   </h2>
 
-                  <p>
+                  <p className="text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     If you have questions about this Privacy Policy or how Nexa
                     Poker handles personal information, please contact Nexa
                     Poker through the official support or community channels
@@ -564,11 +566,11 @@ export default function PrivacyPolicyPage() {
                     LEGAL NOTICE
                     ================================================= */}
 
-                <section className="mt-8 rounded-2xl border border-[#1877ff]/15 bg-[#1877ff]/[0.035] p-6 sm:p-8">
-                  <div className="flex gap-4">
-                    <div className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#1877ff] shadow-[0_0_12px_rgba(24,119,255,0.8)]" />
+                <section className="mt-6 rounded-2xl border border-[#1877ff]/15 bg-[#1877ff]/[0.035] p-5 sm:mt-8 sm:p-8">
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#1877ff] shadow-[0_0_12px_rgba(24,119,255,0.8)]" />
 
-                    <p className="text-sm leading-7 text-white/40">
+                    <p className="text-[13px] leading-6 text-white/40 sm:text-sm sm:leading-7">
                       This page provides general privacy information and is
                       intended as an initial website version. It should be
                       reviewed and approved by the appropriate Nexa Poker legal

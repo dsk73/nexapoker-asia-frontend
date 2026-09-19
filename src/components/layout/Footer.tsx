@@ -28,6 +28,21 @@ const legalLinks = [
   { label: "Cookie Policy", href: "/legal/cookie-policy" },
 ];
 
+const socialLinks = [
+  {
+    label: "Telegram Channel",
+    href: "https://t.me/nexapoker",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/nexapoker/",
+  },
+  {
+    label: "Telegram Community",
+    href: "https://t.me/NEXAPokerCommunity",
+  },
+];
+
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#050507]">
@@ -50,113 +65,161 @@ export default function Footer() {
           ===================================================== */}
 
       <div className="container-nexa relative z-10">
-        <div className="grid gap-12 py-14 sm:py-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-10 lg:py-20">
+        <div className="py-12 sm:py-16 lg:py-20">
           {/* =================================================
-              BRAND
+              DESKTOP:
+              5 columns
+              1. Brand
+              2. Explore
+              3. Support
+              4. Legal
+              5. Social
+
+              MOBILE:
+              Brand above
+              Explore | Support
+              Legal  | Social
               ================================================= */}
 
-          <div className="max-w-sm">
-            {/* Logo / Brand */}
+          <div className="lg:grid lg:grid-cols-[1.45fr_1fr_1fr_1fr_1fr] lg:gap-8 xl:gap-10">
+            {/* =================================================
+                BRAND
+                ================================================= */}
 
-            <Link
-              href="/"
-              className="inline-flex items-center"
-              aria-label="Nexa Poker Home"
-            >
-              <Image
-                src="/images/nexapoker-logo.png"
-                alt="Nexa Poker"
-                width={150}
-                height={50}
-                className="h-auto w-36 object-contain"
-              />
-            </Link>
+            <div className="max-w-sm lg:max-w-xs">
+              {/* Logo / Brand */}
 
-            {/* Description */}
+              <Link
+                href="/"
+                className="inline-flex items-center"
+                aria-label="Nexa Poker Home"
+              >
+                <Image
+                  src="/images/nexapoker-logo.png"
+                  alt="Nexa Poker"
+                  width={150}
+                  height={50}
+                  className="h-auto w-36 object-contain"
+                />
+              </Link>
 
-            <p className="mt-6 text-sm leading-6 text-white/55 sm:text-base">
-              Your Nexa Poker journey starts here. Discover exciting games,
-              improve your strategy and connect with poker players worldwide.
-            </p>
+              {/* Description */}
 
-            {/* CTA */}
+              <p className="mt-5 text-sm leading-6 text-white/55 sm:mt-6 sm:text-base">
+                Your Nexa Poker journey starts here. Discover exciting games,
+                improve your strategy and connect with poker players worldwide.
+              </p>
 
-            <Link
-              href="/register"
-              className="nexa-button-primary mt-7 inline-flex"
-            >
-              Join Nexa Poker
-              <ChevronRight size={17} />
-            </Link>
-          </div>
+              {/* CTA */}
 
-          {/* =================================================
-              NAVIGATION
-              ================================================= */}
+              <Link
+                href="/register"
+                className="nexa-button-primary mt-6 inline-flex sm:mt-7"
+              >
+                Join Nexa Poker
+                <ChevronRight size={17} />
+              </Link>
+            </div>
 
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-white">
-              Explore
-            </h3>
+            {/* =================================================
+                LINK COLUMNS
+                ================================================= */}
 
-            <ul className="mt-5 space-y-3.5">
-              {navigationLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/55 transition-colors duration-200 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-9 sm:mt-12 sm:gap-x-10 lg:col-span-4 lg:mt-0 lg:grid-cols-4 lg:gap-8 xl:gap-10">
+              {/* =================================================
+                  NAVIGATION
+                  ================================================= */}
 
-          {/* =================================================
-              SUPPORT
-              ================================================= */}
+              <div>
+                <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-white sm:text-sm">
+                  Explore
+                </h3>
 
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-white">
-              Support
-            </h3>
+                <ul className="mt-4 space-y-3 sm:mt-5 sm:space-y-3.5">
+                  {navigationLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-sm leading-6 text-white/55 transition-colors duration-200 hover:text-white"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            <ul className="mt-5 space-y-3.5">
-              {supportLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/55 transition-colors duration-200 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+              {/* =================================================
+                  SUPPORT
+                  ================================================= */}
 
-          {/* =================================================
-              LEGAL
-              ================================================= */}
+              <div>
+                <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-white sm:text-sm">
+                  Support
+                </h3>
 
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-white">
-              Legal
-            </h3>
+                <ul className="mt-4 space-y-3 sm:mt-5 sm:space-y-3.5">
+                  {supportLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-sm leading-6 text-white/55 transition-colors duration-200 hover:text-white"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            <ul className="mt-5 space-y-3.5">
-              {legalLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/55 transition-colors duration-200 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+              {/* =================================================
+                  LEGAL
+                  ================================================= */}
+
+              <div>
+                <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-white sm:text-sm">
+                  Legal
+                </h3>
+
+                <ul className="mt-4 space-y-3 sm:mt-5 sm:space-y-3.5">
+                  {legalLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-sm leading-6 text-white/55 transition-colors duration-200 hover:text-white"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* =================================================
+                  SOCIAL
+                  ================================================= */}
+
+              <div>
+                <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-white sm:text-sm">
+                  Social
+                </h3>
+
+                <ul className="mt-4 space-y-3 sm:mt-5 sm:space-y-3.5">
+                  {socialLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm leading-6 text-white/55 transition-colors duration-200 hover:text-white"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -164,8 +227,8 @@ export default function Footer() {
             BOTTOM BAR
             ===================================================== */}
 
-        <div className="border-t border-white/10 py-6">
-          <div className="flex flex-col gap-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-t border-white/10 py-5 sm:py-6">
+          <div className="flex flex-col gap-2.5 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-4">
             {/* Copyright */}
 
             <p className="text-white/40">

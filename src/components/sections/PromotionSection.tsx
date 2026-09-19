@@ -37,7 +37,7 @@ export default function PromotionSection({
   const visiblePromotions = promotions.slice(0, 3);
 
   return (
-    <section className="relative overflow-hidden bg-[#050507] py-20 sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-[#050507] px-4 py-14 sm:px-6 sm:py-20 lg:px-0 lg:py-28">
       {/* =====================================================
           BACKGROUND ATMOSPHERE
       ===================================================== */}
@@ -45,22 +45,22 @@ export default function PromotionSection({
       <div className="pointer-events-none absolute inset-0">
         {/* Blue glow */}
 
-        <div className="absolute right-[-12%] top-[5%] h-105 w-105 rounded-full bg-[#1877ff]/7 blur-[150px]" />
+        <div className="absolute right-[-18%] top-[5%] h-72 w-72 rounded-full bg-[#1877ff]/7 blur-[110px] sm:right-[-12%] sm:h-105 sm:w-105 sm:blur-[150px]" />
 
         {/* Pink glow */}
 
-        <div className="absolute bottom-[-8%] left-[-12%] h-105 w-105 rounded-full bg-[#ff1764]/6 blur-[150px]" />
+        <div className="absolute bottom-[-10%] left-[-18%] h-72 w-72 rounded-full bg-[#ff1764]/6 blur-[110px] sm:bottom-[-8%] sm:left-[-12%] sm:h-105 sm:w-105 sm:blur-[150px]" />
 
         {/* Center atmosphere */}
 
-        <div className="absolute left-1/2 top-[45%] h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1877ff]/3 blur-[140px]" />
+        <div className="absolute left-1/2 top-[45%] h-60 w-60 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1877ff]/3 blur-[100px] sm:h-80 sm:w-80 sm:blur-[140px]" />
       </div>
 
       {/* =====================================================
           CONTENT
       ===================================================== */}
 
-      <div className="container-nexa relative z-10">
+      <div className="container-nexa relative z-10 min-w-0">
         {/* =================================================
             SECTION HEADING
 
@@ -87,23 +87,23 @@ export default function PromotionSection({
             transition={{
               duration: 0.6,
             }}
-            className="mb-10 text-center sm:mb-12"
+            className="mb-8 text-center sm:mb-12"
           >
             {/* Eyebrow */}
 
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#ff1764]">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#ff1764] sm:mb-3 sm:text-sm sm:tracking-[0.2em]">
               Nexa Poker
             </p>
 
             {/* Heading */}
 
-            <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
               Featured Promotions
             </h2>
 
             {/* Description */}
 
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/55 sm:text-lg">
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-white/55 sm:mt-5 sm:text-lg sm:leading-7">
               Discover the latest promotions and exciting opportunities
               available at Nexa Poker.
             </p>
@@ -114,13 +114,11 @@ export default function PromotionSection({
             PROMOTION GRID
         ================================================= */}
 
-        <div className="grid grid-cols-1 gap-x-8 gap-y-20 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid min-w-0 grid-cols-1 gap-x-5 gap-y-10 sm:gap-x-6 sm:gap-y-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-20">
           {visiblePromotions.map((promotion, index) => (
-            <PromotionCard
-              key={promotion.id}
-              promotion={promotion}
-              index={index}
-            />
+            <div key={promotion.id} className="min-w-0">
+              <PromotionCard promotion={promotion} index={index} />
+            </div>
           ))}
         </div>
       </div>

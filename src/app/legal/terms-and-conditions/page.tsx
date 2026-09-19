@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function TermsAndConditionsPage() {
   return (
-    <div className="min-h-screen bg-[#050507] text-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
       <Navbar />
 
       <main>
@@ -54,11 +54,11 @@ export default function TermsAndConditionsPage() {
           {/* Background atmosphere */}
 
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-[-10%] top-[-35%] h-125 w-125 rounded-full bg-[#1877ff]/10 blur-[140px]" />
+            <div className="absolute left-[-25%] top-[-30%] h-80 w-80 rounded-full bg-[#1877ff]/10 blur-[110px] sm:left-[-10%] sm:h-125 sm:w-125 sm:blur-[140px]" />
 
-            <div className="absolute right-[-8%] top-[-25%] h-112.5 w-112.5 rounded-full bg-[#8b2cff]/10 blur-[140px]" />
+            <div className="absolute right-[-20%] top-[-20%] h-72 w-72 rounded-full bg-[#8b2cff]/10 blur-[110px] sm:right-[-8%] sm:h-112.5 sm:w-112.5 sm:blur-[140px]" />
 
-            <div className="absolute bottom-[-45%] left-1/2 h-100 w-150 -translate-x-1/2 rounded-full bg-[#ff1764]/5 blur-[140px]" />
+            <div className="absolute bottom-[-35%] left-1/2 h-80 w-105 -translate-x-1/2 rounded-full bg-[#ff1764]/5 blur-[110px] sm:bottom-[-45%] sm:h-100 sm:w-150 sm:blur-[140px]" />
           </div>
 
           {/* Subtle grid */}
@@ -71,25 +71,27 @@ export default function TermsAndConditionsPage() {
             "
           />
 
-          <div className="container-nexa relative z-10 px-5 py-20 sm:px-6 sm:py-24 lg:py-28">
+          {/* Extra top spacing prevents the fixed mobile navbar from
+              overlapping the Legal badge. Desktop spacing remains unchanged. */}
+          <div className="container-nexa relative z-10 px-4 pb-16 pt-28 sm:px-6 sm:py-20 md:py-24 lg:py-28">
             <div className="max-w-5xl">
               {/* Eyebrow */}
 
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#1877ff] shadow-[0_0_10px_rgba(24,119,255,0.8)]" />
+              <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/4 px-3 py-2 sm:mb-6 sm:px-4">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1877ff] shadow-[0_0_10px_rgba(24,119,255,0.8)]" />
 
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/55 sm:text-xs sm:tracking-[0.18em]">
                   Legal
                 </span>
               </div>
 
               {/* Heading */}
 
-              <h1 className="max-w-4xl text-4xl font-semibold tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl">
+              <h1 className="max-w-4xl wrap-break-word text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl">
                 Terms & Conditions
               </h1>
 
-              <p className="mt-6 max-w-3xl text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
+              <p className="mt-5 max-w-3xl text-[14px] leading-6 text-white/60 sm:mt-6 sm:text-lg sm:leading-8">
                 These Terms & Conditions explain the rules and conditions that
                 apply when you access or use Nexa Poker and its related
                 services.
@@ -97,12 +99,12 @@ export default function TermsAndConditionsPage() {
 
               {/* Updated date */}
 
-              <div className="mt-8 inline-flex items-center rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3">
-                <span className="mr-2 text-xs uppercase tracking-[0.14em] text-white/35">
+              <div className="mt-6 inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2.5 sm:mt-8 sm:px-4 sm:py-3">
+                <span className="text-[10px] uppercase tracking-[0.12em] text-white/35 sm:text-xs sm:tracking-[0.14em]">
                   Last updated
                 </span>
 
-                <span className="text-sm font-medium text-white/70">
+                <span className="text-xs font-medium text-white/70 sm:text-sm">
                   September 16, 2026
                 </span>
               </div>
@@ -118,34 +120,34 @@ export default function TermsAndConditionsPage() {
           {/* Background glow */}
 
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-[-15%] top-[10%] h-125 w-125 rounded-full bg-[#1877ff]/2.5 blur-[130px]" />
+            <div className="absolute left-[-20%] top-[10%] h-80 w-80 rounded-full bg-[#1877ff]/2.5 blur-[110px] sm:left-[-15%] sm:h-125 sm:w-125 sm:blur-[130px]" />
 
-            <div className="absolute right-[-15%] top-[45%] h-125 w-125 rounded-full bg-[#ff1764]/2.5 blur-[130px]" />
+            <div className="absolute right-[-20%] top-[45%] h-80 w-80 rounded-full bg-[#ff1764]/2.5 blur-[110px] sm:right-[-15%] sm:h-125 sm:w-125 sm:blur-[130px]" />
           </div>
 
-          <div className="container-nexa relative z-10 px-5 py-14 sm:px-6 sm:py-18 lg:py-24">
-            <article className="mx-auto max-w-6xl">
+          <div className="container-nexa relative z-10 px-4 py-12 sm:px-6 sm:py-16 lg:py-24">
+            <article className="mx-auto w-full max-w-6xl">
               {/* Intro */}
 
-              <div className="mb-12 max-w-4xl">
-                <p className="text-base leading-8 text-white/60 sm:text-lg">
+              <div className="mb-9 max-w-4xl sm:mb-12">
+                <p className="text-[14px] leading-7 text-white/60 sm:text-lg sm:leading-8">
                   Please read these terms carefully before using Nexa Poker.
                   They outline the responsibilities of users and the conditions
                   that apply to access and use of the platform.
                 </p>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-4 sm:space-y-5">
                 {/* =================================================
                     1. ACCEPTANCE
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     1. Acceptance of These Terms
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       By accessing or using Nexa Poker, you acknowledge that you
                       have read, understood and agree to be bound by these Terms
@@ -166,12 +168,12 @@ export default function TermsAndConditionsPage() {
                     2. ELIGIBILITY
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     2. Eligibility
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       You are responsible for ensuring that you are legally
                       permitted to access and use online poker services in the
@@ -197,12 +199,12 @@ export default function TermsAndConditionsPage() {
                     3. ACCOUNT REGISTRATION
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     3. Account Registration
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Certain Nexa Poker services may require you to create an
                       account. You are responsible for providing complete and
@@ -228,12 +230,12 @@ export default function TermsAndConditionsPage() {
                     4. PLATFORM USE
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     4. Use of the Platform
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker should be used only for lawful purposes and in
                       accordance with these Terms & Conditions.
@@ -259,12 +261,12 @@ export default function TermsAndConditionsPage() {
                     5. POKER PLAY
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     5. Poker Games and Play
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker provides access to online poker-related
                       experiences, games and activities where available.
@@ -287,12 +289,12 @@ export default function TermsAndConditionsPage() {
                     6. RESPONSIBLE PLAY
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     6. Responsible Play
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Poker should be treated as entertainment and played
                       responsibly.
@@ -316,12 +318,12 @@ export default function TermsAndConditionsPage() {
                     7. PAYMENTS
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     7. Deposits, Withdrawals and Payments
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Where payment or account balance features are available,
                       users must follow the applicable instructions and
@@ -346,12 +348,12 @@ export default function TermsAndConditionsPage() {
                     8. PROMOTIONS
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     8. Promotions and Bonuses
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker may offer promotional campaigns, bonuses or
                       other promotional benefits from time to time.
@@ -376,12 +378,12 @@ export default function TermsAndConditionsPage() {
                     9. INTELLECTUAL PROPERTY
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     9. Intellectual Property
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker and its associated content, branding, logos,
                       designs, text, graphics, software and other materials may
@@ -401,12 +403,12 @@ export default function TermsAndConditionsPage() {
                     10. THIRD-PARTY SERVICES
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     10. Third-Party Services and Links
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker may provide links to or integrate with
                       third-party websites, platforms, applications or services.
@@ -425,12 +427,12 @@ export default function TermsAndConditionsPage() {
                     11. AVAILABILITY
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     11. Service Availability
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker aims to provide a reliable online poker
                       experience, but continuous availability cannot be
@@ -449,12 +451,12 @@ export default function TermsAndConditionsPage() {
                     12. SUSPENSION
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     12. Account Suspension or Termination
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker may restrict, suspend or terminate access to an
                       account or service where there is a reasonable basis to
@@ -474,12 +476,12 @@ export default function TermsAndConditionsPage() {
                     13. USER RESPONSIBILITY
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     13. User Responsibility
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       You are responsible for your use of the Nexa Poker
                       platform and for complying with applicable laws and
@@ -497,12 +499,12 @@ export default function TermsAndConditionsPage() {
                     14. DISCLAIMER
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     14. Disclaimer
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker provides its website, software and related
                       services on an as-available basis. While reasonable
@@ -525,12 +527,12 @@ export default function TermsAndConditionsPage() {
                     15. CHANGES
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     15. Changes to These Terms
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     <p>
                       Nexa Poker may update these Terms & Conditions from time
                       to time. Updated terms will be published on this page with
@@ -549,12 +551,12 @@ export default function TermsAndConditionsPage() {
                     16. CONTACT
                     ================================================= */}
 
-                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-6 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
-                  <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <section className="rounded-2xl border border-white/8 bg-white/2.5 p-5 transition-colors duration-300 hover:border-white/13 sm:p-8 lg:p-9">
+                  <h2 className="mb-4 text-lg font-semibold leading-tight tracking-tight text-white sm:mb-5 sm:text-2xl">
                     16. Contact
                   </h2>
 
-                  <p>
+                  <p className="text-[14px] leading-7 text-white/60 sm:text-base sm:leading-8">
                     If you have questions about these Terms & Conditions or your
                     use of Nexa Poker, please contact Nexa Poker through the
                     official support or community channels provided on the
@@ -566,11 +568,11 @@ export default function TermsAndConditionsPage() {
                     LEGAL NOTICE
                     ================================================= */}
 
-                <section className="mt-8 rounded-2xl border border-[#1877ff]/15 bg-[#1877ff]/[0.035] p-6 sm:p-8">
-                  <div className="flex gap-4">
-                    <div className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#1877ff] shadow-[0_0_12px_rgba(24,119,255,0.8)]" />
+                <section className="mt-6 rounded-2xl border border-[#1877ff]/15 bg-[#1877ff]/[0.035] p-5 sm:mt-8 sm:p-8">
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#1877ff] shadow-[0_0_12px_rgba(24,119,255,0.8)]" />
 
-                    <p className="text-sm leading-7 text-white/45">
+                    <p className="text-[13px] leading-6 text-white/45 sm:text-sm sm:leading-7">
                       This page provides general website terms and is intended
                       as an initial website version. It should be reviewed and
                       approved by the appropriate Nexa Poker legal or compliance
