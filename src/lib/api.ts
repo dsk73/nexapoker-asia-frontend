@@ -208,10 +208,9 @@ export async function getDownloadPage(): Promise<DownloadPage> {
 /* =========================================================
    REGISTER
 ========================================================= */
-
 export async function getRegisterPage(): Promise<RegisterPage> {
   const response = await api.get<StrapiResponse<RegisterPage>>(
-    "/register-page?populate=*",
+    "/register-page?populate[Steps][populate][Icon]=true&populate[BannerImage]=true&populate[SEO]=true",
   );
 
   return response.data.data;

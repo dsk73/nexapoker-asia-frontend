@@ -4,6 +4,9 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 import type { FAQ } from "@/types/content";
 
@@ -85,9 +88,32 @@ export default function FAQItem({ faq, isOpen, onToggle }: FAQItemProps) {
             }}
           >
             <div className="min-w-0 border-t border-white/10 px-4 pb-4 pt-3.5 sm:px-6 sm:pb-6 sm:pt-4">
-              <p className="max-w-3xl wrap-break-word text-sm leading-6 text-white/55 sm:text-base sm:leading-7">
-                {faq.Answer}
-              </p>
+              <div className="max-w-3xl min-w-0 wrap-break-word text-sm leading-6 text-white/55 sm:text-base sm:leading-7 [&_a]:break-all [&_a]:font-medium [&_a]:text-[#46b9ff] [&_a]:underline [&_a]:decoration-[#46b9ff]/30 [&_a]:underline-offset-4 [&_a]:transition-colors [&_a:hover]:text-white [&_a:hover]:decoration-[#46b9ff] [&_code]:rounded [&_code]:bg-white/5 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-[#46b9ff] [&_li]:ml-5 [&_li]:pl-1 [&_ol]:my-3 [&_ol]:list-decimal [&_p]:mb-3 [&_p:last-child]:mb-0 [&_strong]:font-semibold [&_strong]:text-white [&_ul]:my-3 [&_ul]:list-disc">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
+                  components={{
+                    a: ({ href, children, ...props }) => {
+                      const isExternal =
+                        href?.startsWith("http://") ||
+                        href?.startsWith("https://");
+
+                      return (
+                        <a
+                          href={href}
+                          target={isExternal ? "_blank" : undefined}
+                          rel={isExternal ? "noopener noreferrer" : undefined}
+                          {...props}
+                        >
+                          {children}
+                        </a>
+                      );
+                    },
+                  }}
+                >
+                  {faq.Answer || ""}
+                </ReactMarkdown>
+              </div>
             </div>
           </motion.div>
         )}
