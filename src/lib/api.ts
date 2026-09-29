@@ -10,6 +10,7 @@ import type {
   FeaturedPromotion,
   HeroPromotionCard,
   HeroSlide,
+  HomepagePopup,
   PaymentMethod,
   TeachingGuide,
 } from "@/types/content";
@@ -46,6 +47,29 @@ export async function getHeroSlides(): Promise<HeroSlide[]> {
   return response.data.data
     .filter((slide) => slide.Active)
     .sort((a, b) => a.DisplayOrder - b.DisplayOrder);
+}
+
+/* =========================================================
+   HOMEPAGE POPUP
+========================================================= */
+
+/**
+ * Get the Homepage Popup single type.
+ *
+ * Strapi fields:
+ * - Image
+ * - Link
+ * - Active
+ * - ResetTime
+ *
+ * ResetTime is stored in seconds.
+ */
+export async function getHomepagePopup(): Promise<HomepagePopup | null> {
+  const response = await api.get<StrapiResponse<HomepagePopup>>(
+    "/homepage-popup?populate=*",
+  );
+
+  return response.data.data ?? null;
 }
 
 /* =========================================================
@@ -208,6 +232,7 @@ export async function getDownloadPage(): Promise<DownloadPage> {
 /* =========================================================
    REGISTER
 ========================================================= */
+
 export async function getRegisterPage(): Promise<RegisterPage> {
   const response = await api.get<StrapiResponse<RegisterPage>>(
     "/register-page?populate[Steps][populate][Icon]=true&populate[BannerImage]=true&populate[SEO]=true",

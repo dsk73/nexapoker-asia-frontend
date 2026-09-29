@@ -7,6 +7,7 @@ import {
   getFeaturedPromotions,
   getHeroPromotionCard,
   getHeroSlides,
+  getHomepagePopup,
   getHomepageSettings,
 } from "@/lib/api";
 
@@ -18,6 +19,7 @@ import PromotionSection from "@/components/sections/PromotionSection";
 import WhyChooseNexaPokerSection from "@/components/sections/WhyChooseNexaPokerSection";
 import GridSection from "@/components/sections/GridSection";
 import FAQSection from "@/components/sections/FAQSection";
+import HomepagePopup from "@/components/common/HomepagePopup";
 
 /**
  * Force the homepage to render dynamically.
@@ -95,17 +97,30 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [slides, promotionCard, featuredPromotions, faqs, homepageSettings] =
-    await Promise.all([
-      getHeroSlides(),
-      getHeroPromotionCard(),
-      getFeaturedPromotions(),
-      getFAQs(),
-      getHomepageSettings(),
-    ]);
+  const [
+    slides,
+    promotionCard,
+    featuredPromotions,
+    faqs,
+    homepageSettings,
+    homepagePopup,
+  ] = await Promise.all([
+    getHeroSlides(),
+    getHeroPromotionCard(),
+    getFeaturedPromotions(),
+    getFAQs(),
+    getHomepageSettings(),
+    getHomepagePopup(),
+  ]);
 
   return (
     <>
+      {/* =================================================
+          HOMEPAGE POPUP
+          ================================================= */}
+
+      <HomepagePopup popup={homepagePopup} />
+
       <Navbar />
 
       <main>

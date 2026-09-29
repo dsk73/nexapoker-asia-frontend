@@ -107,6 +107,22 @@ export interface HeroPromotionCard {
 }
 
 /* =========================================================
+   HOMEPAGE POPUP
+========================================================= */
+
+export interface HomepagePopup {
+  id: number;
+  documentId?: string;
+  Image?: StrapiImage | null;
+  Link?: string | null;
+  Active: boolean;
+  ResetTime: number;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
+}
+
+/* =========================================================
 
    FEATURED PROMOTION
 
