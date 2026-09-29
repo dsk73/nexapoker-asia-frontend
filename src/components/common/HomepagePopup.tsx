@@ -13,6 +13,7 @@ interface HomepagePopupProps {
 }
 
 const STORAGE_KEY = "nexa-homepage-popup-last-shown";
+const AUTO_CLOSE_TIME = 20000; // 20 seconds
 
 export default function HomepagePopup({ popup }: HomepagePopupProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,6 +82,24 @@ export default function HomepagePopup({ popup }: HomepagePopupProps) {
       window.clearTimeout(timer);
     };
   }, [popup]);
+
+  /* =========================================================
+     AUTO CLOSE POPUP AFTER 20 SECONDS
+  ========================================================= */
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const autoCloseTimer = window.setTimeout(() => {
+      setIsOpen(false);
+    }, AUTO_CLOSE_TIME);
+
+    return () => {
+      window.clearTimeout(autoCloseTimer);
+    };
+  }, [isOpen]);
 
   /* =========================================================
      CLOSE POPUP
