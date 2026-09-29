@@ -1,4 +1,4 @@
-//src/components/sections/promotion/RelatedPromotion.tsx
+// src/components/sections/promotion/RelatedPromotion.tsx
 
 "use client";
 
@@ -32,21 +32,42 @@ export default function RelatedPromotion({
     return null;
   }
 
+  /*
+   * Related promotion colours.
+   *
+   * Keep the same colour order as PromotionSection:
+   *
+   * 1 → Blue
+   * 2 → Pink
+   * 3 → Purple
+   */
+  const promotionColors = ["#1877ff", "#ff1764", "#8b5cf6"];
+
   return (
-    <section className="relative overflow-hidden bg-[#050507] px-4 pb-16 sm:px-6 sm:pb-20 lg:pb-24">
+    <section className="relative overflow-hidden bg-[#050507] px-4 pb-16 sm:px-6 sm:pb-20 lg:px-0 lg:pb-24">
       {/* =====================================================
           BACKGROUND ATMOSPHERE
       ===================================================== */}
 
       <div className="pointer-events-none absolute inset-0">
+        {/* Blue glow */}
+
         <div className="absolute right-[-20%] top-[10%] h-72 w-72 rounded-full bg-[#1877ff]/4 blur-[110px] sm:right-[-12%] sm:h-105 sm:w-105 sm:bg-[#1877ff]/5 sm:blur-[150px]" />
 
+        {/* Pink glow */}
+
         <div className="absolute bottom-[-15%] left-[-20%] h-72 w-72 rounded-full bg-[#ff1764]/4 blur-[110px] sm:bottom-[-10%] sm:left-[-12%] sm:h-105 sm:w-105 sm:bg-[#ff1764]/5 sm:blur-[150px]" />
+
+        {/* Center atmosphere */}
 
         <div className="absolute left-1/2 top-[45%] h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1877ff]/2.5 blur-[110px] sm:h-80 sm:w-80 sm:blur-[140px]" />
       </div>
 
-      <div className="container-nexa relative z-10">
+      {/* =====================================================
+          CONTENT
+      ===================================================== */}
+
+      <div className="container-nexa relative z-10 min-w-0">
         {/* =================================================
             SECTION HEADING
         ================================================= */}
@@ -76,15 +97,61 @@ export default function RelatedPromotion({
 
         {/* =================================================
             RELATED PROMOTION GRID
+
+            Mobile:
+            → 1 column
+
+            Tablet:
+            → 2 columns
+
+            Desktop:
+            → 3 columns
         ================================================= */}
 
-        <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:gap-x-6 sm:gap-y-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
+        <div
+          className="
+            grid
+            min-w-0
+            grid-cols-1
+            gap-x-6
+            gap-y-8
+
+            sm:grid-cols-2
+            sm:gap-y-10
+
+            lg:grid-cols-3
+            lg:gap-x-8
+            lg:gap-y-12
+          "
+        >
           {relatedPromotions.map((promotion, index) => (
-            <PromotionCard
+            <motion.div
               key={promotion.id}
-              promotion={promotion}
-              index={index}
-            />
+              className="min-w-0"
+              initial={{
+                opacity: 0,
+                y: 24,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.12,
+              }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.08,
+                ease: "easeOut",
+              }}
+            >
+              <PromotionCard
+                promotion={promotion}
+                index={index}
+                accentColor={promotionColors[index]}
+              />
+            </motion.div>
           ))}
         </div>
       </div>

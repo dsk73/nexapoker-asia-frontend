@@ -27,6 +27,12 @@ interface PromotionDetailPageProps {
  */
 export const dynamic = "force-dynamic";
 
+/**
+ * =========================================================
+ * SEO METADATA
+ * =========================================================
+ */
+
 export async function generateMetadata({
   params,
 }: PromotionDetailPageProps): Promise<Metadata> {
@@ -98,6 +104,12 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * =========================================================
+ * PROMOTION DETAIL PAGE
+ * =========================================================
+ */
+
 export default async function PromotionDetailPage({
   params,
 }: PromotionDetailPageProps) {
@@ -127,9 +139,9 @@ export default async function PromotionDetailPage({
       <Navbar />
 
       <main className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
-        {/* =================================================
+        {/* =====================================================
             HERO + PROMOTION IMAGE
-            ================================================= */}
+        ===================================================== */}
 
         <section className="relative overflow-hidden px-4 pb-12 pt-24 sm:px-6 sm:pb-16 sm:pt-28 md:pb-20 md:pt-32 lg:pt-36">
           {/* =================================================
@@ -137,15 +149,23 @@ export default async function PromotionDetailPage({
           ================================================= */}
 
           <div className="pointer-events-none absolute inset-0">
+            {/* Blue glow */}
+
             <div className="absolute right-[-20%] top-[-10%] h-80 w-80 rounded-full bg-[#1877ff]/4 blur-[110px] sm:right-[-12%] sm:h-120 sm:w-120 sm:bg-[#1877ff]/5 sm:blur-[150px]" />
+
+            {/* Pink glow */}
 
             <div className="absolute bottom-[-15%] left-[-20%] h-72 w-72 rounded-full bg-[#ff1764]/4 blur-[110px] sm:bottom-[-20%] sm:left-[-10%] sm:h-105 sm:w-105 sm:bg-[#ff1764]/5 sm:blur-[150px]" />
           </div>
 
+          {/* =================================================
+              CONTENT
+          ================================================= */}
+
           <div className="container-nexa relative z-10">
             {/* =================================================
                 BREADCRUMBS
-                ================================================= */}
+            ================================================= */}
 
             <Breadcrumbs
               items={[
@@ -165,28 +185,22 @@ export default async function PromotionDetailPage({
 
             {/* =================================================
                 PROMOTION HEADER
-                ================================================= */}
+            ================================================= */}
 
             <div className="mt-6 w-full sm:mt-8 md:mt-10">
-              {/* =================================================
-                  EYEBROW
-                  ================================================= */}
+              {/* Eyebrow */}
 
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#ff1764] sm:text-xs sm:tracking-[0.18em] md:text-sm">
                 Nexa Poker
               </p>
 
-              {/* =================================================
-                  TITLE
-                  ================================================= */}
+              {/* Title */}
 
               <h1 className="mt-2.5 w-full max-w-6xl wrap-break-word text-2xl font-bold leading-[1.12] tracking-tight text-white sm:mt-3 sm:text-4xl md:text-5xl">
                 {promotion.Title}
               </h1>
 
-              {/* =================================================
-                  DESCRIPTION
-                  ================================================= */}
+              {/* Description */}
 
               {promotion.Description && (
                 <p className="mt-4 w-full max-w-5xl text-[14px] leading-6 text-white/60 sm:mt-5 sm:text-lg sm:leading-8">
@@ -201,7 +215,7 @@ export default async function PromotionDetailPage({
                 Left aligned with promotion content.
                 Desktop width remains controlled.
                 Mobile uses full available width.
-                ================================================= */}
+            ================================================= */}
 
             {promotionImageUrl && (
               <div className="mt-7 sm:mt-10 md:mt-12">
@@ -222,9 +236,9 @@ export default async function PromotionDetailPage({
           </div>
         </section>
 
-        {/* =================================================
+        {/* =====================================================
             PROMOTION CONTENT
-            ================================================= */}
+        ===================================================== */}
 
         {promotion.Content && (
           <section className="relative overflow-hidden px-4 pb-16 sm:px-6 sm:pb-20 md:pb-24 lg:pb-28">
@@ -236,9 +250,9 @@ export default async function PromotionDetailPage({
           </section>
         )}
 
-        {/* =================================================
+        {/* =====================================================
             RELATED PROMOTIONS
-            ================================================= */}
+        ===================================================== */}
 
         <RelatedPromotion
           promotions={promotions}

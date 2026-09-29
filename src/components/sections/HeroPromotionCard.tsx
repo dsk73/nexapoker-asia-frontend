@@ -81,7 +81,7 @@ export default function HeroPromotionCard({ card }: HeroPromotionCardProps) {
 
           <div className="relative mt-5 sm:mt-6">
             <div className="absolute -top-3 left-4 max-w-[calc(100%-2rem)] truncate rounded-full bg-[#0b1726] px-2.5 text-[11px] font-semibold text-[#46b9ff] sm:left-5 sm:px-3 sm:text-xs">
-              Referral Code
+              BONUS CODE
             </div>
 
             <div className="flex min-w-0 flex-col gap-3 rounded-2xl border border-[#1877ff]/35 bg-[#09111f] px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-5">

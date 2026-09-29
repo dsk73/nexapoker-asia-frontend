@@ -1,4 +1,4 @@
-//src/app/promotion/page.tsx
+// src/app/promotion/page.tsx
 
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -31,7 +31,165 @@ export const dynamic = "force-dynamic";
 export default async function PromotionPage() {
   const promotions = await getFeaturedPromotions();
 
-  const visiblePromotions = promotions.slice(0, 3);
+  /*
+   * =========================================================
+   * PROMOTIONS
+   * =========================================================
+   *
+   * Maximum of 6 promotions are displayed.
+   *
+   * The grid layout is intentionally kept identical to the
+   * homepage PromotionSection.
+   *
+   * Desktop:
+   *
+   * 6 promotions:
+   * [ 1 ] [ 2 ] [ 3 ]
+   * [ 4 ] [ 5 ] [ 6 ]
+   *
+   * 5 promotions:
+   * [ 1 ] [ 2 ] [ 3 ]
+   *     [ 4 ] [ 5 ]
+   *
+   * 4 promotions:
+   * [     1     ] [     2     ]
+   * [     3     ] [     4     ]
+   *
+   * 3 promotions:
+   * [ 1 ] [ 2 ] [ 3 ]
+   *
+   * 2 promotions:
+   *     [ 1 ] [ 2 ]
+   *
+   * 1 promotion:
+   *         [ 1 ]
+   *
+   * Mobile:
+   * → 1 column
+   *
+   * Tablet:
+   * → 2 columns
+   *
+   * Desktop:
+   * → 6-column internal grid
+   *
+   * PromotionCard handles its own accent colours:
+   *
+   * 1 → Blue
+   * 2 → Pink
+   * 3 → Purple
+   * 4 → Cyan
+   * 5 → Orange
+   * 6 → Green
+   */
+
+  const visiblePromotions = promotions.slice(0, 6);
+  const promotionCount = visiblePromotions.length;
+
+  /*
+   * =========================================================
+   * DESKTOP GRID
+   * =========================================================
+   *
+   * Six internal columns allow precise positioning of cards.
+   */
+
+  const gridClassName = "lg:grid-cols-6";
+
+  /*
+   * =========================================================
+   * DESKTOP ITEM POSITIONING
+   * =========================================================
+   */
+
+  const getDesktopItemClass = (index: number) => {
+    switch (promotionCount) {
+      /*
+       * =====================================================
+       * 1 PROMOTION
+       *
+       *           [ 1 ]
+       *
+       * Centered.
+       * =====================================================
+       */
+      case 1:
+        return "lg:col-span-2 lg:col-start-3";
+
+      /*
+       * =====================================================
+       * 2 PROMOTIONS
+       *
+       *       [ 1 ] [ 2 ]
+       *
+       * Centered as a group.
+       * =====================================================
+       */
+      case 2:
+        return index === 0
+          ? "lg:col-span-2 lg:col-start-2"
+          : "lg:col-span-2 lg:col-start-4";
+
+      /*
+       * =====================================================
+       * 3 PROMOTIONS
+       *
+       * [ 1 ] [ 2 ] [ 3 ]
+       *
+       * Full 3-card row.
+       * =====================================================
+       */
+      case 3:
+        return "lg:col-span-2";
+
+      /*
+       * =====================================================
+       * 4 PROMOTIONS
+       *
+       * [     1     ] [     2     ]
+       * [     3     ] [     4     ]
+       *
+       * Special 2 × 2 layout.
+       *
+       * Each card occupies 3 of the 6 internal columns.
+       * =====================================================
+       */
+      case 4:
+        return "lg:col-span-3";
+
+      /*
+       * =====================================================
+       * 5 PROMOTIONS
+       *
+       * [ 1 ] [ 2 ] [ 3 ]
+       *     [ 4 ] [ 5 ]
+       *
+       * Second row is centered.
+       * =====================================================
+       */
+      case 5:
+        if (index < 3) {
+          return "lg:col-span-2";
+        }
+
+        return index === 3
+          ? "lg:col-span-2 lg:col-start-2"
+          : "lg:col-span-2 lg:col-start-4";
+
+      /*
+       * =====================================================
+       * 6 PROMOTIONS
+       *
+       * [ 1 ] [ 2 ] [ 3 ]
+       * [ 4 ] [ 5 ] [ 6 ]
+       *
+       * =====================================================
+       */
+      case 6:
+      default:
+        return "lg:col-span-2";
+    }
+  };
 
   return (
     <>
@@ -117,30 +275,69 @@ export default async function PromotionPage() {
             PROMOTION CARDS
         ===================================================== */}
 
-        <section className="relative overflow-hidden bg-[#050507] px-4 pb-16 sm:px-6 sm:pb-20 lg:pb-24">
+        <section className="relative overflow-hidden bg-[#050507] px-4 pb-16 sm:px-6 sm:pb-20 lg:px-0 lg:pb-24">
           {/* =================================================
               BACKGROUND ATMOSPHERE
           ================================================= */}
 
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute right-[-20%] top-[5%] h-72 w-72 rounded-full bg-[#1877ff]/4 blur-[110px] sm:right-[-12%] sm:h-105 sm:w-105 sm:bg-[#1877ff]/5 sm:blur-[150px]" />
+            {/* Blue glow */}
 
-            <div className="absolute bottom-[-12%] left-[-20%] h-72 w-72 rounded-full bg-[#ff1764]/4 blur-[110px] sm:bottom-[-8%] sm:left-[-12%] sm:h-105 sm:w-105 sm:bg-[#ff1764]/5 sm:blur-[150px]" />
+            <div className="absolute right-[-18%] top-[5%] h-72 w-72 rounded-full bg-[#1877ff]/7 blur-[110px] sm:right-[-12%] sm:h-105 sm:w-105 sm:blur-[150px]" />
+
+            {/* Pink glow */}
+
+            <div className="absolute bottom-[-10%] left-[-18%] h-72 w-72 rounded-full bg-[#ff1764]/6 blur-[110px] sm:bottom-[-8%] sm:left-[-12%] sm:h-105 sm:w-105 sm:blur-[150px]" />
+
+            {/* Center atmosphere */}
+
+            <div className="absolute left-1/2 top-[45%] h-60 w-60 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1877ff]/3 blur-[100px] sm:h-80 sm:w-80 sm:blur-[140px]" />
           </div>
 
           {/* =================================================
               CARD GRID
           ================================================= */}
 
-          <div className="container-nexa relative z-10">
+          <div className="container-nexa relative z-10 min-w-0">
             {visiblePromotions.length > 0 ? (
-              <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
+              <div
+                className={`
+                  grid
+                  min-w-0
+                  grid-cols-1
+                  gap-x-5
+                  gap-y-10
+
+                  sm:grid-cols-2
+                  sm:gap-x-6
+                  sm:gap-y-12
+
+                  md:gap-x-7
+                  md:gap-y-14
+
+                  lg:mt-2
+                  lg:gap-x-8
+                  lg:gap-y-16
+
+                  xl:gap-x-10
+                  xl:gap-y-20
+
+                  ${gridClassName}
+                `}
+              >
                 {visiblePromotions.map((promotion, index) => (
-                  <PromotionCard
+                  <div
                     key={promotion.id}
-                    promotion={promotion}
-                    index={index}
-                  />
+                    className={`
+                      min-w-0
+                      ${getDesktopItemClass(index)}
+                    `}
+                  >
+                    <PromotionCard
+                      promotion={promotion}
+                      index={index}
+                    />
+                  </div>
                 ))}
               </div>
             ) : (

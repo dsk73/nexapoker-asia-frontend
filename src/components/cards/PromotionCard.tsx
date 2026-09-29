@@ -12,48 +12,102 @@ import { getMediaUrl } from "@/lib/media";
 interface PromotionCardProps {
   promotion: FeaturedPromotion;
   index: number;
+  accentColor?: string;
+}
+
+interface CardTheme {
+  background: string;
+  border: string;
+  hoverBorder: string;
+  glow: string;
 }
 
 export default function PromotionCard({
   promotion,
   index,
+  accentColor,
 }: PromotionCardProps) {
   const iconUrl = getMediaUrl(promotion.Icon, "large");
 
   /*
-   * The three featured promotion cards use the same
-   * visual language as the reference:
+   * Six different promotion colours.
    *
-   * Card 1 → Purple
-   * Card 2 → Blue
-   * Card 3 → Red
+   * 1 → Blue
+   * 2 → Pink
+   * 3 → Purple
+   * 4 → Cyan
+   * 5 → Orange
+   * 6 → Green
+   *
+   * These are used as fallback colours when no
+   * accentColor is explicitly provided.
    */
-
-  const cardThemes = [
+  const cardThemes: CardTheme[] = [
     {
       background:
-        "bg-[radial-gradient(circle_at_50%_45%,rgba(116,42,150,0.48),rgba(38,16,55,0.94)_72%)]",
-      border: "border-[#7b2fa0]/50",
-      hoverBorder: "group-hover:border-[#b34bdc]/80",
-      glow: "bg-[#a02dd0]/30",
-    },
-    {
-      background:
-        "bg-[radial-gradient(circle_at_50%_45%,rgba(19,73,145,0.52),rgba(7,29,63,0.96)_72%)]",
+        "bg-[radial-gradient(circle_at_50%_45%,rgba(24,119,255,0.48),rgba(7,29,63,0.96)_72%)]",
       border: "border-[#1877ff]/50",
       hoverBorder: "group-hover:border-[#3d91ff]/80",
       glow: "bg-[#1877ff]/30",
     },
     {
       background:
-        "bg-[radial-gradient(circle_at_50%_45%,rgba(128,25,25,0.52),rgba(63,10,10,0.96)_72%)]",
-      border: "border-[#a51f1f]/55",
-      hoverBorder: "group-hover:border-[#df3434]/80",
-      glow: "bg-[#ff3030]/30",
+        "bg-[radial-gradient(circle_at_50%_45%,rgba(255,23,100,0.48),rgba(63,10,30,0.96)_72%)]",
+      border: "border-[#ff1764]/50",
+      hoverBorder: "group-hover:border-[#ff4a91]/80",
+      glow: "bg-[#ff1764]/30",
+    },
+    {
+      background:
+        "bg-[radial-gradient(circle_at_50%_45%,rgba(139,92,246,0.48),rgba(38,20,70,0.96)_72%)]",
+      border: "border-[#8b5cf6]/50",
+      hoverBorder: "group-hover:border-[#a78bfa]/80",
+      glow: "bg-[#8b5cf6]/30",
+    },
+    {
+      background:
+        "bg-[radial-gradient(circle_at_50%_45%,rgba(6,182,212,0.48),rgba(5,38,48,0.96)_72%)]",
+      border: "border-[#06b6d4]/50",
+      hoverBorder: "group-hover:border-[#22d3ee]/80",
+      glow: "bg-[#06b6d4]/30",
+    },
+    {
+      background:
+        "bg-[radial-gradient(circle_at_50%_45%,rgba(245,158,11,0.48),rgba(63,38,7,0.96)_72%)]",
+      border: "border-[#f59e0b]/50",
+      hoverBorder: "group-hover:border-[#fbbf24]/80",
+      glow: "bg-[#f59e0b]/30",
+    },
+    {
+      background:
+        "bg-[radial-gradient(circle_at_50%_45%,rgba(34,197,94,0.48),rgba(8,48,25,0.96)_72%)]",
+      border: "border-[#22c55e]/50",
+      hoverBorder: "group-hover:border-[#4ade80]/80",
+      glow: "bg-[#22c55e]/30",
     },
   ];
 
   const theme = cardThemes[index % cardThemes.length];
+
+  /*
+   * If PromotionSection or RelatedPromotion provides
+   * an accentColor, use it for the card border and glow.
+   *
+   * Otherwise, fall back to the predefined theme.
+   */
+  const hasCustomAccent = Boolean(accentColor);
+
+  const customBorderStyle = hasCustomAccent
+    ? {
+        borderColor: `${accentColor}80`,
+      }
+    : undefined;
+
+  const customGlowStyle = hasCustomAccent
+    ? {
+        backgroundColor: `${accentColor}4d`,
+      }
+    : undefined;
 
   return (
     <motion.div
@@ -99,7 +153,7 @@ export default function PromotionCard({
               overflow-visible
               rounded-2xl
               border
-              ${theme.border}
+              ${!hasCustomAccent ? theme.border : ""}
               ${theme.hoverBorder}
               ${theme.background}
               transition-all
@@ -108,6 +162,7 @@ export default function PromotionCard({
               sm:h-55
               sm:rounded-[22px]
             `}
+            style={customBorderStyle}
           >
             {/* =================================================
                 CARD ATMOSPHERE
@@ -125,8 +180,9 @@ export default function PromotionCard({
                   w-56
                   -translate-x-1/2
                   rounded-full
-                  ${theme.glow}
+                  ${!hasCustomAccent ? theme.glow : ""}
                   blur-[70px]
+                  opacity-100
                   transition-all
                   duration-500
                   group-hover:scale-125
@@ -135,6 +191,7 @@ export default function PromotionCard({
                   sm:w-64
                   sm:blur-[80px]
                 `}
+                style={customGlowStyle}
               />
 
               {/* Bottom glow */}
@@ -184,9 +241,6 @@ export default function PromotionCard({
 
             {/* =================================================
                 CARD CONTENT
-
-                Title stays on one line on larger screens,
-                while mobile allows wrapping when necessary.
             ================================================= */}
 
             <div className="absolute inset-x-0 bottom-0 z-10 px-4 pb-5 text-center sm:px-6 sm:pb-6">

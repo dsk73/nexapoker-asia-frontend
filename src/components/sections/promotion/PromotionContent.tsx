@@ -1,4 +1,4 @@
-//src/components/sections/promotion/PromotionContent.tsx
+// src/components/sections/promotion/PromotionContent.tsx
 
 "use client";
 

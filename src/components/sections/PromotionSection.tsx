@@ -21,20 +21,168 @@ export default function PromotionSection({
   }
 
   /*
-   * Homepage Featured Promotions intentionally displays
-   * only the first three promotions.
+   * =========================================================
+   * HOMEPAGE FEATURED PROMOTIONS
+   * =========================================================
    *
-   * The reusable PromotionCard component handles:
-   * - Card colours
-   * - Floating promotion icon
-   * - Card glow
-   * - Title
-   * - Description
-   * - Hover animation
-   * - Promotion link
+   * Maximum of 6 promotions are displayed.
+   *
+   * Desktop layouts:
+   *
+   * 6 promotions:
+   * [ 1 ] [ 2 ] [ 3 ]
+   * [ 4 ] [ 5 ] [ 6 ]
+   *
+   * 5 promotions:
+   * [ 1 ] [ 2 ] [ 3 ]
+   *     [ 4 ] [ 5 ]
+   *
+   * 4 promotions:
+   * [     1     ] [     2     ]
+   * [     3     ] [     4     ]
+   *
+   * 3 promotions:
+   * [ 1 ] [ 2 ] [ 3 ]
+   *
+   * 2 promotions:
+   *     [ 1 ] [ 2 ]
+   *
+   * 1 promotion:
+   *         [ 1 ]
+   *
+   * Mobile:
+   * → 1 column
+   *
+   * Tablet:
+   * → 2 columns
+   *
+   * Desktop:
+   * → 6-column internal grid for precise positioning
+   *
+   * PromotionCard handles the individual card colours:
+   *
+   * 1 → Blue
+   * 2 → Pink
+   * 3 → Purple
+   * 4 → Cyan
+   * 5 → Orange
+   * 6 → Green
    */
 
-  const visiblePromotions = promotions.slice(0, 3);
+  const visiblePromotions = promotions.slice(0, 6);
+  const promotionCount = visiblePromotions.length;
+
+  /*
+   * =========================================================
+   * DESKTOP GRID
+   * =========================================================
+   *
+   * Six internal columns allow precise positioning for:
+   *
+   * - Centered single card
+   * - Centered pair
+   * - 3-card row
+   * - Special 4-card 2 × 2 layout
+   * - 5-card 3 + centered 2 layout
+   * - 6-card 3 × 2 layout
+   */
+
+  const gridClassName = "lg:grid-cols-6";
+
+  /*
+   * =========================================================
+   * DESKTOP ITEM POSITIONING
+   * =========================================================
+   */
+
+  const getDesktopItemClass = (index: number) => {
+    switch (promotionCount) {
+      /*
+       * =====================================================
+       * 1 PROMOTION
+       *
+       *           [ 1 ]
+       *
+       * Centered.
+       * =====================================================
+       */
+      case 1:
+        return "lg:col-span-2 lg:col-start-3";
+
+      /*
+       * =====================================================
+       * 2 PROMOTIONS
+       *
+       *       [ 1 ] [ 2 ]
+       *
+       * Centered as a group.
+       * =====================================================
+       */
+      case 2:
+        return index === 0
+          ? "lg:col-span-2 lg:col-start-2"
+          : "lg:col-span-2 lg:col-start-4";
+
+      /*
+       * =====================================================
+       * 3 PROMOTIONS
+       *
+       * [ 1 ] [ 2 ] [ 3 ]
+       *
+       * Full 3-column row.
+       * =====================================================
+       */
+      case 3:
+        return "lg:col-span-2";
+
+      /*
+       * =====================================================
+       * 4 PROMOTIONS
+       *
+       * [     1     ] [     2     ]
+       * [     3     ] [     4     ]
+       *
+       * Special 2 × 2 layout.
+       *
+       * Each card occupies 3 of the 6 internal columns.
+       * =====================================================
+       */
+      case 4:
+        return "lg:col-span-3";
+
+      /*
+       * =====================================================
+       * 5 PROMOTIONS
+       *
+       * [ 1 ] [ 2 ] [ 3 ]
+       *     [ 4 ] [ 5 ]
+       *
+       * Second row is centered.
+       * =====================================================
+       */
+      case 5:
+        if (index < 3) {
+          return "lg:col-span-2";
+        }
+
+        return index === 3
+          ? "lg:col-span-2 lg:col-start-2"
+          : "lg:col-span-2 lg:col-start-4";
+
+      /*
+       * =====================================================
+       * 6 PROMOTIONS
+       *
+       * [ 1 ] [ 2 ] [ 3 ]
+       * [ 4 ] [ 5 ] [ 6 ]
+       *
+       * =====================================================
+       */
+      case 6:
+      default:
+        return "lg:col-span-2";
+    }
+  };
 
   return (
     <section className="relative overflow-hidden bg-[#050507] px-4 py-14 sm:px-6 sm:py-20 lg:px-0 lg:py-28">
@@ -63,11 +211,6 @@ export default function PromotionSection({
       <div className="container-nexa relative z-10 min-w-0">
         {/* =================================================
             SECTION HEADING
-
-            This heading is shown on the homepage.
-
-            The Promotion page will have its own page-level
-            heading and can render PromotionCard directly.
         ================================================= */}
 
         {showHeading && (
@@ -112,13 +255,84 @@ export default function PromotionSection({
 
         {/* =================================================
             PROMOTION GRID
+
+            MOBILE
+            → 1 column
+
+            TABLET
+            → 2 columns
+
+            DESKTOP
+            → Dynamic 6-column layout
+
+            1 → centered
+            2 → centered 2 cards
+            3 → 3 cards
+            4 → special 2 × 2
+            5 → 3 + centered 2
+            6 → 3 × 2
+
+            PromotionCard handles the card colours:
+            1 → Blue
+            2 → Pink
+            3 → Purple
+            4 → Cyan
+            5 → Orange
+            6 → Green
         ================================================= */}
 
-        <div className="grid min-w-0 grid-cols-1 gap-x-5 gap-y-10 sm:gap-x-6 sm:gap-y-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-20">
+        <div
+          className={`
+            grid
+            min-w-0
+            grid-cols-1
+            gap-x-5
+            gap-y-10
+
+            sm:grid-cols-2
+            sm:gap-x-6
+            sm:gap-y-12
+
+            md:gap-x-7
+            md:gap-y-14
+
+            lg:mt-2
+            lg:gap-x-8
+            lg:gap-y-16
+
+            xl:gap-x-10
+            xl:gap-y-20
+
+            ${gridClassName}
+          `}
+        >
           {visiblePromotions.map((promotion, index) => (
-            <div key={promotion.id} className="min-w-0">
+            <motion.div
+              key={promotion.id}
+              className={`
+                min-w-0
+                ${getDesktopItemClass(index)}
+              `}
+              initial={{
+                opacity: 0,
+                y: 24,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.12,
+              }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.08,
+                ease: "easeOut",
+              }}
+            >
               <PromotionCard promotion={promotion} index={index} />
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
