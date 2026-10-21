@@ -75,25 +75,35 @@ export default function LuckySpinWheel({
       : 0;
 
   return (
-    <div className="mx-auto flex w-full max-w-115 flex-col items-center gap-3 sm:gap-4">
-      <div className="relative isolate aspect-square w-full">
-        {/* Ambient glow */}
-        <div className="absolute -inset-3 rounded-full bg-linear-to-br from-[#ff1473]/35 via-[#46b9ff]/20 to-[#ff1473]/30 opacity-80 blur-2xl" />
+    <div className="mx-auto flex w-full min-w-0 max-w-115 flex-col items-center gap-3 sm:gap-4">
+      {/* Fixed square area; rotation must not change its layout size */}
+      <div className="relative isolate aspect-square w-full min-w-0 max-w-full">
+        {/* Decorative glow stays inside the wheel boundary */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
+          <div className="absolute inset-2 rounded-full bg-linear-to-br from-[#ff1473]/35 via-[#46b9ff]/20 to-[#ff1473]/30 opacity-80 blur-xl" />
+        </div>
 
         {/* Outer neon rim */}
         <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#ff1473] via-[#46b9ff] to-[#ff1473] p-1 shadow-[0_0_28px_rgba(255,20,115,0.22),0_0_24px_rgba(70,185,255,0.12)] sm:p-1.5">
           {/* Inner metallic rim */}
           <div className="h-full w-full rounded-full bg-linear-to-br from-[#f5e5ef] via-[#5d647c] to-[#dceaff] p-0.75 sm:p-1">
-            <div className="h-full w-full rounded-full bg-[#070911] p-0.75 sm:p-1">
+            {/*
+              IMPORTANT:
+              This parent stays stationary and clips the transformed wheel.
+              The rotating child's diagonal bounding box cannot extend
+              beyond this fixed circular boundary.
+            */}
+            <div className="relative h-full w-full overflow-hidden rounded-full bg-[#070911] p-0.75 sm:p-1">
               {/* Rotating wheel surface */}
               <div
-                className="relative h-full w-full overflow-hidden rounded-full border border-white/20"
+                className="relative h-full w-full rounded-full border border-white/20"
                 style={{
                   background: wheelBackground,
                   transform: `rotate(${wheelRotation}deg)`,
                   transition: spinning
                     ? `transform ${SPIN_DURATION_MS}ms cubic-bezier(0.12, 0.75, 0.12, 1)`
                     : "none",
+                  willChange: spinning ? "transform" : "auto",
                 }}
               >
                 {/* Subtle segment shading */}
@@ -110,7 +120,7 @@ export default function LuckySpinWheel({
                   />
                 ))}
 
-                {/* Labels come directly from Strapi */}
+                {/* Segment labels */}
                 {orderedSegments.map((segment, index) => {
                   const angle = (index + 0.5) * sliceAngle;
                   const radians = (angle * Math.PI) / 180;
@@ -155,11 +165,11 @@ export default function LuckySpinWheel({
         </div>
 
         {/* Fixed pointer */}
-        <div className="absolute top-[-1%] left-1/2 z-30 -translate-x-1/2">
+        <div className="absolute left-1/2 top-0 z-30 -translate-x-1/2">
           <div className="h-0 w-0 border-x-12 border-t-23 border-x-transparent border-t-[#ff1473] drop-shadow-[0_0_8px_rgba(255,20,115,0.85)] sm:border-x-15 sm:border-t-28" />
         </div>
 
-        {/* Center hub with Nexa Poker logo */}
+        {/* Fixed center hub */}
         <div className="absolute left-1/2 top-1/2 z-20 flex h-[17%] w-[17%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-linear-to-br from-[#ff1473] via-[#46b9ff] to-[#c296a8] p-0.75 shadow-[0_0_24px_rgba(255,20,115,0.3)]">
           <div className="flex h-full w-full items-center justify-center rounded-full border border-white/20 bg-[#06070b] p-1.25">
             <Image
@@ -173,11 +183,11 @@ export default function LuckySpinWheel({
           </div>
         </div>
 
-        {/* Alternating brand lights around the rim */}
+        {/* Alternating brand lights */}
         {Array.from({ length: 12 }).map((_, index) => (
           <span
             key={`light-${index}`}
-            className={`absolute z-10 size-2 rounded-full shadow-[0_0_9px_currentColor] sm:size-2.5 ${
+            className={`pointer-events-none absolute z-10 size-2 rounded-full shadow-[0_0_9px_currentColor] sm:size-2.5 ${
               index % 2 === 0
                 ? "bg-[#46b9ff] text-[#46b9ff]"
                 : "bg-[#ff1473] text-[#ff1473]"
@@ -191,12 +201,13 @@ export default function LuckySpinWheel({
         ))}
       </div>
 
+      {/* Spin button */}
       {onSpin && (
         <button
           type="button"
           onClick={onSpin}
           disabled={disabled || spinning || !segmentCount}
-          className="group relative w-full max-w-92.5 overflow-hidden rounded-full border border-[#ff1473]/70 bg-linear-to-r from-[#ff1473] to-[#d90b62] px-6 py-3.5 text-base font-black uppercase tracking-wide text-white shadow-[0_0_22px_rgba(255,20,115,0.25)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(255,20,115,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#46b9ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050609] disabled:cursor-not-allowed disabled:opacity-50 sm:py-4 sm:text-lg"
+          className="group relative w-full min-w-0 max-w-92.5 overflow-hidden rounded-full border border-[#ff1473]/70 bg-linear-to-r from-[#ff1473] to-[#d90b62] px-6 py-3.5 text-base font-black uppercase tracking-wide text-white shadow-[0_0_22px_rgba(255,20,115,0.25)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(255,20,115,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#46b9ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050609] disabled:cursor-not-allowed disabled:opacity-50 sm:py-4 sm:text-lg"
         >
           <span className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
           <span className="relative">
