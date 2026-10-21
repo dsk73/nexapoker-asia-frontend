@@ -1,5 +1,3 @@
-// src/app/register/page.tsx
-
 import type { Metadata } from "next";
 
 import { getRegisterPage } from "@/lib/api";
@@ -9,22 +7,21 @@ import Footer from "@/components/layout/Footer";
 
 import RegisterHero from "@/components/sections/register/RegisterHero";
 import RegisterSteps from "@/components/sections/register/RegisterSteps";
-import RegisterCTA from "@/components/sections/register/RegisterCTA";
+import LuckySpinSection from "@/components/sections/register/LuckySpinSection";
+// import RegisterCTA from "@/components/sections/register/RegisterCTA";
 
-/**
- * Force the page to render dynamically.
- *
- * This ensures updated Register Page content from Strapi
- * can be fetched at runtime without requiring a new
- * frontend deployment.
- */
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Nexa Poker Registration | Join & Play Online Poker",
+const pageTitle = "Nexa Poker Registration | Join & Play Online Poker";
 
-  description:
-    "Join Nexa Poker and create your online poker account. Follow the registration steps, download the poker app and get ready to play poker online.",
+const pageDescription =
+  "Register with Nexa Poker and create your online poker account. Follow the registration guide, download the app and discover the Nexa Poker Lucky Spin campaign.";
+
+const socialImage = "/images/nexapoker-logo.png";
+
+export const metadata: Metadata = {
+  title: pageTitle,
+  description: pageDescription,
 
   keywords: [
     "Nexa Poker",
@@ -41,6 +38,8 @@ export const metadata: Metadata = {
     "play poker online",
     "Nexa Poker bonus code",
     "NEXA40 bonus code",
+    "Nexa Poker Lucky Spin",
+    "Nexa Poker rewards",
   ],
 
   alternates: {
@@ -60,34 +59,26 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Nexa Poker Registration | Join & Play Online Poker",
-
-    description:
-      "Join Nexa Poker and create your online poker account. Follow the registration steps, download the poker app and get ready to play poker online.",
-
+    title: pageTitle,
+    description: pageDescription,
     url: "/register",
     siteName: "Nexa Poker",
     type: "website",
-
     images: [
       {
-        url: "/images/nexapoker-logo.png",
+        url: socialImage,
         width: 1200,
         height: 630,
-        alt: "Nexa Poker Registration | Join & Play Online Poker",
+        alt: "Nexa Poker registration and Lucky Spin rewards",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-
-    title: "Nexa Poker Registration | Join & Play Online Poker",
-
-    description:
-      "Join Nexa Poker and create your online poker account. Follow the registration steps, download the poker app and get ready to play poker online.",
-
-    images: ["/images/nexapoker-logo.png"],
+    title: pageTitle,
+    description: pageDescription,
+    images: [socialImage],
   },
 };
 
@@ -98,24 +89,14 @@ export default async function RegisterPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen overflow-x-hidden bg-[#050507] text-white">
-        {/* =================================================
-            HERO
-        ================================================= */}
-
+      <main className="min-h-screen overflow-x-clip bg-[#050507] text-white">
         <RegisterHero page={page} />
 
-        {/* =================================================
-            REGISTRATION STEPS
-        ================================================= */}
+        <LuckySpinSection />
 
         <RegisterSteps page={page} />
 
-        {/* =================================================
-            CLOSING SECTION
-        ================================================= */}
-
-        <RegisterCTA page={page} />
+        {/* <RegisterCTA page={page} /> */}
       </main>
 
       <Footer />
