@@ -26,7 +26,6 @@ export interface LuckySpinSettings {
   Active: boolean;
   StartDate?: string | null;
   EndDate?: string | null;
-  MaxWinners: number;
 
   Segments: LuckySpinSegment[];
 
@@ -51,6 +50,7 @@ export interface LuckySpinResult {
   Label?: string;
   ResultLabel?: string;
   OutcomeType: LuckySpinOutcomeType;
+  DisplayOrder?: number | null;
   RewardValue?: string | null;
   RewardDescription?: string | null;
   PrizeStatus?: LuckySpinPrizeStatus;

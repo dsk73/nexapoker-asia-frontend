@@ -17,6 +17,7 @@ type SpinResponse = {
     Label?: string;
     ResultLabel?: string;
     OutcomeType?: LuckySpinOutcomeType;
+    DisplayOrder?: number | null;
     RewardValue?: string | null;
     RewardDescription?: string | null;
   };
@@ -149,7 +150,8 @@ export default function LuckySpinSection() {
 
     if (loadingSettings || settingsError || !settings) {
       setAvailabilityMessage(
-        settingsError || "Campaign details are currently unavailable. Please try again later.",
+        settingsError ||
+          "Campaign details are currently unavailable. Please try again later.",
       );
       return;
     }
@@ -172,14 +174,22 @@ export default function LuckySpinSection() {
       ? new Date(`${settings.EndDate.slice(0, 10)}T00:00:00`)
       : null;
 
-    if (campaignStart && !Number.isNaN(campaignStart.getTime()) && today < campaignStart) {
+    if (
+      campaignStart &&
+      !Number.isNaN(campaignStart.getTime()) &&
+      today < campaignStart
+    ) {
       setAvailabilityMessage(
         "The wheel has not started yet. Please check back during the campaign period.",
       );
       return;
     }
 
-    if (campaignEnd && !Number.isNaN(campaignEnd.getTime()) && today > campaignEnd) {
+    if (
+      campaignEnd &&
+      !Number.isNaN(campaignEnd.getTime()) &&
+      today > campaignEnd
+    ) {
       setAvailabilityMessage(
         "The wheel is expired now. Try again and look for other active promotions on the site.",
       );
@@ -223,10 +233,11 @@ export default function LuckySpinSection() {
         (a, b) => (a.DisplayOrder ?? 0) - (b.DisplayOrder ?? 0),
       );
 
-      const resultIndex = orderedSegments.findIndex(
-        (segment) =>
-          segment.Label === resultLabel &&
-          segment.OutcomeType === result.OutcomeType,
+      const resultIndex = orderedSegments.findIndex((segment) =>
+        result.DisplayOrder != null
+          ? segment.DisplayOrder === result.DisplayOrder
+          : segment.Label === resultLabel &&
+            segment.OutcomeType === result.OutcomeType,
       );
 
       setSpinResult({
