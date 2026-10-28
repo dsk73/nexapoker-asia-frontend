@@ -1,6 +1,7 @@
 import type {
   LuckySpinApiResponse,
   LuckySpinEntryPayload,
+  LuckySpinFeedbackPayload,
   LuckySpinResult,
   LuckySpinSettings,
   LuckySpinSettingsResponse,
@@ -54,6 +55,29 @@ export async function submitLuckySpin(
       UID: payload.UID.trim(),
       Username: payload.Username.trim(),
       TermsAccepted: payload.TermsAccepted,
+    }),
+  });
+}
+
+export async function submitLuckySpinFeedback(
+  payload: LuckySpinFeedbackPayload,
+): Promise<unknown> {
+  const UID = payload.UID.trim();
+  const Username = payload.Username.trim();
+  const Message = payload.Message.trim();
+
+  if (!UID || !Username || !Message) {
+    throw new Error("Please enter your UID, username, and feedback message.");
+  }
+
+  return request("/feedbacks", {
+    method: "POST",
+    body: JSON.stringify({
+      data: {
+        UID,
+        Username,
+        Message,
+      },
     }),
   });
 }

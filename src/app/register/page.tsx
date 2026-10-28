@@ -8,6 +8,7 @@ import Footer from "@/components/layout/Footer";
 import RegisterHero from "@/components/sections/register/RegisterHero";
 import RegisterSteps from "@/components/sections/register/RegisterSteps";
 import LuckySpinSection from "@/components/sections/register/LuckySpinSection";
+import FeedbackCard from "@/components/sections/register/FeedbackCard";
 // import RegisterCTA from "@/components/sections/register/RegisterCTA";
 
 export const dynamic = "force-dynamic";
@@ -95,6 +96,8 @@ export default async function RegisterPage() {
         <LuckySpinSection />
 
         <RegisterSteps page={page} />
+
+        <FeedbackCard />
 
         {/* <RegisterCTA page={page} /> */}
       </main>

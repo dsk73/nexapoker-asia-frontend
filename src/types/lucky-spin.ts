@@ -10,12 +10,23 @@ export type LuckySpinPrizeStatus =
 export interface LuckySpinSegment {
   id?: number;
   documentId?: string;
+
   Label: string;
   OutcomeType: LuckySpinOutcomeType;
-  RewardDescription?: string | null;
+
   RewardValue?: string | null;
+  RewardDescription?: string | null;
+
   WinProbability: number;
   DisplayOrder?: number;
+
+  /**
+   * Internal allocation fields are not exposed by the public settings API.
+   * Keep these optional for internal/admin data only.
+   */
+  PrizeKey?: string | null;
+  MaxAwards?: number | null;
+
   Icon?: unknown;
 }
 
@@ -23,11 +34,15 @@ export interface LuckySpinSettings {
   id?: number;
   documentId?: string;
 
+  CampaignNumber?: string;
   Active: boolean;
   StartDate?: string | null;
   EndDate?: string | null;
 
   Segments: LuckySpinSegment[];
+
+  CommunityTelegramURL?: string | null;
+  PromotionPageURL?: string | null;
 
   TermsAndConditions?: string | null;
   WinnersMessage?: string | null;
@@ -64,4 +79,10 @@ export interface LuckySpinSpinResponse {
 export interface LuckySpinApiResponse<T> {
   data: T | null;
   message?: string;
+}
+
+export interface LuckySpinFeedbackPayload {
+  UID: string;
+  Username: string;
+  Message: string;
 }

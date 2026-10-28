@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import MarkdownContent from "@/components/content/MarkdownContent";
+import LuckySpinCard from "@/components/sections/register/LuckySpinCard";
 import LuckySpinEntryForm from "@/components/sections/register/LuckySpinEntryForm";
 import LuckySpinWheel from "@/components/sections/register/LuckySpinWheel";
 import { getLuckySpinSettings, submitLuckySpin } from "@/lib/lucky-spin";
@@ -19,7 +20,6 @@ type SpinResponse = {
     OutcomeType?: LuckySpinOutcomeType;
     DisplayOrder?: number | null;
     RewardValue?: string | null;
-    RewardDescription?: string | null;
   };
   message?: string;
 };
@@ -27,29 +27,64 @@ type SpinResponse = {
 type SpinResult = {
   outcome: LuckySpinOutcomeType;
   label: string;
-  description?: string | null;
-  rewardValue?: string | null;
+  rewardValue: string;
+};
+
+type PlayerDetails = {
+  UID: string;
+  Username: string;
 };
 
 const SPIN_ANIMATION_MS = 4000;
 
-function formatCampaignDate(value?: string | null) {
-  if (!value) return null;
+function isCampaignAvailable(settings: LuckySpinSettings) {
+  const now = Date.now();
 
-  const date = new Date(`${value.slice(0, 10)}T00:00:00`);
+  if (!settings.Active) return false;
 
-  if (Number.isNaN(date.getTime())) return null;
+  if (settings.StartDate) {
+    const start = Date.parse(settings.StartDate);
+    if (!Number.isNaN(start) && now < start) return false;
+  }
 
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(date);
+  if (settings.EndDate) {
+    const end = Date.parse(settings.EndDate);
+    if (!Number.isNaN(end) && now > end) return false;
+  }
+
+  return true;
 }
 
-function replaceRewardPlaceholder(content: string, rewardName: string) {
-  return content.replace(/\{\{\s*rewardName\s*\}\}/gi, rewardName);
+function replacePlaceholders(
+  content: string,
+  player: PlayerDetails,
+  rewardValue: string,
+) {
+  return content
+    .replace(/\{\{\s*rewardName\s*\}\}/gi, rewardValue)
+    .replace(/\{\{\s*playerUID\s*\}\}/gi, player.UID)
+    .replace(/\{\{\s*playerUsername\s*\}\}/gi, player.Username);
+}
+
+function normalizeExternalUrl(value?: string | null) {
+  const trimmed = value?.trim();
+  if (!trimmed) return "";
+
+  const withProtocol = /^https?:\/\//i.test(trimmed)
+    ? trimmed
+    : `https://${trimmed}`;
+
+  try {
+    const parsed = new URL(withProtocol);
+
+    if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+      return "";
+    }
+
+    return parsed.toString();
+  } catch {
+    return "";
+  }
 }
 
 export default function LuckySpinSection() {
@@ -58,13 +93,17 @@ export default function LuckySpinSection() {
   const [settingsError, setSettingsError] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [availabilityMessage, setAvailabilityMessage] = useState("");
+  const [popupMessage, setPopupMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [spinning, setSpinning] = useState(false);
   const [selectedSegmentIndex, setSelectedSegmentIndex] = useState<
     number | null
   >(null);
-  const [notice, setNotice] = useState("");
   const [spinResult, setSpinResult] = useState<SpinResult | null>(null);
+  const [player, setPlayer] = useState<PlayerDetails>({
+    UID: "",
+    Username: "",
+  });
   const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
 
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -94,9 +133,7 @@ export default function LuckySpinSection() {
           );
         }
       } finally {
-        if (!cancelled) {
-          setLoadingSettings(false);
-        }
+        if (!cancelled) setLoadingSettings(false);
       }
     }
 
@@ -108,6 +145,20 @@ export default function LuckySpinSection() {
   }, []);
 
   const isBusy = submitting || spinning;
+
+  const segments = useMemo(
+    () =>
+      (settings?.Segments ?? [])
+        .map((segment, originalIndex) => ({ segment, originalIndex }))
+        .sort(
+          (a, b) =>
+            (a.segment.DisplayOrder ?? a.originalIndex) -
+              (b.segment.DisplayOrder ?? b.originalIndex) ||
+            a.originalIndex - b.originalIndex,
+        )
+        .map(({ segment }) => segment),
+    [settings?.Segments],
+  );
 
   const closeModal = useCallback(() => {
     if (isBusy) return;
@@ -145,10 +196,15 @@ export default function LuckySpinSection() {
     };
   }, [modalOpen, isBusy]);
 
+  function showPopup(message: string) {
+    setPopupMessage(message);
+  }
+
   function openModal() {
     setAvailabilityMessage("");
+    setPopupMessage("");
 
-    if (loadingSettings || settingsError || !settings) {
+    if (loadingSettings || !settings) {
       setAvailabilityMessage(
         settingsError ||
           "Campaign details are currently unavailable. Please try again later.",
@@ -156,57 +212,50 @@ export default function LuckySpinSection() {
       return;
     }
 
-    if (!settings.Active) {
-      setAvailabilityMessage(
-        "The wheel is not active yet. Please contact the admin.",
-      );
+    if (!isCampaignAvailable(settings)) {
+      const now = Date.now();
+      const start = settings.StartDate ? Date.parse(settings.StartDate) : null;
+      const end = settings.EndDate ? Date.parse(settings.EndDate) : null;
+
+      if (!settings.Active) {
+        setAvailabilityMessage(
+          "The Lucky Spin campaign is currently inactive. Please explore our other promotions.",
+        );
+      } else if (start !== null && !Number.isNaN(start) && now < start) {
+        setAvailabilityMessage(
+          "The Lucky Spin campaign has not started yet. Please check back during the campaign period.",
+        );
+      } else if (end !== null && !Number.isNaN(end) && now > end) {
+        setAvailabilityMessage(
+          "The Lucky Spin campaign has ended. Visit our promotions page to explore other offers.",
+        );
+      } else {
+        setAvailabilityMessage(
+          "The Lucky Spin campaign is currently unavailable. Please try again later.",
+        );
+      }
+
       return;
     }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const campaignStart = settings.StartDate
-      ? new Date(`${settings.StartDate.slice(0, 10)}T00:00:00`)
-      : null;
-
-    const campaignEnd = settings.EndDate
-      ? new Date(`${settings.EndDate.slice(0, 10)}T00:00:00`)
-      : null;
-
-    if (
-      campaignStart &&
-      !Number.isNaN(campaignStart.getTime()) &&
-      today < campaignStart
-    ) {
-      setAvailabilityMessage(
-        "The wheel has not started yet. Please check back during the campaign period.",
-      );
-      return;
-    }
-
-    if (
-      campaignEnd &&
-      !Number.isNaN(campaignEnd.getTime()) &&
-      today > campaignEnd
-    ) {
-      setAvailabilityMessage(
-        "The wheel is expired now. Try again and look for other active promotions on the site.",
-      );
-      return;
-    }
-
-    setNotice("");
+    setPopupMessage("");
     setSpinResult(null);
     setSelectedSegmentIndex(null);
+    setPlayer({ UID: "", Username: "" });
     setModalOpen(true);
   }
 
   async function handleSpinSubmit(payload: LuckySpinEntryPayload) {
     if (isBusy) return;
 
+    const currentPlayer = {
+      UID: payload.UID.trim(),
+      Username: payload.Username.trim(),
+    };
+
+    setPlayer(currentPlayer);
     setSubmitting(true);
-    setNotice("");
+    setPopupMessage("");
     setSpinResult(null);
     setSelectedSegmentIndex(null);
 
@@ -229,32 +278,38 @@ export default function LuckySpinSection() {
         throw new Error("The server returned an invalid prize outcome.");
       }
 
-      const orderedSegments = [...(settings?.Segments ?? [])].sort(
-        (a, b) => (a.DisplayOrder ?? 0) - (b.DisplayOrder ?? 0),
-      );
-
-      const resultIndex = orderedSegments.findIndex((segment) =>
+      const resultIndex =
         result.DisplayOrder != null
-          ? segment.DisplayOrder === result.DisplayOrder
-          : segment.Label === resultLabel &&
-            segment.OutcomeType === result.OutcomeType,
-      );
+          ? segments.findIndex(
+              (segment) => segment.DisplayOrder === result.DisplayOrder,
+            )
+          : segments.findIndex(
+              (segment) =>
+                segment.Label === resultLabel &&
+                segment.OutcomeType === result.OutcomeType,
+            );
+
+      if (resultIndex < 0) {
+        throw new Error(
+          "The result was received, but its matching wheel segment could not be identified. Please contact support before trying again.",
+        );
+      }
 
       setSpinResult({
         outcome: result.OutcomeType,
         label: resultLabel,
-        description: result.RewardDescription,
-        rewardValue: result.RewardValue,
+        rewardValue: result.RewardValue?.trim() || resultLabel,
       });
 
-      setSelectedSegmentIndex(resultIndex >= 0 ? resultIndex : null);
+      setSelectedSegmentIndex(resultIndex);
+      setSubmitting(false);
       setSpinning(true);
 
       await new Promise<void>((resolve) => {
         window.setTimeout(resolve, SPIN_ANIMATION_MS);
       });
     } catch (error) {
-      setNotice(
+      showPopup(
         error instanceof Error
           ? error.message
           : "The spin request could not be completed. Please try again.",
@@ -265,14 +320,33 @@ export default function LuckySpinSection() {
     }
   }
 
-  const segments = settings?.Segments ?? [];
-  const startDate = formatCampaignDate(settings?.StartDate);
-  const endDate = formatCampaignDate(settings?.EndDate);
-  const adminContact = settings?.AdminContact?.trim();
+  const promotionUrl = settings?.PromotionPageURL?.trim();
 
-  const winnersMessage = settings?.WinnersMessage?.trim()
-    ? replaceRewardPlaceholder(settings.WinnersMessage, spinResult?.label ?? "")
-    : "";
+  const winnersMessage =
+    settings?.WinnersMessage?.trim() && spinResult
+      ? replacePlaceholders(
+          settings.WinnersMessage,
+          player,
+          spinResult.rewardValue,
+        )
+      : "";
+
+  const noPrizeMessage = settings?.NoPrizeMessage?.trim()
+    ? settings.NoPrizeMessage
+    : [
+        "# Better luck next time!",
+        "",
+        "Thanks for playing!",
+        "",
+        "Your Lucky Spin has been completed, and this result does not include a prize.",
+        "",
+        "Each eligible UID is entitled to one spin during this campaign, so your spin has now been used.",
+        "",
+        "Stay connected with the Nexa Poker community for upcoming promotions, tournaments, and exciting rewards. We hope to see you at the tables!",
+      ].join("\n");
+
+  const communityUrl = normalizeExternalUrl(settings?.CommunityTelegramURL);
+  const adminContactUrl = normalizeExternalUrl(settings?.AdminContact);
 
   const modal =
     modalOpen && settings ? (
@@ -288,12 +362,11 @@ export default function LuckySpinSection() {
           aria-labelledby="lucky-spin-modal-title"
           className="relative my-auto flex max-h-[94dvh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#08080c] shadow-[0_0_70px_rgba(255,20,115,0.13)] sm:rounded-3xl"
         >
-          <header className="flex shrink-0 items-center justify-between gap-4 border-b border-white/10 bg-[#0b0a0f] px-4 py-3 sm:px-6">
+          <header className="flex shrink-0 items-center justify-between gap-3 border-b border-white/10 bg-[#0b0a0f] px-4 py-3 sm:px-6">
             <div className="min-w-0">
               <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#ff1473] sm:text-xs">
                 Nexa Poker Rewards
               </p>
-
               <h2
                 id="lucky-spin-modal-title"
                 className="mt-1 text-lg font-black text-white sm:text-xl"
@@ -323,33 +396,23 @@ export default function LuckySpinSection() {
                       <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#ff6da5]">
                         Existing Player
                       </p>
-
                       <h3 className="mt-1 text-xl font-black text-white">
                         Enter your details
                       </h3>
-
                       <p className="mt-2 text-sm leading-6 text-slate-400">
-                        Enter your player UID and username to participate. Each
-                        eligible UID can spin only once.
+                        Enter your Player UID and username to participate. Each
+                        UID can spin only once.
                       </p>
                     </div>
 
                     <LuckySpinEntryForm
                       onSubmit={handleSpinSubmit}
+                      onError={showPopup}
+                      onPlayerChange={setPlayer}
                       loading={isBusy}
                       termsAndConditions={settings.TermsAndConditions}
                       disabled={isBusy}
                     />
-
-                    {notice && (
-                      <p
-                        role="alert"
-                        aria-live="polite"
-                        className="mt-3 whitespace-pre-wrap rounded-xl border border-[#ff1473]/20 bg-[#190710] p-3 text-sm leading-5 text-slate-200"
-                      >
-                        {notice}
-                      </p>
-                    )}
                   </>
                 )}
 
@@ -377,46 +440,58 @@ export default function LuckySpinSection() {
 
                     {spinResult.outcome === "prize" ? (
                       <>
-                        {winnersMessage && (
-                          <div className="mt-4 text-sm leading-6 text-slate-300 [&_h1]:mb-3 [&_h1]:text-2xl [&_h1]:font-black [&_h1]:leading-tight [&_h1]:text-white [&_h2]:mb-3 [&_h2]:mt-5 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-white [&_h3]:mb-2 [&_h3]:mt-4 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-white [&_ol]:my-3 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5 [&_ul]:my-3 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 [&_strong]:font-bold [&_strong]:text-white [&_p]:my-3 [&_a]:text-[#ff6da5] [&_a]:underline">
+                        {winnersMessage ? (
+                          <div className="mt-3 text-sm leading-6 text-slate-300 [&_h1]:text-2xl [&_h1]:font-black [&_h1]:text-white [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-white [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-white [&_ol]:my-3 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5 [&_ul]:my-3 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 [&_strong]:font-bold [&_strong]:text-white [&_p]:my-3 [&_a]:text-[#ff6da5] [&_a]:underline">
                             <MarkdownContent content={winnersMessage} />
                           </div>
-                        )}
-
-                        {adminContact && (
-                          <a
-                            href={adminContact}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-5 inline-flex min-h-10 items-center justify-center rounded-full bg-[#ff1473] px-5 py-2 text-sm font-bold text-white transition hover:bg-[#d90b62] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                          >
-                            Contact Admin
-                          </a>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        <h3 className="mt-4 text-2xl font-black leading-tight text-white sm:text-3xl">
-                          {spinResult.label}
-                        </h3>
-
-                        {settings.NoPrizeMessage?.trim() && (
-                          <div className="mt-3 text-sm leading-6 text-slate-300 [&_h1]:mb-2 [&_h1]:text-xl [&_h1]:font-bold [&_h1]:text-white [&_h2]:mb-2 [&_h2]:text-lg [&_h2]:font-bold [&_h2]:text-white [&_h3]:mb-2 [&_h3]:text-base [&_h3]:font-bold [&_h3]:text-white [&_ol]:my-3 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5 [&_ul]:my-3 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 [&_strong]:font-bold [&_strong]:text-white [&_p]:my-3 [&_a]:text-[#ff6da5] [&_a]:underline">
-                            <MarkdownContent
-                              content={settings.NoPrizeMessage}
-                            />
+                        ) : (
+                          <div className="mt-4">
+                            <h3 className="text-2xl font-black text-white">
+                              Congratulations! 🎉
+                            </h3>
+                            <p className="mt-3 text-slate-300">
+                              You have won{" "}
+                              <strong className="text-white">
+                                {spinResult.rewardValue}
+                              </strong>{" "}
+                              in the Nexa Poker Lucky Spin!
+                            </p>
+                            <p className="mt-3 text-sm leading-6 text-slate-400">
+                              Share a screenshot of this winning screen with
+                              your UID and username to claim your prize.
+                            </p>
                           </div>
                         )}
-                      </>
-                    )}
 
-                    <button
-                      type="button"
-                      onClick={() => setModalOpen(false)}
-                      className="mt-5 w-full rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition hover:border-[#ff1473]/40 hover:bg-white/8"
-                    >
-                      Close
-                    </button>
+                        <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                          {communityUrl && (
+                            <a
+                              href={communityUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#229ED9] px-4 py-3 text-center text-sm font-extrabold text-white transition hover:bg-[#168ac0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                            >
+                              Share Result``
+                            </a>
+                          )}
+
+                          {adminContactUrl && (
+                            <a
+                              href={adminContactUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-3 text-center text-sm font-bold text-white transition hover:border-[#ff1473]/50 hover:bg-white/10"
+                            >
+                              Contact Admin
+                            </a>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="mt-3 text-sm leading-6 text-slate-300 [&_h1]:text-xl [&_h1]:font-bold [&_h1]:text-white [&_h2]:text-lg [&_h2]:font-bold [&_h2]:text-white [&_h3]:font-bold [&_h3]:text-white [&_ol]:my-3 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5 [&_ul]:my-3 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 [&_strong]:font-bold [&_strong]:text-white [&_p]:my-3 [&_p]:text-slate-300 [&_a]:text-[#ff6da5] [&_a]:underline">
+                        <MarkdownContent content={noPrizeMessage} />
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -427,11 +502,9 @@ export default function LuckySpinSection() {
                     aria-live="polite"
                   >
                     <span className="mx-auto block size-6 animate-spin rounded-full border-2 border-[#ff1473]/30 border-t-[#ff1473]" />
-
                     <p className="mt-3 font-bold text-white">
                       Your wheel is spinning
                     </p>
-
                     <p className="mt-1 text-sm text-slate-400">
                       Revealing your result...
                     </p>
@@ -444,7 +517,6 @@ export default function LuckySpinSection() {
                   <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#ff1473]">
                     One UID. One spin.
                   </p>
-
                   <h3 className="mt-1 text-xl font-black text-white sm:text-2xl">
                     Lucky Spin
                   </h3>
@@ -467,81 +539,44 @@ export default function LuckySpinSection() {
 
   return (
     <>
-      <section
-        id="lucky-spin"
-        className="relative isolate overflow-hidden bg-[#050609] px-4 py-8 text-white sm:px-6 sm:py-12"
-      >
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_12%_50%,rgba(255,20,115,0.09),transparent_42%),radial-gradient(ellipse_at_90%_50%,rgba(255,20,115,0.05),transparent_42%)]" />
-
-        <div className="mx-auto max-w-330">
-          {loadingSettings ? (
-            <div className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-[#09090d]/90 px-5 py-8">
-              <span className="size-5 animate-spin rounded-full border-2 border-[#ff1473]/30 border-t-[#ff1473]" />
-
-              <p className="text-sm text-slate-300">
-                Loading Lucky Spin campaign...
-              </p>
-            </div>
-          ) : !settings ? (
-            <div className="rounded-2xl border border-white/10 bg-[#09090d]/90 p-5 sm:p-7">
-              <h2 className="text-xl font-black text-white">
-                Nexa Poker Lucky Spin
-              </h2>
-
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                {settingsError ||
-                  (!settings
-                    ? "Campaign details are currently unavailable."
-                    : "The campaign is currently inactive. Please check back later.")}
-              </p>
-            </div>
-          ) : (
-            <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-linear-to-r from-[#140811] via-[#0b090d] to-[#10070b] p-5 shadow-[0_18px_55px_rgba(0,0,0,0.32)] transition duration-300 hover:border-[#ff1473]/25 sm:rounded-3xl sm:p-8 lg:p-10">
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-linear-to-b from-[#ff1473] via-[#d90b62] to-transparent" />
-
-              <div className="pointer-events-none absolute -right-16 -top-24 size-56 rounded-full bg-[#ff1473]/6 blur-3xl transition group-hover:bg-[#ff1473]/10" />
-
-              <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
-                <div className="flex min-w-0 items-center gap-4 sm:gap-5">
-                  <div className="flex size-16 shrink-0 items-center justify-center rounded-2xl border border-[#ff1473]/30 bg-[#ff1473]/8 text-4xl shadow-[0_0_24px_rgba(255,20,115,0.08)] sm:size-20 sm:text-5xl">
-                    🎡
-                  </div>
-
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h2 className="text-xl font-black tracking-tight text-white sm:text-2xl lg:text-3xl">
-                        Nexa Poker Lucky Spin
-                      </h2>
-
-                      <span className="rounded-full border border-[#ff1473]/25 bg-[#ff1473]/6 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-[#ff6da5]">
-                        One spin per UID
-                      </span>
-                    </div>
-
-                    {(startDate || endDate) && (
-                      <p className="mt-2 text-xs text-slate-500">
-                        Campaign period: {startDate ?? "—"} – {endDate ?? "—"}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={openModal}
-                  className="inline-flex min-h-12 shrink-0 items-center justify-center rounded-full border border-[#ff1473]/70 bg-linear-to-r from-[#ff1473] to-[#d90b62] px-7 py-3 text-sm font-extrabold text-white shadow-[0_6px_22px_rgba(255,20,115,0.18)] transition hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(255,20,115,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff1473] disabled:cursor-not-allowed disabled:opacity-50 sm:min-w-48"
-                >
-                  Join Lucky Spin
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
+      <LuckySpinCard
+        onJoin={openModal}
+        loading={loadingSettings}
+        startDate={settings?.StartDate}
+        endDate={settings?.EndDate}
+        error={!settings && !loadingSettings ? settingsError : ""}
+      />
 
       <div ref={portalRef} />
 
       {portalTarget && modal && createPortal(modal, portalTarget)}
+
+      {popupMessage && (
+        <div className="fixed inset-x-3 top-4 z-130 mx-auto max-w-md">
+          <div
+            role="alert"
+            aria-live="assertive"
+            className="flex items-start gap-3 rounded-2xl border border-white/10 bg-[#111018] p-4 shadow-[0_12px_45px_rgba(0,0,0,0.55)]"
+          >
+            <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-[#ff1473]/40 bg-[#ff1473]/10 text-sm font-black text-[#ff6da5]">
+              !
+            </span>
+
+            <p className="min-w-0 flex-1 whitespace-pre-wrap text-sm leading-6 text-slate-200">
+              {popupMessage}
+            </p>
+
+            <button
+              type="button"
+              aria-label="Dismiss notification"
+              onClick={() => setPopupMessage("")}
+              className="flex size-7 shrink-0 items-center justify-center rounded-full text-lg text-slate-400 transition hover:bg-white/10 hover:text-white"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
 
       {availabilityMessage && (
         <div
@@ -559,25 +594,39 @@ export default function LuckySpinSection() {
             aria-labelledby="lucky-spin-availability-title"
             className="w-full max-w-md rounded-2xl border border-white/10 bg-[#0b0a0f] p-6 shadow-2xl"
           >
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#ff6da5]">
+              Nexa Poker Promotions
+            </p>
+
             <h2
               id="lucky-spin-availability-title"
-              className="text-xl font-black text-white"
+              className="mt-2 text-xl font-black text-white"
             >
-              Nexa Poker Lucky Spin
+              Lucky Spin unavailable
             </h2>
 
             <p className="mt-3 text-sm leading-6 text-slate-300">
               {availabilityMessage}
             </p>
 
-            <button
-              type="button"
-              autoFocus
-              onClick={() => setAvailabilityMessage("")}
-              className="mt-6 w-full rounded-full bg-[#ff1473] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#d90b62] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              Close
-            </button>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {promotionUrl && (
+                <a
+                  href={promotionUrl}
+                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#ff1473] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#d90b62] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                >
+                  View Promotions
+                </a>
+              )}
+
+              <button
+                type="button"
+                onClick={() => setAvailabilityMessage("")}
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                Close
+              </button>
+            </div>
           </section>
         </div>
       )}

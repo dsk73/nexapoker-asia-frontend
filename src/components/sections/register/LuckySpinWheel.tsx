@@ -34,9 +34,15 @@ export default function LuckySpinWheel({
 }: LuckySpinWheelProps) {
   const orderedSegments = useMemo(
     () =>
-      [...segments].sort(
-        (a, b) => (a.DisplayOrder ?? 0) - (b.DisplayOrder ?? 0),
-      ),
+      segments
+        .map((segment, originalIndex) => ({ segment, originalIndex }))
+        .sort(
+          (a, b) =>
+            (a.segment.DisplayOrder ?? a.originalIndex) -
+              (b.segment.DisplayOrder ?? b.originalIndex) ||
+            a.originalIndex - b.originalIndex,
+        )
+        .map(({ segment }) => segment),
     [segments],
   );
 
@@ -65,10 +71,6 @@ export default function LuckySpinWheel({
       ? selectedSegmentIndex
       : null;
 
-  /*
-   * Rotate the wheel so the selected segment's center
-   * aligns with the fixed pointer at 12 o'clock.
-   */
   const wheelRotation =
     safeSelectedIndex !== null
       ? 360 * 5 + ((360 - (safeSelectedIndex + 0.5) * sliceAngle) % 360)
@@ -76,25 +78,14 @@ export default function LuckySpinWheel({
 
   return (
     <div className="mx-auto flex w-full min-w-0 max-w-115 flex-col items-center gap-3 sm:gap-4">
-      {/* Fixed square area; rotation must not change its layout size */}
       <div className="relative isolate aspect-square w-full min-w-0 max-w-full">
-        {/* Decorative glow stays inside the wheel boundary */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
           <div className="absolute inset-2 rounded-full bg-linear-to-br from-[#ff1473]/35 via-[#46b9ff]/20 to-[#ff1473]/30 opacity-80 blur-xl" />
         </div>
 
-        {/* Outer neon rim */}
         <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#ff1473] via-[#46b9ff] to-[#ff1473] p-1 shadow-[0_0_28px_rgba(255,20,115,0.22),0_0_24px_rgba(70,185,255,0.12)] sm:p-1.5">
-          {/* Inner metallic rim */}
           <div className="h-full w-full rounded-full bg-linear-to-br from-[#f5e5ef] via-[#5d647c] to-[#dceaff] p-0.75 sm:p-1">
-            {/*
-              IMPORTANT:
-              This parent stays stationary and clips the transformed wheel.
-              The rotating child's diagonal bounding box cannot extend
-              beyond this fixed circular boundary.
-            */}
             <div className="relative h-full w-full overflow-hidden rounded-full bg-[#070911] p-0.75 sm:p-1">
-              {/* Rotating wheel surface */}
               <div
                 className="relative h-full w-full rounded-full border border-white/20"
                 style={{
@@ -106,10 +97,8 @@ export default function LuckySpinWheel({
                   willChange: spinning ? "transform" : "auto",
                 }}
               >
-                {/* Subtle segment shading */}
                 <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.06),transparent_65%)]" />
 
-                {/* Segment dividers */}
                 {Array.from({ length: segmentCount }).map((_, index) => (
                   <div
                     key={`divider-${index}`}
@@ -120,11 +109,9 @@ export default function LuckySpinWheel({
                   />
                 ))}
 
-                {/* Segment labels */}
                 {orderedSegments.map((segment, index) => {
                   const angle = (index + 0.5) * sliceAngle;
                   const radians = (angle * Math.PI) / 180;
-
                   const radius = 31;
                   const x = 50 + radius * Math.sin(radians);
                   const y = 50 - radius * Math.cos(radians);
@@ -135,7 +122,7 @@ export default function LuckySpinWheel({
 
                   return (
                     <div
-                      key={`${segment.Label ?? "segment"}-${index}`}
+                      key={`${segment.documentId ?? segment.id ?? "segment"}-${segment.DisplayOrder ?? index}-${index}`}
                       className="pointer-events-none absolute z-2 flex w-[29%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-1 text-center"
                       style={{
                         left: `${x}%`,
@@ -164,12 +151,10 @@ export default function LuckySpinWheel({
           </div>
         </div>
 
-        {/* Fixed pointer */}
         <div className="absolute left-1/2 top-0 z-30 -translate-x-1/2">
           <div className="h-0 w-0 border-x-12 border-t-23 border-x-transparent border-t-[#ff1473] drop-shadow-[0_0_8px_rgba(255,20,115,0.85)] sm:border-x-15 sm:border-t-28" />
         </div>
 
-        {/* Fixed center hub */}
         <div className="absolute left-1/2 top-1/2 z-20 flex h-[17%] w-[17%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-linear-to-br from-[#ff1473] via-[#46b9ff] to-[#c296a8] p-0.75 shadow-[0_0_24px_rgba(255,20,115,0.3)]">
           <div className="flex h-full w-full items-center justify-center rounded-full border border-white/20 bg-[#06070b] p-1.25">
             <Image
@@ -183,7 +168,6 @@ export default function LuckySpinWheel({
           </div>
         </div>
 
-        {/* Alternating brand lights */}
         {Array.from({ length: 12 }).map((_, index) => (
           <span
             key={`light-${index}`}
@@ -201,7 +185,6 @@ export default function LuckySpinWheel({
         ))}
       </div>
 
-      {/* Spin button */}
       {onSpin && (
         <button
           type="button"

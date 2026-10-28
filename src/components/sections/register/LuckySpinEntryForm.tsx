@@ -6,6 +6,8 @@ import type { LuckySpinEntryPayload } from "@/types/lucky-spin";
 
 interface LuckySpinEntryFormProps {
   onSubmit: (payload: LuckySpinEntryPayload) => void | Promise<void>;
+  onError?: (message: string) => void;
+  onPlayerChange?: (player: { UID: string; Username: string }) => void;
   loading?: boolean;
   termsAndConditions?: string | null;
   disabled?: boolean;
@@ -13,6 +15,8 @@ interface LuckySpinEntryFormProps {
 
 export default function LuckySpinEntryForm({
   onSubmit,
+  onError,
+  onPlayerChange,
   loading = false,
   termsAndConditions,
   disabled = false,
@@ -20,32 +24,36 @@ export default function LuckySpinEntryForm({
   const [uid, setUid] = useState("");
   const [username, setUsername] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
-  const [error, setError] = useState("");
 
   const isDisabled = disabled || loading;
 
   const inputClassName =
     "w-full min-w-0 rounded-xl border border-white/10 bg-[#050914] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-[#ff1473]/70 focus:ring-2 focus:ring-[#ff1473]/10 disabled:cursor-not-allowed disabled:opacity-50";
 
+  function reportError(message: string) {
+    onError?.(message);
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setError("");
 
     const cleanUid = uid.trim();
     const cleanUsername = username.trim();
 
     if (!cleanUid || !cleanUsername) {
-      setError("Please enter both your Player UID and username.");
+      reportError("Please enter both your Player UID and username.");
       return;
     }
 
     if (cleanUid.length > 100 || cleanUsername.length > 100) {
-      setError("Your Player UID and username must be 100 characters or fewer.");
+      reportError(
+        "Your Player UID and username must be 100 characters or fewer.",
+      );
       return;
     }
 
     if (!termsAccepted) {
-      setError("Please accept the terms and conditions to continue.");
+      reportError("Please accept the terms and conditions to continue.");
       return;
     }
 
@@ -56,7 +64,7 @@ export default function LuckySpinEntryForm({
         TermsAccepted: true,
       });
     } catch (submissionError) {
-      setError(
+      reportError(
         submissionError instanceof Error
           ? submissionError.message
           : "Your spin could not be submitted. Please try again.",
@@ -68,6 +76,7 @@ export default function LuckySpinEntryForm({
     <form
       id="lucky-spin-entry-form"
       onSubmit={handleSubmit}
+      noValidate
       className="relative w-full space-y-5 overflow-hidden rounded-2xl border border-white/10 bg-linear-to-br from-[#101019] via-[#0b0b11] to-[#08080c] p-4 shadow-[0_16px_45px_rgba(0,0,0,0.25)] sm:p-5"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#ff1473]/70 to-transparent" />
@@ -91,11 +100,15 @@ export default function LuckySpinEntryForm({
           maxLength={100}
           value={uid}
           onChange={(event) => {
-            setUid(event.target.value);
-            setError("");
+            const nextUid = event.target.value;
+            setUid(nextUid);
+
+            onPlayerChange?.({
+              UID: nextUid.trim(),
+              Username: username.trim(),
+            });
           }}
           placeholder="Enter your player UID"
-          required
           disabled={isDisabled}
           className={inputClassName}
         />
@@ -118,11 +131,15 @@ export default function LuckySpinEntryForm({
           maxLength={100}
           value={username}
           onChange={(event) => {
-            setUsername(event.target.value);
-            setError("");
+            const nextUsername = event.target.value;
+            setUsername(nextUsername);
+
+            onPlayerChange?.({
+              UID: uid.trim(),
+              Username: nextUsername.trim(),
+            });
           }}
           placeholder="Enter your poker username"
-          required
           disabled={isDisabled}
           className={inputClassName}
         />
@@ -153,11 +170,7 @@ export default function LuckySpinEntryForm({
         <input
           type="checkbox"
           checked={termsAccepted}
-          onChange={(event) => {
-            setTermsAccepted(event.target.checked);
-            setError("");
-          }}
-          required
+          onChange={(event) => setTermsAccepted(event.target.checked)}
           disabled={isDisabled}
           className="mt-0.5 size-4 shrink-0 accent-[#ff1473]"
         />
@@ -168,17 +181,6 @@ export default function LuckySpinEntryForm({
           .
         </span>
       </label>
-
-      {/* Validation error */}
-      {error && (
-        <p
-          role="alert"
-          aria-live="polite"
-          className="whitespace-pre-wrap rounded-xl border border-red-400/20 bg-red-500/10 p-3 text-sm leading-5 text-red-300"
-        >
-          {error}
-        </p>
-      )}
 
       {/* Submit button */}
       <button
