@@ -471,7 +471,7 @@ export default function LuckySpinSection() {
                               rel="noopener noreferrer"
                               className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#229ED9] px-4 py-3 text-center text-sm font-extrabold text-white transition hover:bg-[#168ac0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                             >
-                              Share Result``
+                              Share Result
                             </a>
                           )}
 
