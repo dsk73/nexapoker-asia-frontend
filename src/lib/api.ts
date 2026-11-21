@@ -24,6 +24,14 @@ import type {
   PokerExchangePage,
 } from "@/types/pages";
 
+import type {
+  ShopProduct,
+  ShopCategory,
+  ProductVariant,
+  ShopPageSetting,
+  ShopSettings,
+} from "@/types/shop";
+
 import type { StrapiCollectionResponse, StrapiResponse } from "@/types/strapi";
 
 import { STRAPI_URL } from "./strapi";
@@ -435,6 +443,67 @@ export async function getTeachingGuideBySlug(
      */
     MediaSection: deepGuide.MediaSection ?? baseGuide.MediaSection,
   };
+}
+
+/* =========================================================
+   NEXA POKER SHOP
+========================================================= */
+
+const SHOP_PRODUCT_POPULATE =
+  "/shop-products?pagination[pageSize]=100&populate[shop_category]=true&populate[Thumbnail]=true&populate[Gallery][populate][Image]=true&populate[ProductViews][populate][Image]=true&populate[product_variants][populate][VariantImage]=true";
+
+export async function getShopProducts(): Promise<ShopProduct[]> {
+  const response = await api.get<StrapiCollectionResponse<ShopProduct>>(
+    SHOP_PRODUCT_POPULATE,
+  );
+
+  return response.data.data
+    .filter((product) => product.Active)
+    .sort((a, b) => (a.DisplayOrder ?? 0) - (b.DisplayOrder ?? 0));
+}
+
+export async function getShopProductBySlug(
+  slug: string,
+): Promise<ShopProduct | null> {
+  const response = await api.get<StrapiCollectionResponse<ShopProduct>>(
+    `/shop-products?filters[Slug][$eq]=${encodeURIComponent(slug)}&populate[shop_category]=true&populate[Thumbnail]=true&populate[Gallery][populate][Image]=true&populate[ProductViews][populate][Image]=true&populate[product_variants][populate][VariantImage]=true`,
+  );
+
+  return response.data.data[0] ?? null;
+}
+
+export async function getShopCategories(): Promise<ShopCategory[]> {
+  const response = await api.get<StrapiCollectionResponse<ShopCategory>>(
+    "/shop-categories?populate=*",
+  );
+
+  return response.data.data
+    .filter((category) => category.Active)
+    .sort((a, b) => (a.DisplayOrder ?? 0) - (b.DisplayOrder ?? 0));
+}
+
+export async function getShopVariants(): Promise<ProductVariant[]> {
+  const response = await api.get<StrapiCollectionResponse<ProductVariant>>(
+    "/product-variants?pagination[pageSize]=100&populate=*",
+  );
+
+  return response.data.data.filter((variant) => variant.Active);
+}
+
+export async function getShopPageSetting(): Promise<ShopPageSetting | null> {
+  const response = await api.get<StrapiResponse<ShopPageSetting>>(
+    "/shop-page-setting?populate=*",
+  );
+
+  return response.data.data ?? null;
+}
+
+export async function getShopSettings(): Promise<ShopSettings | null> {
+  const response = await api.get<StrapiResponse<ShopSettings>>(
+    "/shop-setting",
+  );
+
+  return response.data.data ?? null;
 }
 
 /* =========================================================

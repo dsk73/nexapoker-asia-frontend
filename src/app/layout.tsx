@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import TelegramFloatingButton from "@/components/common/TelegramFloatingButton";
+import { CartProvider } from "@/context/CartContext";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nexapoker-asia.com"),
@@ -75,6 +76,7 @@ export const metadata: Metadata = {
   generator: "Next.js",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -83,9 +85,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
-        {children}
-
-        <TelegramFloatingButton />
+        <CartProvider>
+          {children}
+          <TelegramFloatingButton />
+        </CartProvider>
       </body>
     </html>
   );

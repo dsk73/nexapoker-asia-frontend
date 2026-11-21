@@ -1,18 +1,50 @@
+
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
+
+interface CartLinkProps {
+  cartCount: number;
+  onClick?: () => void;
+  className?: string;
+}
+
+function CartLink({
+  cartCount,
+  onClick,
+  className = "",
+}: CartLinkProps) {
+  return (
+    <Link
+      href="/shop/cart"
+      onClick={onClick}
+      aria-label={`Shopping cart, ${cartCount} items`}
+      className={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition hover:border-[#ff1764] hover:text-[#ff1764] ${className}`}
+    >
+      <ShoppingCart size={20} />
+
+      {cartCount > 0 && (
+        <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#ff1764] px-1 text-[10px] font-bold text-white">
+          {cartCount > 99 ? "99+" : cartCount}
+        </span>
+      )}
+    </Link>
+  );
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { cartCount } = useCart();
 
   const links = [
     { label: "About", href: "/about" },
     { label: "Activities", href: "/activities" },
     { label: "Promotions", href: "/promotion" },
-    // { label: "Teaching Center", href: "/teaching-center" },
+    { label: "Shop", href: "/shop" },
     { label: "Poker Exchange", href: "/poker-exchange" },
     { label: "Community", href: "/community" },
   ];
@@ -21,10 +53,6 @@ export default function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="border-b border-white/8 bg-black/75 backdrop-blur-xl">
         <div className="container-nexa flex h-19 items-center justify-between">
-          {/* =================================================
-              LOGO
-              ================================================= */}
-
           <Link
             href="/"
             className="flex items-center"
@@ -40,10 +68,6 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* =================================================
-              DESKTOP NAVIGATION
-              ================================================= */}
-
           <nav className="hidden items-center gap-7 lg:flex">
             {links.map((link) => (
               <Link
@@ -56,11 +80,9 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* =================================================
-              DESKTOP ACTIONS
-              ================================================= */}
-
           <div className="hidden items-center gap-3 lg:flex">
+            <CartLink cartCount={cartCount} />
+
             <Link href="/download" className="nexa-button-secondary">
               Download
             </Link>
@@ -70,25 +92,21 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* =================================================
-              MOBILE MENU BUTTON
-              ================================================= */}
+          <div className="flex items-center gap-3 lg:hidden">
+            <CartLink cartCount={cartCount} />
 
-          <button
-            type="button"
-            onClick={() => setOpen(!open)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white lg:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-          >
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
+            <button
+              type="button"
+              onClick={() => setOpen(!open)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+            >
+              {open ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
       </div>
-
-      {/* =================================================
-          MOBILE NAVIGATION
-          ================================================= */}
 
       {open && (
         <div className="border-b border-white/10 bg-[#08090c]/98 lg:hidden">

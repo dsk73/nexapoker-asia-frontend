@@ -11,6 +11,7 @@ const navigationLinks = [
   { label: "About", href: "/about" },
   { label: "Activities", href: "/activities" },
   { label: "Promotions", href: "/promotion" },
+  { label: "Shop", href: "/shop" },
   // { label: "Teaching Center", href: "/teaching-center" },
   { label: "Poker Exchange", href: "/poker-exchange" },
 ];
