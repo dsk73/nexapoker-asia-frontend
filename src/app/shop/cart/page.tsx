@@ -1,18 +1,39 @@
 
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { useRef, useState } from "react";
+import { X } from "lucide-react";
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
 import { useCart } from "@/context/CartContext";
-import {
-  ArrowLeft,
-  Minus,
-  Plus,
-  ShoppingBag,
-  Trash2,
-} from "lucide-react";
+import api from "@/lib/api";
+
+import CartContent from "@/components/shop/checkout/CartContent";
+import CheckoutConfirmation from "@/components/shop/checkout/CheckoutConfirmation";
+import CheckoutForm, {
+  type CustomerDetails,
+} from "@/components/shop/checkout/CheckoutForm";
+import OrderSuccess, {
+  type OrderResponse,
+} from "@/components/shop/checkout/OrderSuccess";
+
+type CheckoutStage = "confirmation" | "details" | "success";
+
+const INITIAL_CUSTOMER: CustomerDetails = {
+  customerName: "",
+  email: "",
+  phone: "",
+  country: "",
+  state: "",
+  city: "",
+  address: "",
+  postalCode: "",
+  customerNotes: "",
+};
+
+const TELEGRAM_SUPPORT_LINK = "https://t.me/khatra17";
 
 export default function CartPage() {
   const {
@@ -22,23 +43,211 @@ export default function CartPage() {
     isLoaded,
     updateQuantity,
     removeItem,
+    clearCart,
   } = useCart();
 
+  // Checkout State
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [checkoutStage, setCheckoutStage] =
+    useState<CheckoutStage>("confirmation");
+
+  // Customer Details
+  const [customer, setCustomer] =
+    useState<CustomerDetails>(INITIAL_CUSTOMER);
+
+  // Submission State
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // Prevent rapid duplicate submissions before React updates state
+  const submissionLock = useRef(false);
+
+  // Order State
+  const [order, setOrder] = useState<OrderResponse | null>(null);
+  const [idempotencyKey, setIdempotencyKey] = useState("");
+
+  // Currency
   const currency = items[0]?.currency || "USD";
 
-  const formatPrice = (price: number) =>
-    new Intl.NumberFormat("en-US", {
+  const formatPrice = (
+    price: number,
+    currencyCode = currency
+  ) => {
+    return new Intl.NumberFormat("en-US", {
       style: "currency",
-      currency,
+      currency: currencyCode,
     }).format(price);
+  };
 
+  // Open Checkout
+  const openCheckout = () => {
+    setErrorMessage("");
+    setOrder(null);
+    setCustomer(INITIAL_CUSTOMER);
+    setIdempotencyKey("");
+    setCheckoutStage("confirmation");
+    setIsCheckoutOpen(true);
+  };
+
+  // Close Checkout
+  // Cart items are intentionally preserved.
+  const closeCheckout = () => {
+    if (submissionLock.current || isSubmitting) return;
+
+    setIsCheckoutOpen(false);
+    setErrorMessage("");
+  };
+
+  // Update Customer Details
+  const updateCustomer = (
+    field: keyof CustomerDetails,
+    value: string
+  ) => {
+    setCustomer((previous) => ({
+      ...previous,
+      [field]: value,
+    }));
+
+    setErrorMessage("");
+  };
+
+  // Submit Order
+  const submitOrder = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
+    // Synchronous protection against rapid duplicate submissions
+    if (submissionLock.current || isSubmitting) return;
+
+    // Validate Cart
+    if (items.length === 0) {
+      setErrorMessage(
+        "Your cart is empty. Please add products before checkout."
+      );
+      return;
+    }
+
+    // Validate Product and Variant References
+    const invalidItem = items.find(
+      (item) =>
+        !item.productId ||
+        !item.variantId ||
+        /^\d+$/.test(item.productId) ||
+        /^\d+$/.test(item.variantId)
+    );
+
+    if (invalidItem) {
+      setErrorMessage(
+        "A product or variant reference is missing. Please remove the affected item and add it to your cart again."
+      );
+      return;
+    }
+
+    // Lock immediately before starting the request
+    submissionLock.current = true;
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    // Generate or Reuse Idempotency Key
+    const requestKey =
+      idempotencyKey || `nexa-order-${crypto.randomUUID()}`;
+
+    if (!idempotencyKey) {
+      setIdempotencyKey(requestKey);
+    }
+
+    try {
+      // Send Order Request to Strapi
+      const response = await api.post<{
+        success: boolean;
+        data?: OrderResponse;
+        error?: {
+          message?: string;
+        };
+      }>("/shop-orders/request", {
+        customer: {
+          customerName: customer.customerName.trim(),
+          email: customer.email.trim(),
+          phone: customer.phone.trim(),
+          country: customer.country.trim(),
+          state: customer.state.trim(),
+          city: customer.city.trim(),
+          address: customer.address.trim(),
+          postalCode: customer.postalCode.trim(),
+          customerNotes: customer.customerNotes.trim(),
+        },
+
+        items: items.map((item) => ({
+          productId: item.productId,
+          variantId: item.variantId,
+          quantity: item.quantity,
+        })),
+
+        idempotencyKey: requestKey,
+      });
+
+      // Validate API Response
+      const orderData = response.data?.data;
+
+      if (
+        response.data?.success !== true ||
+        !orderData?.orderNumber
+      ) {
+        throw new Error(
+          "We could not confirm your order. Please try again."
+        );
+      }
+
+      // Save Order and Show Success Screen
+      setOrder(orderData);
+      setCheckoutStage("success");
+
+      // Clear Cart Only After Successful Order Creation
+      clearCart();
+    } catch (error: unknown) {
+      let message = "Unable to submit your order. Please try again.";
+
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "response" in error
+      ) {
+        const responseError = error as {
+          response?: {
+            data?: {
+              error?: {
+                message?: string;
+              };
+            };
+          };
+        };
+
+        message =
+          responseError.response?.data?.error?.message || message;
+      } else if (error instanceof Error) {
+        message = error.message;
+      }
+
+      setErrorMessage(message);
+    } finally {
+      setIsSubmitting(false);
+      submissionLock.current = false;
+    }
+  };
+
+  // Loading State
   if (!isLoaded) {
     return (
       <>
         <Navbar />
+
         <main className="flex min-h-[70vh] items-center justify-center bg-[#050507] pt-28">
-          <p className="text-sm text-white/50">Loading your cart...</p>
+          <p className="text-sm text-white/50">
+            Loading your cart...
+          </p>
         </main>
+
         <Footer />
       </>
     );
@@ -48,199 +257,82 @@ export default function CartPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#050507] px-4 pb-20 pt-32 sm:px-6">
-        <div className="container-nexa">
-          <Link
-            href="/shop"
-            className="mb-8 inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-[#ff1764]"
-          >
-            <ArrowLeft size={17} />
-            Continue Shopping
-          </Link>
+      {/* Cart Content */}
+      <CartContent
+        items={items}
+        cartCount={cartCount}
+        subtotal={subtotal}
+        formatPrice={formatPrice}
+        updateQuantity={updateQuantity}
+        removeItem={removeItem}
+        onCheckout={openCheckout}
+      />
 
-          <div className="mb-10">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#ff1764]">
-              Your Selection
-            </p>
-
-            <h1 className="mt-3 text-3xl font-black text-white sm:text-4xl">
-              Shopping Cart
-            </h1>
-
-            <p className="mt-2 text-sm text-white/50">
-              {cartCount} {cartCount === 1 ? "item" : "items"} in your cart
-            </p>
-          </div>
-
-          {items.length === 0 ? (
-            <div className="flex min-h-[350px] flex-col items-center justify-center rounded-3xl border border-white/10 bg-[#0b0c10] px-6 text-center">
-              <ShoppingBag size={48} className="text-[#ff1764]" />
-
-              <h2 className="mt-6 text-xl font-bold text-white">
-                Your cart is empty
-              </h2>
-
-              <p className="mt-2 max-w-sm text-sm leading-6 text-white/50">
-                Looks like you haven&apos;t added anything to your cart yet.
-                Explore our collection and find something you love.
-              </p>
-
-              <Link
-                href="/shop"
-                className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#ff1764] px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-[#c90046]"
+      {/* Checkout Modal */}
+      {isCheckoutOpen && (
+        <div
+          className="fixed inset-0 z-100 flex items-center justify-center overflow-y-auto bg-black/80 px-4 py-8 backdrop-blur-sm"
+          // Intentionally no backdrop onClick handler.
+          // Clicking outside the card must not close checkout.
+        >
+          <div className="relative my-auto w-full max-w-xl rounded-3xl border border-white/10 bg-[#0b0c10] p-6 shadow-2xl sm:p-8">
+            {/* Close Button */}
+            {checkoutStage !== "success" && (
+              <button
+                type="button"
+                onClick={closeCheckout}
+                disabled={isSubmitting}
+                aria-label="Close checkout"
+                className="absolute right-5 top-5 rounded-full p-2 text-white/50 transition-colors hover:bg-white/10 hover:text-white disabled:opacity-30"
               >
-                Explore Shop
-                <ArrowLeft size={16} className="rotate-180" />
-              </Link>
-            </div>
-          ) : (
-            <div className="grid gap-8 lg:grid-cols-[1fr_360px]">
-              <div className="space-y-4">
-                {items.map((item) => (
-                  <div
-                    key={item.variantId}
-                    className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-[#0b0c10] p-4 sm:flex-row sm:items-center"
-                  >
-                    <Link
-                      href={`/shop/${item.slug}`}
-                      className="relative h-28 w-full shrink-0 overflow-hidden rounded-xl bg-[#151519] sm:h-28 sm:w-28"
-                    >
-                      {item.image ? (
-                        <Image
-                          src={item.image}
-                          alt={item.name}
-                          fill
-                          sizes="112px"
-                          className="object-contain p-2"
-                        />
-                      ) : (
-                        <div className="flex h-full items-center justify-center text-xs text-white/30">
-                          No Image
-                        </div>
-                      )}
-                    </Link>
+                <X size={20} />
+              </button>
+            )}
 
-                    <div className="min-w-0 flex-1">
-                      <Link
-                        href={`/shop/${item.slug}`}
-                        className="text-base font-bold text-white transition-colors hover:text-[#ff1764]"
-                      >
-                        {item.name}
-                      </Link>
+            {/* Stage 1: Checkout Confirmation */}
+            {checkoutStage === "confirmation" && (
+              <CheckoutConfirmation
+                onBack={closeCheckout}
+                onContinue={() => setCheckoutStage("details")}
+              />
+            )}
 
-                      <p className="mt-2 text-xs text-white/50">
-                        Variant: {item.variantName}
-                      </p>
+            {/* Stage 2: Customer Details Form */}
+            {checkoutStage === "details" && (
+              <CheckoutForm
+                customer={customer}
+                updateCustomer={updateCustomer}
+                onSubmit={submitOrder}
+                onBack={() => {
+                  setErrorMessage("");
+                  setCheckoutStage("confirmation");
+                }}
+                isSubmitting={isSubmitting}
+                errorMessage={errorMessage}
+                cartCount={cartCount}
+                subtotal={subtotal}
+                formatPrice={formatPrice}
+              />
+            )}
 
-                      <p className="mt-1 text-xs text-white/40">
-                        SKU: {item.sku}
-                      </p>
-
-                      <p className="mt-3 text-sm font-bold text-[#ff1764]">
-                        {formatPrice(item.price)}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center justify-between gap-5 sm:flex-col sm:items-end">
-                      <div className="flex items-center gap-3 rounded-full border border-white/10 px-3 py-2">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            updateQuantity(
-                              item.variantId,
-                              Math.max(1, item.quantity - 1)
-                            )
-                          }
-                          disabled={item.quantity <= 1}
-                          aria-label="Decrease quantity"
-                          className="text-white/60 transition-colors hover:text-[#ff1764] disabled:opacity-30"
-                        >
-                          <Minus size={15} />
-                        </button>
-
-                        <span className="min-w-5 text-center text-sm font-bold text-white">
-                          {item.quantity}
-                        </span>
-
-                        <button
-                          type="button"
-                          onClick={() =>
-                            updateQuantity(item.variantId, item.quantity + 1)
-                          }
-                          aria-label="Increase quantity"
-                          className="text-white/60 transition-colors hover:text-[#ff1764]"
-                        >
-                          <Plus size={15} />
-                        </button>
-                      </div>
-
-                      <div className="flex items-center gap-4">
-                        <p className="text-sm font-bold text-white">
-                          {formatPrice(item.price * item.quantity)}
-                        </p>
-
-                        <button
-                          type="button"
-                          onClick={() => removeItem(item.variantId)}
-                          aria-label={`Remove ${item.name}`}
-                          className="text-white/40 transition-colors hover:text-red-400"
-                        >
-                          <Trash2 size={17} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <aside className="h-fit rounded-2xl border border-white/10 bg-[#0b0c10] p-6">
-                <h2 className="text-lg font-bold text-white">
-                  Order Summary
-                </h2>
-
-                <div className="mt-6 flex justify-between text-sm text-white/60">
-                  <span>Subtotal ({cartCount} items)</span>
-                  <span>{formatPrice(subtotal)}</span>
-                </div>
-
-                <div className="mt-4 flex justify-between text-sm text-white/60">
-                  <span>Shipping</span>
-                  <span>Calculated at checkout</span>
-                </div>
-
-                <div className="my-6 border-t border-white/10" />
-
-                <div className="flex justify-between gap-3">
-                  <span className="font-bold text-white">Subtotal</span>
-                  <span className="text-lg font-black text-[#ff1764]">
-                    {formatPrice(subtotal)}
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  disabled
-                  className="mt-7 w-full cursor-not-allowed rounded-full bg-[#ff1764] px-6 py-4 text-sm font-bold text-white opacity-50"
-                >
-                  Checkout Coming Soon
-                </button>
-
-                <p className="mt-3 text-center text-xs leading-5 text-white/40">
-                  Checkout will be available once the order and payment
-                  process is connected.
-                </p>
-
-                <Link
-                  href="/shop"
-                  className="mt-5 block text-center text-sm font-semibold text-white/60 transition-colors hover:text-[#ff1764]"
-                >
-                  Continue Shopping
-                </Link>
-              </aside>
-            </div>
-          )}
+            {/* Stage 3: Order Success */}
+            {checkoutStage === "success" && order && (
+              <OrderSuccess
+                order={order}
+                formatPrice={formatPrice}
+                supportLink={TELEGRAM_SUPPORT_LINK}
+                onClose={() => {
+                  setIsCheckoutOpen(false);
+                  setCheckoutStage("confirmation");
+                  setCustomer(INITIAL_CUSTOMER);
+                  setOrder(null);
+                  setIdempotencyKey("");
+                }}
+              />
+            )}
+          </div>
         </div>
-      </main>
+      )}
 
       <Footer />
     </>
